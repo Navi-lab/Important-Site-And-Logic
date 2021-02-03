@@ -1,0 +1,45 @@
+
+ git config --global user.name "Navi-lab"
+
+ git config --global user.email "pkgo555@outlook.com"
+ 
+ git config --list (check if email username present in the list)
+
+ git init (git initialization)
+
+ touch index.html ( touch is used to create file)
+
+ git status  (to check git status)
+ 
+ git add .  (used to add file to git)
+
+ git rm --cached <file> (used to remove file)
+
+ git commit -m "another update"   (commiting file , "another update" is a comment )
+
+ git log ( checking progress,commit id ,author)
+
+ git remote add origin https://github.com/Navi-lab/Important-Site-And-Logic.git (git remote add origin commandcopied from created repository in github )
+
+ git remote -v 
+
+ git push -u origin master
+
+
+
+other command 
+mkdir --> making a directory
+
+
+Reference site
+-------------------------------
+https://docs.github.com/en/github/importing-your-projects-to-github/adding-an-existing-project-to-github-using-the-command-line
+
+https://youtu.be/xJXgvr8bPes
+
+
+
+
+ 
+
+ 
