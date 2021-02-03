@@ -1,0 +1,918 @@
+<div fxLayout="column" style="height:60vh;" fxShow.xl fxShow.lg fxShow.md fxHide.sm fxHide.xs>
+  <nav class="flex items-center justify-between flex-wrap p-4" style="background: white; height: 12vh;">
+    <div class="flex items-center flex-shrink-0 text-white mr-6">
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white" (click)="evtEmit.loadDashboard()"
+        style="cursor: pointer;">
+        <img class="w-40 h-12" src="/images/Logo_Black.png" alt="">
+      </a>
+    </div>
+    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+      <div class="text-sm lg:flex-grow" fxLayout="row" fxLayoutAlign="start center" style="margin-bottom: -2rem;">
+        <a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+          (click)="evtEmit.loadDashboard()" style="cursor: pointer; height: 7vh;">
+          Dashboard
+        </a>
+        <a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+          (click)="evtEmit.loadAnalytics()" style="cursor: pointer; height: 7vh;">
+          Analytics
+        </a>
+        <a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+          (click)="evtEmit.loadTemplate()" style="cursor: pointer; height: 7vh;">
+          Templates
+        </a>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <a matTooltip="FAQ" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black" (click)="evtEmit.loadFaq()"
+          style="cursor: pointer; border-color: #ffffff40; padding-left: 2%; width: 4rem;">
+          <img src="/images/Dashboard_1.png" alt="" style="width: 20px; height:20px">
+
+        </a>
+        <a matTooltip="Bulk email upload" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black" (click)="evtEmit.laodUpload()"
+          style="cursor: pointer; border-color: #ffffff40; padding-left: 2%; width: 4rem">
+          <img src="/images/Dashboard_2.png" alt="" style="width: 20px; height:20px">
+        </a>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black"
+          style="cursor: pointer; border-color: #ffffff40; padding-left: 1%; width: 4rem;">
+          <span
+            style="width: 2.5rem; height: 2.5rem; padding: 0.6rem 0.8rem; border: 1px solid #21b25b; border-radius: 50%; background-color: #21b25b; color: white;">
+            {{user_first_letter}}
+          </span>
+        </a>
+        <div class="dropdown">
+          <button class="dropbtn font-semibold text-lg text-center p-2 pt-0 text-gray-600"
+            (click)="openDropDown()" style="text-transform: capitalize;">
+
+            {{user_name}}
+            <fa name="caret-down" class="down_arrow"></fa>
+          </button>
+          <div class="dropdown-content text-gray-600" id="#profile">
+            <a href="/users/sign_out">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="row banner-sec">
+    <div class="row">
+      <div class="bg_img"></div>
+    </div>
+    <div fxLayout="row" class="inner-div text-white">
+      <div fxFlex.xl="10" fxFlex.lg="10" fxFlex.md="5" fxFlex.xs="5"></div>
+      <div fxFlex.xl="80" fxFlex.lg="80" fxFlex.md="90" fxFlex.xs="90" class="banner-info">
+
+        <div class="faq text-left pb-10">
+          <span style="color: white; " class="font-bold text-4xl font-hairline pr-8 ">FAQ</span>
+        </div>
+        <div class="row" fxLayoutAlign="center center">
+          <div class="bg-white shadow-lg"
+            style="padding: 2rem 2rem 2rem 2rem; margin-bottom: 1rem;background-color:#fff;width:100%;">
+            <h1 class="flex justify-start text-xl inline-block font-bold ">
+              Creating Surveys
+            </h1>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    How to Create a Survey
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  Click Create Survey button of your dashboard and choose one of the options
+                  in enter survey name, select category and upload logo  and click on Create Survey button.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Adding & Editing Questions
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  Add new questions to your survey from the QUESTION BANK of Recommended Questions or by clicking
+                  &nbsp;&#8853;&nbsp;New
+                  Question
+                  on the Design Survey page. When you add a new question, an editing view appears where you
+                  can enter your question text and customize the question as well as answers. All question types, including text
+                  and upload logo.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Previewing & Testing Surveys
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8 text-sm">
+                  Go to the Preview section to make sure that flow and settings are working as expected.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <!-- <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Copying a Survey
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8 text-sm">
+                  You can copy a survey within your account, or even have another Pollmonk user transfer
+                  a copy of one of their surveys to you.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider> -->
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Making Responses Anonymous
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  To collect anonymous responses, edit the collector options to disable IP address tracking
+                  and email address tracking before sending out your survey. You need to edit each of the
+                  collectors you have for the survey separately to make sure all your survey results are anonymous.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Using a Survey for an Election or Poll
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  Create a survey or voting environment using a Multiple Choice question and an Email Invitation
+                  Collector.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 6" (opened)="setStep(6)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Question Bank
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  Question Bank is a library containing hundreds of questions you can add to your survey in seconds.
+                  These questions are written and certified by our very own survey methodologists.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 7" (opened)="setStep(7)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Copying or Moving Questions
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  You can copy and move questions within an existing survey or insert previously created questions
+                  into a new survey.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <h1 class="flex justify-start text-xl inline-block  font-bold  pt-4 ">Question Type</h1>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 8" (opened)="setStep(8)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Question Types
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  We have several open-ended and closed-ended question types. The settings within a question
+                  allow you to control the type of data the question will collect. Make sure you pick the question
+                  type that's going to report the data you want.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 9" (opened)="setStep(9)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Comment Box Question
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  The Comment Box question allows you to collect long open-ended responses.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 10" (opened)="setStep(10)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Multiple Choice Question
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8 text-sm">
+                  Multiple Choice is a simple closed-ended question type that lets respondents select one
+                  answer from a defined list of choices.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 11" (opened)="setStep(11)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Single Textbox Question
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  The Single Textbox question allows you to collect short open-ended answers from respondents.
+                  You can also validate the question to require answers in a specific length or format.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 12" (opened)="setStep(12)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Ranking Question
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  The Ranking question asks respondents to compare items to each other by placing them in order
+                  of preference. An average ranking is calculated for each answer choice, allowing you to quickly
+                  evaluate the most preferred answer choice.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 13" (opened)="setStep(13)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Dropdown Question
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  Dropdown is a closed-ended question that allows respondents to choose one answer choice
+                  from a list of choices presented in a dropdown menu.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 14" (opened)="setStep(14)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Contact Information Question (Demographic)
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8 text-sm">
+                  Use the Contact Information or Demographic question to collect respondent demographic information
+                  like name, address, email and phone number through a single question.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 15" (opened)="setStep(15)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Date / Time Question
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8 text-sm">
+                  The Date / Time question allows you to collect date and time information in a consistent format.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 16" (opened)="setStep(16)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Yes or No Questions
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  Use a Multiple Choice question type for Yes / No questions. Add Other as an option for additional
+                  comments.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 17" (opened)="setStep(17)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Star Rating Question
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  The Star Rating question lets respondents evaluate a statement on a visual scale of stars.
+                  A weight is assigned to each icon in the scale, so a weighted average is calculated in
+                  the Analytics Results section.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 18" (opened)="setStep(18)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Slider Question
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  The Slider question lets respondents rate an item or statement on a numerical scale by dragging
+                  an interactive slider.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+            <h1 class="flex justify-start text-xl inline-block font-bold   pt-4 ">Image</h1>
+
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 19" (opened)="setStep(19)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Adding or Editing a Logo
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  You can add a logo to a survey if you have registered in Pollmonk.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+
+            <h1 class="flex justify-start text-xl inline-block font-bold    pt-4 ">Pages</h1>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 20" (opened)="setStep(20)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Adding a Custom Thank You
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  You can add a Custom Thank You at the end of your survey. If you're using more than
+                  one collector to distribute your survey, you need to set up a Custom Thank You for each collector.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <h1 class="flex justify-start text-xl inline-block font-bold  pt-4  ">Collaboration</h1>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 21" (opened)="setStep(21)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Ways to Send Your Survey
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  After you've designed and previewed your survey, create a collector to send it out.
+                  You can send a survey via weblink and email. Survey responses are then
+                  recorded in the Analytics section of your account.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <h1 class="flex justify-start text-xl inline-block font-bold  pt-4 ">Login and Password
+            </h1>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 22" (opened)="setStep(22)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Account Verification
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  Account verification adds an extra layer of security to help protect your account and data.
+                  Now, no one can access your account without your username and password—plus a special code sent
+                  to the account holder in a login alert email.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 23" (opened)="setStep(23)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Forgot Username or Password
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  If you can't log in because you forgot your username or password, click on forgot password link in
+                  login
+                  page.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <h1 class="flex justify-start text-xl inline-block font-bold  pt-4">Pollmonk
+              policies
+            </h1>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 24" (opened)="setStep(24)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    About the cookies Pollmonk Uses
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8  text-sm">
+                  Cookies are small bits of data stored on devices (computer, mobile phone, tablet) that
+                  recognize repeat users. Each cookie expires after a certain period of time depending on
+                  what it's used for. We use cookies for several reasons as explained in this article.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </div>
+
+        <div fxLayout="row" fxLayout.xs="column" class="py-8">
+          <div fxFlex="70" fxFlex.xs="100">
+            <p class="footer text-xs text-left m-2" style="margin-left: 0px !important">
+              Copyright &copy; 2013-2019 Sun Plus Software Technologies Pvt Ltd. All rights reserved.
+            </p>
+          </div>
+          <div fxFlex="30" fxFlex.xs="100" class="footer text-right">
+            <a (click)="evtEmit.loadPrivatePolicy()" class="pr-2 pl-2 text-xs"
+              style="cursor: pointer; border-right: 1px solid #1c2a33;color:#1c2a33;">Cookies & Privacy
+            </a>
+            <a (click)="evtEmit.loadFaq()" class="pr-2 pl-2 text-xs" style="cursor: pointer;color:#1c2a33;">Help
+            </a>
+          </div>
+        </div>
+      </div>
+      <div fxFlex.xl="10" fxFlex.lg="10" fxFlex.md="5" fxFlex.xs="5"></div>
+    </div>
+  </div>
+</div>
+
+<div fxLayout="column" style="background: #e6e6e6;" fxHide.xl fxHide.lg fxHide.md fxShow.sm fxShow.xs>
+  <div class="w3-sidebar w3-bar-block w3-animate-left"
+    style="display:none;" id="mySidebar">
+    <!-- <button class="w3-bar-item w3-button w3-large" (click)="evtEmit.w3_close()" style="text-align: center">{{user_name}} &nbsp; &times;</button>
+    <a (click)="evtEmit.loadDashboard()" class="w3-bar-item w3-button" style="text-align: center; padding: 0.5rem 2rem;">
+      Dashboard
+    </a> -->
+    <span style="float: right;font-size:24px;padding-right:1rem; cursor: pointer;"(click)="evtEmit.w3_close()">&nbsp; &emsp; &nbsp; &nbsp;&times;</span>
+		<div class="w3-bar-item w3-button w3-large" 
+			style="text-align: center;color: #21b25b;">{{user_name}} </div>
+		<a (click)="evtEmit.loadDashboard()" class="w3-bar-item w3-button"
+			style="text-align: center; padding: 0.5rem 2rem;">
+			Dashboard
+		</a>
+    <a (click)="evtEmit.loadAnalytics()" class="w3-bar-item w3-button" style="text-align: center; padding: 0.5rem 2rem;">
+      Analytics
+    </a>
+    <a (click)="evtEmit.loadTemplate()" class="w3-bar-item w3-button"
+        style="text-align: center; padding: 0.5rem 2rem;">
+      Template
+    </a>
+    <a (click)="evtEmit.loadFaq()" class="w3-bar-item w3-button" style="text-align: center; padding: 0.5rem 2rem;">
+      FAQ
+    </a>
+
+    <a (click)="evtEmit.laodUpload();" class="w3-bar-item" style="text-align: center; padding: 0.5rem 2rem;">
+      Bulk Email Upload
+    </a>
+    <a href="/users/sign_out" class="w3-bar-item w3-button" style="text-align: center; padding: 0.5rem 2rem;">Logout</a>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="bg-white" style="height: 14vh;">
+    <div fxFlex="2"></div>
+    <div fxFlex="16">
+      <button class="w3-button w3-white w3-xlarge" (click)="evtEmit.w3_open()">&#9776;</button>
+    </div>
+    <div fxFlex="84" fxLayout="row" fxLayoutAlign="center center">
+      <a class="block lg:inline-block lg:mt-0 text-teal-200 hover:text-white" (click)="evtEmit.loadDashboard()"
+      style="cursor: pointer;">
+      <img class="w-40 h-12" src="/images/Logo_Black.png" alt="">
+      </a>
+    </div>
+    <div fxFlex="2"></div>
+  </div>
+  <div class="row banner-sec">
+    <div class="row">
+      <div class="bg_img"></div>
+    </div>
+    <div fxLayout="row" class="inner-div text-white">
+      <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="5"></div>
+      <div fxFlex.xl="70" fxFlex.lg="70" fxFlex.md="90" class="banner-info">
+        <div class="text-center p-6 pb-20">
+          <span class="font-bold text-4xl text-white ">
+            FAQ
+          </span>
+        </div>
+        <div class="row">
+          <div fxFlex="6"></div>
+          <div fxFlex="88">
+            <div class="bg-white rounded card" style="padding: 1rem 1rem 1rem 1rem; margin-bottom: 1rem">
+              <h1 class="flex justify-start text-xl inline-block font-bold ">
+              Creating Surveys
+            </h1>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    How to Create a Survey
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  Click Create Survey button of your dashboard and choose one of the options
+                  in enter survey name, select category and upload logo  and click on Create Survey button.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Adding & Editing Questions
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  Add new questions to your survey from the QUESTION BANK of Recommended Questions or by clicking
+                  &nbsp;&#8853;&nbsp;New
+                  Question
+                  on the Design Survey page. When you add a new question, an editing view appears where you
+                  can enter your question text and customize the question as well as answers. All question types, including text
+                  and upload logo.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Previewing & Testing Surveys
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  Go to the Preview section to make sure that flow and settings are working as expected.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <!-- <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Copying a Survey
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-8 text-sm">
+                  You can copy a survey within your account, or even have another Pollmonk user transfer
+                  a copy of one of their surveys to you.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider> -->
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Making Responses Anonymous
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  To collect anonymous responses, edit the collector options to disable IP address tracking
+                  and email address tracking before sending out your survey. You need to edit each of the
+                  collectors you have for the survey separately to make sure all your survey results are anonymous.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Using a Survey for an Election or Poll
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  Create a survey or voting environment using a Multiple Choice question and an Email Invitation
+                  Collector.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 6" (opened)="setStep(6)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Question Bank
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  Question Bank is a library containing hundreds of questions you can add to your survey in seconds.
+                  These questions are written and certified by our very own survey methodologists.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 7" (opened)="setStep(7)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Copying or Moving Questions
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  You can copy and move questions within an existing survey or insert previously created questions
+                  into a new survey.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <h1 class="flex justify-start text-xl inline-block  font-bold  pt-4 ">Question Type</h1>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 8" (opened)="setStep(8)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Question Types
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  We have several open-ended and closed-ended question types. The settings within a question
+                  allow you to control the type of data the question will collect. Make sure you pick the question
+                  type that's going to report the data you want.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 9" (opened)="setStep(9)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Comment Box Question
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  The Comment Box question allows you to collect long open-ended responses.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 10" (opened)="setStep(10)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Multiple Choice Question
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  Multiple Choice is a simple closed-ended question type that lets respondents select one
+                  answer from a defined list of choices.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 11" (opened)="setStep(11)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Single Textbox Question
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  The Single Textbox question allows you to collect short open-ended answers from respondents.
+                  You can also validate the question to require answers in a specific length or format.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 12" (opened)="setStep(12)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Ranking Question
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  The Ranking question asks respondents to compare items to each other by placing them in order
+                  of preference. An average ranking is calculated for each answer choice, allowing you to quickly
+                  evaluate the most preferred answer choice.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 13" (opened)="setStep(13)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Dropdown Question
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  Dropdown is a closed-ended question that allows respondents to choose one answer choice
+                  from a list of choices presented in a dropdown menu.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 14" (opened)="setStep(14)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Contact Information Question (Demographic)
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  Use the Contact Information or Demographic question to collect respondent demographic information
+                  like name, address, email and phone number through a single question.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 15" (opened)="setStep(15)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Date / Time Question
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  The Date / Time question allows you to collect date and time information in a consistent format.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 16" (opened)="setStep(16)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Yes or No Questions
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  Use a Multiple Choice question type for Yes / No questions. Add Other as an option for additional
+                  comments.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 17" (opened)="setStep(17)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Star Rating Question
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  The Star Rating question lets respondents evaluate a statement on a visual scale of stars.
+                  A weight is assigned to each icon in the scale, so a weighted average is calculated in
+                  the Analytics Results section.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 18" (opened)="setStep(18)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Slider Question
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  The Slider question lets respondents rate an item or statement on a numerical scale by dragging
+                  an interactive slider.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+            <h1 class="flex justify-start text-xl inline-block font-bold   pt-4 ">Image</h1>
+
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 19" (opened)="setStep(19)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Adding or Editing a Logo
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  You can add a logo to a survey if you have registered in Pollmonk.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+
+            <h1 class="flex justify-start text-xl inline-block font-bold    pt-4 ">Pages</h1>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 20" (opened)="setStep(20)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Adding a Custom Thank You
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  You can add a Custom Thank You at the end of your survey. If you're using more than
+                  one collector to distribute your survey, you need to set up a Custom Thank You for each collector.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <h1 class="flex justify-start text-xl inline-block font-bold  pt-4  ">Collaboration</h1>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 21" (opened)="setStep(21)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Ways to Send Your Survey
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  After you've designed and previewed your survey, create a collector to send it out.
+                  You can send a survey via weblink and email. Survey responses are then
+                  recorded in the Analytics section of your account.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <h1 class="flex justify-start text-xl inline-block font-bold  pt-4 ">Login and Password
+            </h1>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 22" (opened)="setStep(22)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Account Verification
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  Account verification adds an extra layer of security to help protect your account and data.
+                  Now, no one can access your account without your username and password—plus a special code sent
+                  to the account holder in a login alert email.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 23" (opened)="setStep(23)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    Forgot Username or Password
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  If you can't log in because you forgot your username or password, click on forgot password link in
+                  login
+                  page.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <mat-divider></mat-divider>
+            <h1 class="flex justify-start text-xl inline-block font-bold  pt-4">Pollmonk
+              policies
+            </h1>
+            <mat-accordion>
+              <mat-expansion-panel [expanded]="step === 24" (opened)="setStep(24)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="text-base font-semibold ">
+                    <mat-icon svgIcon="add-plus"></mat-icon>
+                    About the cookies Pollmonk Uses
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="pl-2 text-sm">
+                  Cookies are small bits of data stored on devices (computer, mobile phone, tablet) that
+                  recognize repeat users. Each cookie expires after a certain period of time depending on
+                  what it's used for. We use cookies for several reasons as explained in this article.</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+            </div>
+          </div>
+          <div fxFlex="6"></div>
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="center center"
+          style="height: 15vh; width: 100vw; margin-bottom: 2rem;">
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <p class="text-xs text-black text-center m-2 ml-4">
+              Copyright &copy; 2013-2019 Sun Plus Software Technologies Pvt Ltd. All rights reserved.
+            </p>
+          </div>
+          <div class="text-black" fxLayout="row" fxLayoutAlign="center center">
+
+            <a (click)="evtEmit.loadPrivatePolicy()" class="pr-2 pl-2 text-xs text-black-500;"
+              style="cursor: pointer; border-right:1px solid #21b25b">Cookies & Privacy</a>
+            <a class="pr-2 pl-2 text-xs text-black-500" style="cursor: pointer;">Help</a>
+          </div>
+        </div>
+      </div>
+      <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="5"></div>
+    </div>
+  </div>
+</div>

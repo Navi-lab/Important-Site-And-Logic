@@ -1,0 +1,87 @@
+
+
+1] Jquerry Filter:  https://www.w3schools.com/jquery/jquery_filters.asp
+
+2] Jquerry Paginator: https://stackoverflow.com/questions/46382109/limit-the-number-of-visible-pages-in-pagination
+
+
+3]Angular Interpolation:https://javainterviewpoint.com/angular-interpolation/
+
+
+4] Crud operation :https://codeburst.io/crud-with-angular-5d8f39805c49
+
+
+5]dropdown with if condition(show/hide):desktop/A7/input
+
+6]typescript tutorials:https://www.tutorialsteacher.com/typescript/typescript-string
+------ --------------------
+7]expansion pannel + and -
+ (1) :https://stackblitz.com/edit/angular-j2te3m?file=app%2Fexpansion-overview-example.html
+
+ (2)plus and minus expansion pannel:
+
+https://stackblitz.com/edit/angular-material2-beta-kznp17?file=app%2Fapp.component.html
+
+https://unicode-table.com/en/sets/arrow-symbols/
+
+
+project:gail/help and support(question)
+---------------------------------------------------------
+8]angular mat-form-field label color css
+  ---    ------  ------  ------  -----
+  ::ng-deep .mat-form-field .mat-input-element {
+    color: slategray;
+}
+::ng-deep .mat-form-field .mat-form-field-label {
+    color: slategray!important;
+}
+::ng-deep .mat-form-field .mat-form-field-underline {
+    background-color: slategray;
+}
+::ng-deep .mat-form-field .mat-form-field-ripple {
+    background-color: slategray;
+}
+::ng-deep .mat-form-field .mat-form-field-required-marker {
+    color: slategray;
+}
+
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: #ff884d!important;
+}
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: #ff884d;
+}
+::ng-deep .mat-form-field.mat-focused .mat-form-field-required-marker {
+    color: #ff884d;
+}
+::ng-deep .mat-form-field.mat-focused .mat-input-element {
+    color: #ff884d;
+}
+
+
+
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-input-element {
+    color: #ff33cc;
+}
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+    color: #ff33cc!important;
+}
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker {
+    color: #ff33cc;
+}
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
+    background-color: #ff33cc;
+}
+
+---------------------------------------------------------------------------------------------------------------------------------
+9] mat-select angular (alignment of mat-option)
+
+Link : https://stackblitz.com/edit/angular-khatke?file=app%2Fselect-overview-example.html
+
+----------------------------------------------------------------------------------------------------
+10] angular additional feature synchronization in angular
+
+link:https://ej2.syncfusion.com/angular/documentation/introduction/?no-cache=1
+-------------------------------------------------------------------------------------------------------------------
+

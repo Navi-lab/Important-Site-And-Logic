@@ -1,0 +1,1 @@
+https://stackblitz.com/edit/angular-email-validation?file=app%2Fapp.component.html

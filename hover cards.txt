@@ -1,0 +1,15 @@
+.container .card{
+position:relative;
+background:red;
+overflow:hideen;///
+border-radius:10px;
+transition:0.5s;
+}
+.container .card .img-box{
+position:absolute;
+top:0;
+left:0;
+width:100px;
+height:100px;
+transition:0.5s;
+}

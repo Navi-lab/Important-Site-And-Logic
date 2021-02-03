@@ -1,0 +1,37 @@
+  
+
+
+   *************************************** Wordpress installation ****************************************
+   
+   1) Download Xampp and wordpress from offiicial link.
+   2) Install Xampp .
+   3) Run Xampp and run Apache and mysql.
+   4) goto link:http://localhost/phpmyadmin/ 
+   5) click on Database tab and create database and close (give same name for db as in project it will be easy to remember)
+   6) Now go to xampp->htdocs folder and paste wordpress.zip file and extract and delete and rename(myproject) it same as databse name.
+   7) goto link:localhost/projectname(created).
+   8) database name: created db name.
+      username:root.
+      password:     .(blank)
+      and run installation.
+   9) site title: anything
+      username:admin
+      password:admin
+      confirm:checked.
+      your email:admin@gmail.com.
+  10) Installation complete and login to start.
+
+
+  next time when u open use this link for dashboard login:http:/localhost/myproject/wp-login.php
+  * myproject -wordpress rename as myproject
+    
+
+ If in case u want create new project:
+ 1)copy wordpress.zip and paste it in htdocs and extract.
+ 2)rename it as anyname.
+ 3)Run xampp control pannel and goto link:http://localhost/phpmyadmin/  and create database .
+ 4) goto link:localhost/projectname(created).
+
+
+   
+  

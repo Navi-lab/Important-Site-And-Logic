@@ -1,0 +1,281 @@
+<div fxLayout="column" style="background: #e6e6e6; height: 100vh;" fxShow.xl fxShow.lg fxShow.md fxide.sm fxShow.xs>
+  <div fxLayout="column" style="background: #e6e6e6;" fxHide.xl fxHide.lg fxHide.md fxShow.sm fxShow.xs>
+    <div class="w3-sidebar w3-bar-block w3-dark-grey w3-animate-left"
+      style="display:none; background: #9acd18 ! important;" id="mySidebar">
+      <button class="w3-bar-item w3-button w3-large" (click)="evtEmit.w3_close()">{{user_name}} &nbsp; &times;</button>
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-white mr-4" (click)="evtEmit.loadAbout()"
+        style="cursor: pointer; border-color: #ffffff40; padding-left: 2%; width: 4rem;">
+        About
+      </a>
+      <a class="block mt-4 lg:inline-block text-white lg:mt-0 mr-4" (click)="evtEmit.loadContact()"
+        style="cursor: pointer; border-color: #ffffff40;  width: 4rem">
+        Contact
+      </a>
+      <button class="w-32 h-10 mt-4 focus:outline-none text-sm login-btn" (click)="evtEmit.loadlogin()"
+        style="border: 1px solid white; color:white; border-radius: 25px; border: 1px solid white">
+        LOGIN
+      </button>
+      <button class="w-32 h-10 focus:outline-none mt-4 text-sm signup-btn" (click)="evtEmit.loadSignup()"
+        style="background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b; margin-left: 0% !important">
+        SIGN UP
+      </button>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="bg-white" style="height: 10vh;">
+      <div fxFlex="2"></div>
+      <div fxFlex="16">
+        <button class="w3-button w3-white w3-xxlarge" (click)="evtEmit.w3_open()">&#9776;</button>
+      </div>
+      <div fxFlex="84" fxLayout="row" fxLayoutAlign="center center">
+        <a class="block lg:inline-block lg:mt-0 text-teal-200 hover:text-white" (click)="loadDashboard()"
+          style="cursor: pointer;">
+          <img class="w-40 h-16" src="/images/Logo.png" alt="">
+        </a>
+      </div>
+      <div fxFlex="2"></div>
+    </div>
+  </div>
+  <div fxLayout="row" style="position: relative">
+    <div class="bg_img"></div>
+        <nav class="flex items-center justify-between flex-wrap p-4" style="height: 12vh;"fxShow.xl fxShow.lg fxShow.md fxHide.sm fxHide.xs>
+      <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white" (click)="loadDashboard()"
+          style="cursor: pointer;">
+          <img class="w-40 h-12 ml-4" src="/images/Logo.png" alt="">
+        </a>
+      </div>
+      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div class="text-sm lg:flex-grow" fxLayout="row" fxLayoutAlign="start center" style="margin-bottom: -2rem;">
+          <a class="block lg:inline-block lg:mt-0 text-teal-200 hover:text-black border-btm">
+
+          </a>
+
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+
+          <a class="block mt-4 lg:inline-block lg:mt-0 text-white mr-4" (click)="evtEmit.loadAbout()"
+            style="cursor: pointer; border-color: #ffffff40; padding-left: 2%; width: 4rem;">
+            About
+
+          </a>
+          <a class="block mt-4 lg:inline-block text-white lg:mt-0 mr-4" (click)="evtEmit.loadContact()"
+            style="cursor: pointer; border-color: #ffffff40;  width: 4rem">
+            Contact
+
+          </a>
+          <button class="w-32 h-10 focus:outline-none text-sm login-btn" (click)="evtEmit.loadlogin()"
+            style="border: 1px solid white; color:white; border-radius: 25px; border: 1px solid white">
+            LOGIN
+          </button>
+          <button class="w-32 h-10 focus:outline-none ml-4 mr-4 text-sm signup-btn" (click)="evtEmit.loadSignup()"
+            style="background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b">
+            SIGN UP
+          </button>
+        </div>
+
+      </div>
+    </nav>
+
+    <div fxLayout="column" class="banner-info">
+      <div fxLayout="row" fxLayoutAlign="center end">
+        <h2 class="text-4xl mt-16" style="color:#FFF;font-weight:600;">About</h2>
+      </div>
+    </div>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="center center" class="section-1" style="padding:5rem; background-color: white">
+    <p class="font-bold text-4xl font-hairline pb-4" style="color:#1c2a33">
+      About <span style="color: #21b25b">Pollmonk</span>
+    </p>
+    <p class="section11 text-base" style="padding: 0rem 8rem; text-align: center;color:#1c2a33">
+      Pollmonk is a universal feedback management system that provides an online platform to create feedback forms, automate response
+      collection and report generation for myriad of domains,it offer's one of the most advanced comprehensive feedback
+      tools that allow user to extract more out of their feedback forms, empowering quick decisions.
+    </p>
+  </div>
+
+  <div fxlayout="row" fxLayout.xs="column" class="section-2"
+    style="flex-direction: row; box-sizing: border-box; display: flex;">
+    <div fxflex="10" style="background-color: rgb(28, 42, 51); flex: 1 1 100%; box-sizing: border-box; max-width: 10%;">
+    </div>
+    <div fxflex="20" fxflex.xs="100" class="section-2-img" fxlayout.xs="row" fxlayout="column"
+      fxlayoutalign="center center"
+      style="background-color: rgb(28, 42, 51); height: 35vh; flex-direction: column; box-sizing: border-box; display: flex; place-content: center; align-items: center; flex: 1 1 100%; max-width: 20%;"
+      ng-reflect-fx-layout="column" ng-reflect-fx-layout-align="center center">
+      <img _ngcontent-xyd-c1="" src="/images/analysis.png" width="70">
+      <p class="font-bold text-base text-white pt-4" style="font-family:'Lato', sans serif;">Feedback Analysis</p>
+    </div>
+    <div fxflex="20" fxflex.xs="100" fxlayout.xs="row" class="section-2-img" fxlayout="column"
+      fxlayoutalign="center center"
+      style="background-color: rgb(33, 178, 91); height: 35vh; flex-direction: column; box-sizing: border-box; display: flex; place-content: center; align-items: center; flex: 1 1 100%; max-width: 20%;"
+      ng-reflect-fx-layout="column" ng-reflect-fx-layout-align="center center" ng-reflect-fx-flex="20">
+      <img _ngcontent-xyd-c1="" src="/images/social-media.png" width="70">
+      <p class="font-bold text-base text-white pt-4" style="font-family:'Lato', sans serif;">Share Your Feedback Forms</p>
+    </div>
+
+    <div fxflex="20" fxflex.xs="100" fxlayout.xs="row" class="section-2-img" fxlayout="column"
+      fxlayoutalign="center center"
+      style="background-color: rgb(28, 42, 51); height: 35vh; flex-direction: column; box-sizing: border-box; display: flex; place-content: center; align-items: center; flex: 1 1 100%; max-width: 20%;"
+      ng-reflect-fx-layout="column" ng-reflect-fx-layout-align="center center" ng-reflect-fx-flex="20">
+      <img _ngcontent-xyd-c1="" src="/images/question.png" width="70">
+      <p class="font-bold text-base text-white pt-4" style="font-family:'Lato', sans serif;">Preview Your Questions</p>
+    </div>
+
+    <div fxflex="20" fxflex.xs="100" fxlayout.xs="row" class="section-2-img" fxlayout="column"
+      fxlayoutalign="center center"
+      style="background-color: rgb(33, 178, 91); height: 35vh; flex-direction: column; box-sizing: border-box; display: flex; place-content: center; align-items: center; flex: 1 1 100%; max-width: 20%;"
+      ng-reflect-fx-layout="column" ng-reflect-fx-layout-align="center center" ng-reflect-fx-flex="20"><img
+        _ngcontent-xyd-c1="" src="/images/translation.png" width="70">
+      <p class="font-bold text-base text-white pt-4" style="font-family:'Lato', sans serif;">Multi Language</p>
+    </div>
+
+    <div fxflex="10" style="background-color: rgb(33, 178, 91); flex: 1 1 100%; box-sizing: border-box; max-width: 10%;"
+      ng-reflect-fx-flex="10"></div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center end" style="background-color:#e2e8f0;">
+    <div fxLayout="column">
+      <h2 class="text-3xl mt-8" style="color:#444;font-weight:600;font-family:'Lato', sans serif;">Salient Features</h2>
+    </div>
+  </div>
+
+  <div fxlayout="row" fxlayout.xs="column" class="section-3"
+    style="padding:0rem 3rem; flex-direction: row; box-sizing: border-box; display: flex;background-color:#e2e8f0;">
+    <div style="flex: 1 1 100%; box-sizing: border-box; max-width: 10%;"></div>
+    <div fxflex="24" class="section"
+      style="padding: 2rem 0rem; flex: 1 1 100%; box-sizing: border-box; max-width: 35%;">
+      <div class="section31" style="display: flex; width: 100%;">
+        <img src="/images/translation_1.png" style="width: 40px;height: 40px;">
+        <p class="font-bold text-base" style="padding:0.5rem;color:#1c2a33;font-family:'Lato', sans serif;">Multi
+          Language</p>
+      </div>
+      <div>
+        <p class="paragraph text-base text-justify" style="color:#1c2a33;font-family:'Lato', sans serif;">Enterprise
+          solution that provides multilingual and customized professional feedback features.</p>
+      </div>
+    </div>
+
+    <div style="flex: 1 1 100%; box-sizing: border-box; max-width: 10%;"></div>
+    <div fxflex="24" class="section"
+      style="padding: 2rem 0rem; flex: 1 1 100%; box-sizing: border-box; max-width: 35%;">
+      <div class="section31" style="display: flex; width: 100%;">
+        <img src="/images/question_1.png" style="width: 40px;height: 40px;">
+        <p class="font-bold text-base" style="padding:0.5rem;color:#1c2a33;font-family:'Lato', sans serif;">Preview Your
+          Question</p>
+      </div>
+      <div>
+        <p class="paragraph text-base text-justify" style="color:#1c2a33;font-family:'Lato', sans serif;">Create
+          professional & intelligent feedback forms using extensive list of standardized templates, smart logic and branding options.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div fxlayout="row" class="section-3" fxlayout.xs="column"
+    style="padding:0rem 3rem; flex-direction: row; box-sizing: border-box; display: flex;background-color:#e2e8f0;"
+    ng-reflect-fx-layout="row">
+    <div style="flex: 1 1 100%; box-sizing: border-box; max-width: 10%;"></div>
+    <div fxflex="24" class="section" fxflex.xs="100"
+      style="padding: 2rem 0rem; flex: 1 1 100%; box-sizing: border-box; max-width: 35%;" ng-reflect-fx-flex="24">
+      <div class="section31" style="display: flex; width: 100%;">
+        <img src="/images/www.png" style="width: 40px;height: 40px;">
+        <p class="font-bold text-base" style="padding:0.5rem;color:#1c2a33;font-family:'Lato', sans serif;">Web
+          Application</p>
+      </div>
+      <div>
+        <p class="paragraph text-base text-justify" style="color:#1c2a33;font-family:'Lato', sans serif;">It is a web
+          application that requires only a web browser in order to access and operate.</p>
+      </div>
+    </div>
+
+    <div style="flex: 1 1 100%; box-sizing: border-box; max-width: 10%;"></div>
+    <div fxflex="24" class="section" fxflex.xs="100"
+      style="padding: 2rem 0rem; flex: 1 1 100%; box-sizing: border-box; max-width: 35%;" ng-reflect-fx-flex="24">
+      <div class="section31" style="display: flex; width: 100%;">
+        <img src="/images/machine.png" style="width: 40px;height: 40px;">
+        <p class="font-bold text-base" style="padding:0.5rem;color:#1c2a33;font-family:'Lato', sans serif;">Shareable
+          Summary Report</p>
+      </div>
+      <div>
+        <p class="paragraph text-base text-justify" style="color:#1c2a33;font-family:'Lato', sans serif;">Run shareable
+          summary report or export raw data integrated with AI and ML for in depth-analysis.</p>
+      </div>
+    </div>
+  </div>
+
+  <div fxlayout="row" class="section-3" fxlayout.xs="column"
+    style="padding:0rem 3rem; flex-direction: row; box-sizing: border-box; display: flex;background-color:#e2e8f0;"
+    ng-reflect-fx-layout="row">
+    <div style="flex: 1 1 100%; box-sizing: border-box; max-width: 10%;"></div>
+    <div fxflex="24" class="section" fxflex.xs="100"
+      style="padding: 2rem 0rem; flex: 1 1 100%; box-sizing: border-box; max-width: 35%;" ng-reflect-fx-flex="24">
+      <div class="section31" style="display: flex; width: 100%;">
+        <img src="/images/social-media_1.png" style="width: 40px;height: 40px;">
+        <p class="font-bold text-base" style="padding:0.5rem;color:#1c2a33;font-family:'Lato', sans serif;">Share Your
+          Feedback Forms</p>
+      </div>
+      <div>
+        <p class="paragraph text-base text-justify" style="color:#1c2a33;font-family:'Lato', sans serif;">Share your
+          feedback forms quickly and easily via custom links, social sharing and email.</p>
+      </div>
+    </div>
+
+    <div style="flex: 1 1 100%; box-sizing: border-box; max-width: 10%;"></div>
+    <div fxflex="24" class="section" fxflex.xs="100"
+      style="padding: 2rem 0rem; flex: 1 1 100%; box-sizing: border-box; max-width: 35%;" ng-reflect-fx-flex="24">
+      <div class="section31" style="display: flex; width: 100%;">
+        <img src="/images/analysis_1.png" style="width: 40px;height: 40px;">
+        <p class="font-bold text-base" style="padding:0.5rem;color:#1c2a33;font-family:'Lato', sans serif;">Chart Driven
+          Analysis</p>
+      </div>
+      <div>
+        <p class="paragraph text-base text-justify" style="color:#1c2a33;font-family:'Lato', sans serif;">Make the right
+          decisions with comprehensive dashboard that provides detailed chart-driven analysis with quick reports.</p>
+      </div>
+    </div>
+  </div>
+
+  <div fxlayout="row" class="section-3"
+    style="padding:0rem 3rem; flex-direction: row; box-sizing: border-box; display: flex;background-color:#e2e8f0;"
+    ng-reflect-fx-layout="row">
+    <div style="flex: 1 1 100%; box-sizing: border-box; max-width: 10%;"></div>
+    <div fxflex="24" class="section" style="padding: 2rem 0rem; flex: 1 1 100%; box-sizing: border-box; max-width: 35%;"
+      ng-reflect-fx-flex="24">
+      <div style="display: flex; width: 100%;">
+        <img src="/images/voice-message.png" style="width: 40px;height: 40px;">
+        <p class="font-bold text-base" style="padding:0.5rem;color:#1c2a33;font-family:'Lato', sans serif;">Voice Based
+          Feedbacks</p>
+      </div>
+      <div>
+        <p class="paragraph text-base text-justify" style="color:#1c2a33;font-family:'Lato', sans serif;">Automated and
+          voice based feedbacks.</p>
+      </div>
+    </div>
+  </div>
+
+  <div fxLayout="row"  fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="space-between center" class="py-5">
+    <div fxFlex="15"></div>
+    <div fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
+      <p class="text-sm text-left paragraph" style="color:#1c2a33" >
+        Copyright &copy; 2013-2019 Sun Plus Software Technologies Pvt Ltd. All rights reserved.
+      </p>
+    </div>
+    <div fxFlex="15" fxLayout="row" fxLayoutAlign="space-between center" class="paragraph_2">
+      <div fxFlex="55" fxFlex.xs="58" fxFlex.sm="58">
+        <p class="text-sm  text-left paragraph_3" style="color:#1c2a33; cursor: pointer;" (click)="evtEmit.loadPrivatePolicy();">
+          Cookies & Privacy
+        </p>
+      </div>
+      <div fxFlex="5" fxFlex.xs="2" fxFlex.sm="2">
+        <p class="text-sm  text-left" style="color:#21b25b; cursor: pointer;" (click)="evtEmit.loadContact();">
+          |
+        </p>
+      </div>
+      <div fxFlex="40" fxFlex.xs="40" fxFlex.sm="40">
+        <p class="text-sm  text-left" style="color:#1c2a33; cursor: pointer;" (click)="evtEmit.loadContact();">
+          Contact
+        </p>
+      </div>
+    </div>
+    <div fxFlex="15"></div>
+  </div>
+</div>

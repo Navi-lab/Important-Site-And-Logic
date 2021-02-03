@@ -1,0 +1,4 @@
+
+half border code:
+
+https://stackoverflow.com/questions/2837440/css-border-left-50-height/21338562

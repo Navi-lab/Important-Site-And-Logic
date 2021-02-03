@@ -1,0 +1,2 @@
+class Dual < ApplicationRecord
+end

@@ -1,0 +1,30 @@
+                                   NEBULAR
+===========================================================================================
+Installation
+--------------------------------------------------------------------
+npm install -g @angular/cli]
+
+
+ng add @nebular/theme
+
+npm install --save @nebular/theme @angular/cdk @angular/animations
+
+------------------------------------------------------------------------------
+In json file add
+
+"styles": [
+  "node_modules/@nebular/theme/styles/prebuilt/default.css", // or cosmic.css
+],
+
+-----------------------------------------------------------------------------------------
+COMPONENTS
+=====================
+NbActionsComponent:
+Inorder to display icons
+"styles": [
+  "./node_modules/nebular-icons/scss/nebular-icons.scss"
+],
+-------------------------------------------------------------------------------------------NbCheckboxcomponent
+=======================
+import NbcheckboxModule instead of Nbcheckboxcomponent
+-------------------------------------------------------------------------------------------

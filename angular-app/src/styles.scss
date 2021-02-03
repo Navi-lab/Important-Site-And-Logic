@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also 
+import other style files */
+@import '~ngx-bar-rating/themes/br-default-theme.css';
+@import '~ngx-bar-rating/themes/br-horizontal-theme.css';
+@import '~ngx-bar-rating/themes/br-stars-theme';
+@import '~ngx-bar-rating/themes/br-movie-theme';
+@import '~ngx-bar-rating/themes/br-square-theme';
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+ 
+body,html{
+  background-color: #e6e6e6;
+}
+ 
+* {
+    font-family: 'lato', 'arial', sans-serif;
+} 

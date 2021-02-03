@@ -1,0 +1,702 @@
+<div fxLayout="column" style="background: #f6f6f6;"  fxShow.xl fxShow.lg fxShow.md fxHide.sm fxHide.xs>
+	<nav class="flex items-center justify-between flex-wrap p-4" style="background: white; height: 12vh;">
+		<div class="flex items-center flex-shrink-0 text-white mr-6">
+			<a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white" (click)="evtEmit.loadDashboard()"
+				style="cursor: pointer;">
+				<img class="w-40 h-12" src="/images/Logo_Black.png" alt="">
+			</a>
+		</div>
+		<div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+			<div class="text-sm lg:flex-grow" fxLayout="row" fxLayoutAlign="start center" style="margin-bottom: -2rem;">
+				<a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+					(click)="evtEmit.loadDashboard()" style="cursor: pointer; height: 7vh;">
+					Dashboard
+				</a>
+				<a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+					(click)="evtEmit.loadAnalytics()" style="cursor: pointer; height: 7vh;">
+					Analytics
+				</a>
+				<a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+					(click)="evtEmit.loadTemplate()" style="cursor: pointer; height: 7vh;">
+					Templates
+				</a>
+			</div>
+			<div fxLayout="row" fxLayoutAlign="space-between center">
+				<a matTooltip="FAQ" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black" (click)="evtEmit.loadFaq()"
+					style="cursor: pointer; border-color: #ffffff40; padding-left: 2%; width: 4rem;">
+					<img src="/images/Dashboard_1.png" alt="" style="width: 20px; height:20px">
+
+				</a>
+				<a matTooltip="Bulk email upload" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black" (click)="evtEmit.laodUpload()"
+					style="cursor: pointer; border-color: #ffffff40; padding-left: 2%; width: 4rem">
+					<img src="/images/Dashboard_2.png" alt="" style="width: 20px; height:20px">
+
+				</a>
+			</div>
+			<div fxLayout="row" fxLayoutAlign="center center">
+				<a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black"
+					style="cursor: pointer; border-color: #ffffff40; padding-left: 1%; width: 4rem;">
+					<span
+						style="width: 2.5rem; height: 2.5rem; padding: 0.6rem 0.8rem; border: 1px solid #21b25b; border-radius: 50%; background-color: #21b25b; color: white;">
+						{{user_first_letter}}
+					</span>
+				</a>
+				<div class="dropdown">
+					<button class="dropbtn font-semibold text-lg text-center p-2 pt-0 text-gray-600"
+						(click)="openDropDown()" style="text-transform: capitalize;">
+
+						{{user_name}}
+						<fa name="caret-down" class="down_arrow"></fa>
+					</button>
+					<div class="dropdown-content text-gray-600" id="#profile">
+						<a href="/users/sign_out">Logout</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="row banner-sec" style="background-color: #e6e6e6">
+		<div class="row">
+			<div class="bg_img"></div>
+		</div>
+		<div fxLayout="row" class="inner-div text-white">
+			<div fxFlex.xl="10" fxFlex.lg="10" fxFlex.md="5"></div>
+			<div fxFlex.xl="80" fxFlex.lg="80" fxFlex.md="90" class="banner-info">
+				<div fxLayout="row" fxlayoutAlign="space-between center" class="p-6 pb-8">
+          <div fxFlex="81" fxLayout="row" fxlayoutAlign="start center">
+            <p style="color: white" class="font-bold text-4xl title" >
+              {{txt_res_sur_title}}
+            </p>
+          </div>
+          <div fxFlex="2"></div>
+          <div fxFlex="12">
+            <div *ngIf="txt_res_sur_logo">
+              <img [src]="txt_res_sur_logo" class="w-40 h-20" alt="">
+            </div>
+          </div>
+        </div>
+				<div class="row">
+					<div class="bg-white card" style="padding: 2rem 2rem 2rem 2rem; margin-bottom: 1rem" fxLayout="column">
+						<mat-tab-group>
+							<mat-tab label="Closed Ended Question">
+								<div fxLayout="row" fxLayoutAlign="space-between center">
+									<div fxFlex="100" class="m-4 bg-white" *ngIf="!isODisplayData">
+										<div fxLayout="row" fxLayoutAlign="end center" class="p-4">
+											<button class="w-40 h-12  focus:outline-none text-white" style="background-color: #21b25b; border-radius: 25px; border: 1px solid #21b25b; float: right" (click)="exportAll()">
+												Export all to PDF
+											</button>
+										</div>
+										<div class="">
+											<fusioncharts width="950" height="450" type="Pie3d" dataFormat="json" [dataSource]="dataSource">
+											</fusioncharts>
+											<!--<fusioncharts width="950" height="450" type="mscolumn3d" dataFormat="json" [dataSource]="dataSource">
+											</fusioncharts>-->
+										</div>
+										<div *ngIf="!isChartHidden" style="align-content: center; margin-top: 2%;">
+											<div [id]="'pdf'+i" fxLayout="column" *ngFor="let ques of fushionData; index as i">
+												<div fxLayout="row" fxLayoutAlign="space-between center">
+													<div fxFlex="5">
+													</div>
+													<div fxFlex="20" fxLayout="row" fxLayoutAlign="space-between center">
+														<p class="font-bold text-base text-black">Chart</p>
+														<select [(ngModel)]="sel_chart_type[ques.id]" (change)="loadChartType(sel_chart_type[ques.id], ques.id)"
+															class="w-40 h-10 focus:outline-none text-sm text-black focus:outline-none border border-gray-300 pl-4" style="border: 1px solid #21b25b;">
+															<option value="Bar Chart" selected>Bar Chart</option>
+															<option value="Donut Chart" selected>Donut Chart</option>
+															<option value="Pie Chart" selected>Pie Chart</option>
+														</select>
+													</div>
+													<div fxFlex="70" fxLayout="row" fxLayoutAlign="start center">
+													</div>
+													<div fxFlex="5">
+													</div>
+												</div>
+												<div fxLayout="column" fxLayoutAlign="center center" class="p-4">
+													<fusioncharts width="750" height="350" [type]="chart_type[ques.id]"
+														[dataSource]="ques.dataSource" dataFormat="json" plotSpacePercent="20" maxColWidth="20">
+													</fusioncharts>
+												</div>
+												<!--<div [id]="'table'+i" *ngIf="ques.answer_type == 'Multiple Choice' || ques.answer_type == 'Checkboxes' || ques.answer_type == 'Dropdown'">
+													<div fxLayout="row" fxLayoutAlign="space-between center" style="height: 5vh;">
+														<div fxFlex="5">
+														</div>
+														<div fxFlex="60" class="border p-2" style="height: 5vh;">
+															<p class="
+														  text-base text-black">
+																Answer
+															</p>
+														</div>
+														<div fxFlex="30" class="border p-2" style="height: 5vh;">
+															<p class="text-base text-black">
+																No of Responses
+															</p>
+														</div>
+														<div fxFlex="5">
+														</div>
+													</div>
+													<div fxLayout="column" *ngFor="let sur of ques.dataSource.data">
+														<div fxLayout="row" fxLayoutAlign="space-between center" style="height: 5vh;">
+															<div fxFlex="5">
+															</div>
+															<div fxFlex="60" class="border p-2" style="height: 5vh;">
+																<p class="
+															  text-base text-black">
+																	{{sur.label}}
+																</p>
+															</div>
+															<div fxFlex="30" class="border p-2" style="height: 5vh;">
+																<p class="text-base text-black">
+																	{{sur.value}}
+																</p>
+															</div>
+															<div fxFlex="5">
+															</div>
+														</div>
+													</div>
+												</div>
+												<div [id]="'table'+i" class="flex flex-wrap" *ngIf="ques.answer_type == 'Star Rating'">
+					                  <div class="container mx-auto w-11/12 mb-12">
+					                    <div fxLayout="row" style="border-bottom:1px solid #ccc;background-color:#f5f5f5;">
+					                      <div fxFlex="15"></div>
+					                      <div fxFlex="15" *ngFor="let col of ques.dataSource.data" class="m-2 mx-auto text-center">
+					                        <span class="text-gray-700 text-sm font-semibold">
+					                        	{{col.label}}
+					                        </span>
+					                      </div>
+					                      <div fxFlex="15" class="m-2 mx-auto text-center">
+					                        <span class="text-gray-700 text-sm font-semibold">
+					                        	Total
+					                        </span>
+					                      </div>
+					                      <div fxFlex="15" class="m-2 mx-auto text-center">
+					                        <span class="text-gray-700 text-sm font-semibold">
+					                        	Average
+					                        </span>
+					                      </div>
+					                    </div>
+					                    <div fxLayout="column">
+					                      <div fxFlex="15" style="border-bottom:1px solid #ccc;" id="row-hover" class="text-center">
+					                        <div fxFlex="15" style="background-color:#f5f5f5;">
+					                          <span class="text-gray-700 text-sm font-semibold">
+					                            Star
+					                          </span>
+					                        </div>
+					                        <div fxFlex="15" class="m-2 mx-auto text-center" *ngFor="let col of ques.dataSource.data">
+					                          <span class="text-gray-700 text-sm font-semibold">
+					                            {{col.value}}
+					                          </span>
+					                        </div>
+					                        <div fxFlex="15" class="m-2 mx-auto text-center">
+						                        <span class="text-gray-700 text-sm font-semibold">
+						                        	{{getStarTotal(ques.id)}}
+						                        </span>
+					                      </div>
+					                      <div fxFlex="15" class="m-2 mx-auto text-center">
+						                        <span class="text-gray-700 text-sm font-semibold">
+						                        	{{getStarAvg(ques.id)}}
+						                        </span>
+					                      </div>
+					                      </div>
+					                    </div>
+					                  </div>
+					              </div>
+				                <div [id]="'table'+i" class="flex flex-wrap" *ngIf="ques.answer_type == 'Slider'">
+				                  <div class="container mx-auto w-11/12 mb-12">
+				                    <div fxLayout="row" style="border-bottom:1px solid #ccc;background-color:#f5f5f5;">
+				                      <div fxFlex="15"></div>
+				                      <div fxFlex="15" *ngFor="let col of ques.dataSource.data" class="m-2 mx-auto text-center">
+				                        <span class="text-gray-700 text-sm font-semibold">
+				                        	{{col.label}}
+				                        </span>
+				                      </div>
+				                      <div fxFlex="15" class="m-2 mx-auto text-center">
+				                        <span class="text-gray-700 text-sm font-semibold">
+				                        	Total
+				                        </span>
+				                      </div>
+				                      <div fxFlex="15" class="m-2 mx-auto text-center">
+				                        <span class="text-gray-700 text-sm font-semibold">
+				                        	Average
+				                        </span>
+				                      </div>
+				                    </div>
+				                    <div fxLayout="column">
+				                      <div fxFlex="15" style="border-bottom:1px solid #ccc;" id="row-hover" class="text-center">
+				                        <div fxFlex="15" style="background-color:#f5f5f5;">
+				                          <span class="text-gray-700 text-sm font-semibold">
+				                            Slider
+				                          </span>
+				                        </div>
+				                        <div fxFlex="15" class="m-2 mx-auto text-center" *ngFor="let col of ques.dataSource.data">
+				                          <span class="text-gray-700 text-sm font-semibold">
+				                            {{col.value}}
+				                          </span>
+				                        </div>
+				                        <div fxFlex="15" class="m-2 mx-auto text-center">
+					                        <span class="text-gray-700 text-sm font-semibold">
+					                        	{{getSliderTotal(ques.id)}}
+					                        </span>
+				                      </div>
+				                      <div fxFlex="15" class="m-2 mx-auto text-center">
+					                        <span class="text-gray-700 text-sm font-semibold">
+					                        	{{getSliderAvg(ques.id)}}
+					                        </span>
+				                      </div>
+				                      </div>
+				                    </div>
+				                  </div>
+				                </div>-->
+												<hr style="border: 1px solid #21b25b; width: 100%; opacity: 0.1; margin: 1rem 0rem;">
+											</div>
+										</div>
+									</div>
+									<div fxLayout="column" fxLayoutAlign="center center" style="margin-left: 25%; height: 60vh" *ngIf="!isODisplayMsg">
+										<p>There is no closed ended questions in this survey...</p>
+									</div>
+								</div>
+							</mat-tab>
+							<mat-tab label="Open Ended Question">
+								<div fxLayout="row" fxLayoutAlign="space-between center">
+									<div fxFlex="5"></div>
+									<div fxFlex="85" class="m-4 bg-white">
+										<div  style="align-content: center; margin-top: 2%;" *ngIf="!isCDisplayData">
+											<div fxLayout="column" *ngFor="let oth of otherData; index as i">
+												<p class="font-bold text-lg text-black pt-6 pb-6">
+													<span style="color: #21b25b" class="text-base">
+														Q{{i+1}}
+													</span>.
+													<span [innerHtml]="oth.question"></span>
+												</p>
+												<p class="text-base text-black pb-2 pl-8">
+													No of responses:
+													<span style="color: #21b25b" class="text-base">
+														{{oth.answers.length}}
+													</span>
+												</p>
+												<div  style="height: auto; max-height: 30vh; overflow: auto;">
+													<div fxLayout="column" *ngFor="let ans of oth.answers; index as i;">
+														<div fxFlex="100" *ngIf="oth.answer_type == 'Single Textbox'">
+															<div fxLayout="column">
+																<div fxLayout="row" style="min-height: 5vh;">
+																	<div fxFlex="2" style="min-height: 5vh;"></div>
+																	<div fxFlex="20" class="border">
+																			<p class="text-base text-black p-2">
+																				Response {{i +1}}
+																			</p>
+																	</div>
+																	<div fxFlex="74" class="border" style="min-height: 5vh;">
+																		<p class="text-base text-black p-2">
+																			{{ans.answer}}
+																		</p>
+																	</div>
+																	<div fxFlex="2"></div>
+																</div>
+															</div>
+														</div>
+														<div fxFlex="100" *ngIf="oth.answer_type == 'Comment Box'">
+															<div fxLayout="column">
+																	<div fxLayout="row" style="min-height: 8vh;">
+																		<div fxFlex="2" style="min-height: 8vh;"></div>
+																		<div fxFlex="20" class="border" style="min-height: 8vh;">
+																				<p class="text-base text-black p-2">
+																					Response {{i +1}}
+																				</p>
+																		</div>
+																		<div fxFlex="74" class="border" style="min-height: 8vh;">
+																			<p class="text-base text-black p-2">
+																				{{ans.answer}}
+																			</p>
+																		</div>
+																		<div fxFlex="2" style="min-height: 8vh;"></div>
+																</div>
+															</div>
+														</div>
+														<div fxFlex="100" *ngIf="oth.answer_type == 'Date / Time'">
+															<div fxLayout="column">
+																<div fxLayout="row" style="min-height: 5vh;">
+																	<div fxFlex="2" style="min-height: 5vh;"></div>
+																	<div fxFlex="20" class="border">
+																			<p class="text-base text-black p-2">
+																				Response {{i +1}}
+																			</p>
+																	</div>
+																	<div fxFlex="74" class="border" style="min-height: 5vh;">
+																		<div *ngIf="ans.info=='t'">
+																			<p class="text-base text-black p-2">
+																				{{ ans.answer | date: ans.format: h:mm:ss}}
+																			</p>
+																		</div>
+																		<div *ngIf="ans.info=='f'">
+																			<p class="text-base text-black p-2">
+																				{{ ans.answer | date: ans.format}}
+																			</p>
+																		</div>
+																	</div>
+																	<div fxFlex="2"></div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div *ngFor="let ques of surveyQuesList; index as i">
+												<div *ngIf="ques.answer_type == 'Contact Information'">
+													<p class="font-bold text-lg text-black pt-6 pb-6">
+														<span style="color: #21b25b" class="text-base">
+															Q{{i+1}}
+														</span>.
+														{{ques.question}}
+													</p>
+													<div class="container mx-auto w-full mb-12">
+														<div fxLayout="row">
+															<div fxFlex="25" *ngFor="let col of contactInfoLabel | survey: ques.id" class="mx-auto text-center" style="border:1px solid #ccc;">
+                    							<p class="py-2 w-full text-gray-700 text-sm font-semibold">
+                    								{{col.contact_info_label}}
+                    							</p>
+																	<div fxLayout="column">
+																		<div class="p-2 mx-auto text-center w-full" *ngFor="let ans of contactInfoList | contactFilter: col.contact_info_label;" fxFlex="25" style="border-top:1px solid #ccc;">
+																			<p class="text-black">
+																				{{ans.contact_info_value}}
+																			</p>
+				                          	</div>
+																	</div>
+			                        </div>
+														</div>
+													</div>
+												</div>
+
+												<div *ngIf="ques.answer_type == 'File Upload'">
+													<p class="font-bold text-lg text-black pt-6 pb-6">
+														<span style="color: #21b25b" class="text-base">
+															Q{{i+1}}
+														</span>.
+														{{ques.question}}
+													</p>
+													<div class="container mx-auto w-full mb-12">
+														<div *ngFor="let ans of fileInfoList | survey:ques.id">
+															<div fxLayout="row" class="pt-4 pb-4 mt-2 mb-2"
+																style="background:#f5f5f5;">
+																<div class="w-1/2 pl-2">
+																	<span style="color:#656565;font-weight: 600;">File
+																		Name:&nbsp;</span>
+																	<a (click)="evtEmit.download(ans.file_path)"
+																		class="text-green-700"
+																		style="cursor:pointer;">{{ans.file_name}}</a>
+																</div>
+																<div class="w-1/2 text-right pr-2">
+																	<span style="color:#656565;font-weight: 600;">File
+																		Size:&nbsp;</span>
+																	<span class="text-gray-700">{{ans.file_size}}</span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<div *ngIf="ques.answer_type == 'Table'">
+													<p class="font-bold text-lg text-black pt-6 pb-6">
+														<span style="color: #21b25b" class="text-base">
+															Q{{i+1}}
+														</span>.
+														{{ques.question}}
+													</p>
+													<div class="container mx-auto w-full mb-12">
+														<div fxLayout="row">
+															<div fxFlex="25" *ngFor="let col of surveyAnsList | survey: ques.id" class="mx-auto text-center" style="border:1px solid #ccc;">
+                    							<p class="py-2 w-full text-gray-700 text-sm font-semibold">
+                    								{{col.answer}}
+                    							</p>
+																	<div fxLayout="column">
+																		<div class="p-2 mx-auto text-center w-full" *ngFor="let ans of tabRowList | tableFilter: col.id;" fxFlex="25" style="border-top:1px solid #ccc;">
+																			<p class="text-black">
+																				{{ans.survey_answer}}
+																			</p>
+				                          	</div>
+																	</div>
+			                        </div>
+														</div>
+													</div>
+												</div>
+
+												<div *ngIf="ques.answer_type == 'Multiple Textboxes'">
+													<p class="font-bold text-lg text-black pt-6 pb-6">
+														<span style="color: #21b25b" class="text-base">
+															Q{{i+1}}
+														</span>.
+														{{ques.question}}
+													</p>
+													<div class="container mx-auto w-full mb-12" style="height: auto; max-height: 30vh; overflow: auto;">
+														<div fxLayout="row">
+															<div fxFlex="25" *ngFor="let col of surveyAnsList | survey: ques.id" class="text-center m-0" style="border:1px solid #ccc;">
+                    							<p class="py-2 w-full text-gray-700 text-sm font-semibold">
+                    								{{col.answer}}
+                    							</p>
+																	<div fxLayout="column">
+																		<div class="p-2 text-center w-full m-0" *ngFor="let ans of surveyXTxtAnswer | tableFilter: col.id;" fxFlex="25" style="border-top:1px solid #ccc;">
+																			<p class="text-black">
+																				{{ans.survey_answer}}
+																			</p>
+				                          	</div>
+																	</div>
+			                        </div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div fxLayout="column" fxLayoutAlign="center center" style="align-content: center; height: 60vh" *ngIf="!isCDisplayMsg">
+											<p>There is no open ended questions in this survey...</p>
+										</div>
+									</div>
+									<div fxFlex="10"></div>
+								</div>
+							</mat-tab>
+						</mat-tab-group>
+					</div>
+				</div>
+				<div fxLayout="row" class="py-8 text-black">
+					<div fxFlex="70">
+						<p class="text-xs text-left m-2" style="margin-left: 0px !important">
+							Copyright &copy; 2013-2019 Sun Plus Software Technologies Pvt Ltd. All rights reserved.
+						</p>
+					</div>
+					<div fxFlex="30" class="text-right">
+						<a (click)="evtEmit.loadPrivatePolicy()" class="pr-2 pl-2 text-xs"
+							style="cursor: pointer; border-right: 1px solid #21b25b;">Cookies & Privacy
+						</a>
+						<a (click)="evtEmit.loadFaq()" class="pr-2 pl-2 text-xs" style="cursor: pointer;">Help
+						</a>
+					</div>
+				</div>
+			</div>
+			<div fxFlex.xl="10" fxFlex.lg="10" fxFlex.md="5"></div>
+		</div>
+	</div>
+</div>
+<div class="popup" *ngIf="!isShwSpinner" style="width: 4rem; height: 5rem">
+  <img src="/images/loading.gif" alt="" width="300px" height="300px">
+</div>
+<div fxLayout="column" style="background: #f6f6f6;" fxHide.xl fxHide.lg fxHide.md fxShow.sm fxShow.xs>
+	<div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;" id="mySidebar">
+		<button class="w3-bar-item w3-button w3-large" (click)="evtEmit.w3_close()"
+			style="text-align: center">{{user_name}} &nbsp; &times;</button>
+		<a (click)="evtEmit.loadDashboard()" class="w3-bar-item w3-button"
+			style="text-align: center; padding: 0.5rem 2rem;">
+			Dashboard
+		</a>
+		<a (click)="evtEmit.loadAnalytics()" class="w3-bar-item w3-button"
+			style="text-align: center; padding: 0.5rem 2rem;">
+			Analytics
+		</a>
+		<a (click)="evtEmit.loadTemplate()" class="w3-bar-item w3-button"
+	      style="text-align: center; padding: 0.5rem 2rem;">
+	      Template
+	    </a>
+		<a (click)="evtEmit.loadFaq()" class="w3-bar-item w3-button" style="text-align: center; padding: 0.5rem 2rem;">
+			FAQ
+		</a>
+
+		<a (click)="evtEmit.laodUpload();" class="w3-bar-item" style="text-align: center; padding: 0.5rem 2rem;">
+			Bulk Email Upload
+		</a>
+		<a href="/users/sign_out" class="w3-bar-item w3-button"
+			style="text-align: center; padding: 0.5rem 2rem;">Logout</a>
+	</div>
+	<div fxLayout="row" fxLayoutAlign="space-between center" class="bg-white" style="height: 14vh;">
+		<div fxFlex="2"></div>
+		<div fxFlex="16">
+			<button class="w3-button w3-white w3-xlarge" (click)="evtEmit.w3_open()">&#9776;</button>
+		</div>
+		<div fxFlex="84" fxLayout="row" fxLayoutAlign="center center">
+			<a class="block lg:inline-block lg:mt-0 text-teal-200 hover:text-white" (click)="evtEmit.loadDashboard()"
+				style="cursor: pointer;">
+				<img class="w-40 h-12" src="/images/Logo_Black.png" alt="">
+			</a>
+		</div>
+		<div fxFlex="2"></div>
+	</div>
+	<div class="row banner-sec">
+		<div class="row">
+			<div class="bg_img"></div>
+		</div>
+		<div fxLayout="row" class="inner-div text-white">
+			<div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="5"></div>
+			<div fxFlex.xl="70" fxFlex.lg="70" fxFlex.md="90" class="banner-info">
+				<div class="text-center p-6 pb-20">
+					<span class="font-bold text-3xl text-white ">
+						{{txt_res_sur_title}}
+					</span>
+				</div>
+				<div class="row">
+					<div fxFlex="6"></div>
+					<div fxFlex="88">
+						<div class="bg-white card" style="padding: 2rem 2rem 2rem 2rem; margin-bottom: 1rem"
+							fxLayout="column">
+							<div fxFlex="auto" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px"
+								class="info" style=" margin-top: 3%;">
+								<div fxFlex="50" fxLayout="row" fxLayoutAlign="start center">
+									<p class="font-bold text-xl text-black pl-4">
+									</p>
+								</div>
+								<div fxFlex="50" fxLayout="row" fxLayoutAlign="space-between center" class="pr-4">
+									<!--<mat-icon svgIcon="v-bar-chart" (click)="getBarGraphData()"
+										style="cursor: pointer; width: 28px; height: 28px;" [style.color]="vbar_color">
+
+									</mat-icon>
+									<mat-icon svgIcon="pie-chart" (click)="getPieGraphData()"
+										style="cursor: pointer; width: 28px; height: 28px;" [style.color]="pie_color">
+
+									</mat-icon>
+									<mat-icon svgIcon="donut-chart" (click)="getDonutGraphData()"
+										style="cursor: pointer; width: 28px; height: 28px;" [style.color]="donut_color">
+
+									</mat-icon>-->
+								</div>
+							</div>
+							<div fxLayout="row" fxLayoutAlign="space-between center">
+								<div fxFlex="5"></div>
+								<div fxFlex="85" class="m-4 bg-white">
+									<div *ngIf="!isChartHidden" style="align-content: center; margin-top: 2%;">
+										<div fxLayout="column" *ngFor="let ques of fushionData; index as i">
+											<p class="font-bold text-lg text-black pt-6 pb-6">
+												<span style="color: #21b25b" class="text-base">
+													Q{{i+1}}
+												</span>.
+												<span [innerHtml]="ques.question"></span>
+											</p>
+											<div fxLayout="column" fxLayoutAlign="center center">
+												<fusioncharts width="85%" height="400" type="Column3d"
+													[dataSource]="ques.dataSource">
+												</fusioncharts>
+
+											</div>
+											<hr
+												style="border: 1px solid #21b25b; width: : 100%; opacity: 0.1; margin: 1rem 0rem;">
+										</div>
+										<div fxLayout="column" *ngFor="let oth of otherData; index as i">
+											<p class="font-bold text-lg text-black pt-6 pb-6">
+												<span style="color: #21b25b" class="text-base">
+													Q{{i+1}}
+												</span>.
+												<span [innerHtml]="oth.question"></span>
+											</p>
+											<div fxLayout="column"
+												*ngFor="let ans of oth.answers| orderBy:order:reserve">
+												<div fxFlex="100" *ngIf="oth.answer_type == 'Single Textbox'"
+													class="h-16 mb-2">
+													<input
+														class="appearance-none w-full py-2 px-3 text-base text-black h-16 bg-gray-300"
+														[value]="ans.answer" disabled
+														style="background: rgb(232, 240, 254);">
+												</div>
+												<div fxFlex="100" *ngIf="oth.answer_type == 'Comment Box'"
+													class="h-20 mb-2">
+													<textarea
+														class="shadow appearance-none rounded w-full py-2 px-3 text-base text-black h-20 bg-gray-300"
+														type="text" [value]="ans.answer" disabled></textarea>
+												</div>
+												<div fxFlex="100" *ngIf="oth.answer_type == 'Date / Time'"
+													class="h-20 mb-2">
+													<p class="text-lg text-black pt-6 pb-6">
+														{{ ans.answer | date: ans.format : h:mm:ss}}
+													</p>
+												</div>
+												<div class="flex flex-wrap"
+													*ngIf="oth.answer_type == 'Multiple Textboxes'"
+													style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; padding-left: 1rem; min-height: 2rem; width: 100%">
+													<div fxFlex="20">
+														<div class="text-base text-black p-2 pt-0">
+															{{ans.format}} | {{ans.feedback_cid}}
+														</div>
+													</div>
+													<div fxFlex="80">
+														<input
+															class="appearance-none w-full py-2 px-3 h-10 bg-gray-300 text-black"
+															[value]="ans.answer" disabled
+															style="background: rgb(232, 240, 254);">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div *ngFor="let ques of surveyQuesList; index as i">
+											<div *ngIf="ques.answer_type == 'Contact Information'">
+												<p class="font-bold text-lg text-black pt-6 pb-6">
+													<span style="color: #21b25b" class="text-base">
+														Q{{i+1}}
+													</span>.
+													{{ques.question}}
+												</p>
+												<div fxlayout="row" *ngFor="let ans of contactInfoList | survey:ques.id"
+													style="min-height: 2rem;">
+													<div fxFlex="20">
+														<div class="text-base text-black p-2 pt-0">
+															{{ans.contact_info_label}}
+														</div>
+													</div>
+													<div fxFlex="80">
+														<input
+															class="appearance-none w-full py-2 px-3 h-16 bg-gray-300 text-black mb-4"
+															[value]="ans.contact_info_value" disabled
+															style="background: rgb(232, 240, 254);">
+													</div>
+												</div>
+											</div>
+
+											<div *ngIf="ques.answer_type == 'File Upload'">
+												<p class="font-bold text-lg text-black pt-6 pb-6">
+													<span style="color: #21b25b" class="text-base">
+														Q{{i+1}}
+													</span>.
+													{{ques.question}}
+												</p>
+												<div class="container mx-auto w-full mb-12">
+													<div *ngFor="let ans of fileInfoList | survey:ques.id">
+														<input type="text" value="{{ans.survey_q_id}}" id="survey_qid">
+														<div fxLayout="row" class="pt-4 pb-4 mt-2 mb-2"
+															style="background:#f5f5f5;">
+															<div class="w-1/2 pl-2">
+																<span style="color:#656565;font-weight: 600;">File
+																	Name:&nbsp;</span>
+																<a (click)="evtEmit.download(ans.file_path)"
+																	class="text-green-700"
+																	style="cursor:pointer;">{{ans.file_name}}</a>
+															</div>
+															<div class="w-1/2 text-right pr-2">
+																<span style="color:#656565;font-weight: 600;">File
+																	Size:&nbsp;</span>
+																<span class="text-gray-700">{{ans.file_size}}</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div fxFlex="10"></div>
+							</div>
+						</div>
+					</div>
+					<div fxFlex="6"></div>
+
+				</div>
+				<div fxLayout="column" fxLayoutAlign="center center"
+					style="height: 15vh; width: 100vw; margin-bottom: 2rem;">
+					<div fxLayout="row" fxLayoutAlign="center center">
+						<p class="text-xs text-black text-left m-2 ml-4 mr-4 text-center">
+							Copyright &copy; 2013-2019 Sun Plus Software Technologies Pvt Ltd. All right reserved.
+						</p>
+					</div>
+					<div class="text-black" fxLayout="row" fxLayoutAlign="center center">
+
+						<a (click)="evtEmit.loadPrivatePolicy()" class="pr-2 pl-2 text-xs text-black-500;"
+							style="cursor: pointer; border-right:1px solid #21b25b">Cookies &
+							Privacy</a>
+						<a class="pr-2 pl-2 text-xs text-black-500" style="cursor: pointer;">Help</a>
+					</div>
+				</div>
+			</div>
+			<div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="5"></div>
+		</div>
+	</div>
+</div>

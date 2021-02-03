@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pollmonk: Universal Feedback Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+	<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<%= yield :recaptcha_js %>
+  </head>
+
+  <body style="background-image: url(/images/SignUP.jpg)">
+  
+     <div fxLayout="column" class="w3-hide-large ">
+			<div class="w3-sidebar w3-bar-block w3-animate-left"
+				style="display:none; " id="mySidebar">
+						<button class="w3-bar-item w3-button w3-large" id="w3close" style="text-align: right">&nbsp; &times;</button>
+						<a href="/about" class="w3-bar-item w3-button"
+							style="text-align: center; cursor: pointer; border-color: #ffffff40; padding-left: 2%; ">
+							About
+						</a>
+						<a href="/contact" class="w3-bar-item w3-button"
+							style="text-align: center; cursor: pointer; border-color: #ffffff40;">
+							Contact
+						</a>
+						<div style="text-align: center;" class="pt-4 mb-4">
+						<%= link_to 'LOGIN', new_user_session_path, :style=>'background-color: transparent; color:white; border-radius: 25px; border: 1px solid white; padding: 0.6rem 2rem;', :class=>'w-32 h-10 focus:outline-none text-sm signin-btn' %>
+						</div>
+						<div style="text-align: center;" class="pt-4">
+						<%= link_to 'SIGN UP', new_user_registration_path, :style=>'margin-left: 0px; background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b; padding: 0.6rem 2rem;', :class=>'w-32 h-10 focus:outline-none text-sm signup-btn' %>
+						</div>
+
+			</div>
+			<div fxLayout="row" style="display:flex; margin-bottom:5%; padding-top:3%;">
+							<div fxFlex="2"></div>
+							<div fxFlex="16">
+								<button class="w3-button w3-xlarge side_btn" id="w3open" style="color:white;"> &#9776; </button>
+							</div>
+							<div fxFlex="80" fxLayout="row" style="width:100%;">
+								<a class="block lg:inline-block lg:mt-0 text-teal-200 hover:text-white" (click)="loadDashboard()"
+								style="cursor: pointer; display:flex; justify-content: center;">
+								<img class="w-40 h-12" src="/images/Logo.png" alt="">
+								</a>
+							</div>
+							<div fxFlex="2"></div>
+			</div>
+     </div>
+		<nav class="flex items-center justify-between flex-wrap pl-3 pr-3 w3-hide-medium w3-hide-small" style="height:12vh;">
+				<div class="flex items-center flex-shrink-0 text-white mr-6">
+				<a class="block lg:inline-block lg:mt-0 hover:text-white" href="/" style="cursor: pointer;"><img class="w-40 h-12" src="/images/Logo.png" alt=""></a>
+				</div>
+
+		<div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+			<div class="text-sm lg:flex-grow" fxLayout="row" fxLayoutAlign="start center" style="margin-bottom: -2rem;">
+				<a class="block lg:inline-block lg:mt-0 text-teal-200 hover:text-black border-btm"></a>
+			</div>
+
+		<div>
+			<div class="text-base lg:flex-grow">
+			<a class="block lg:inline-block lg:mt-0 text-white mr-3" href="/about" style="cursor: pointer; border-color: #ffffff40; padding-left: 2%; width: 4rem;">About</a>
+			<a class="block lg:inline-block text-white lg:mt-0 mr-3" href="/contact" style="cursor: pointer; border-color: #ffffff40;  width: 4rem">Contact</a>
+			<%= link_to 'LOGIN', new_user_session_path, :style=>'background-color: transparent; color:white; border-radius: 25px; border: 1px solid white; padding: 0.6rem 2rem;', :class=>'w-32 h-10 focus:outline-none text-sm signin-btn mr-4' %>
+					<%= link_to 'SIGN UP', new_user_registration_path, :style=>'background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b; padding: 0.6rem 2rem;', :class=>'w-32 h-10 focus:outline-none text-sm signup-btn mr-4' %>
+			</div>
+		</div>
+		</div>
+		</nav>
+	<div style="height:73vh; position: relative;" class="footer con-footer">
+		<%= yield %>
+	</div>
+	<div class="w3-container flex text-white w3-mobile md:pt-4 mob-foot-height mob_view_hide-styles" style="background:transparent; margin-top:2rem">
+
+      <div style="min-width:16rem;" class="footer-1"></div>
+      <div class="w3-col m12 w3-half w3-mobile text-sm foot-copy">
+        <p>Copyright © 2013-2019 Sun Plus Software Technologies. All rights reserved.</p>
+      </div>
+      <div class="w3-col m12 flex flex-wrap w3-half  text-sm pl-20 low-sec mob-view-styles">
+        <a class=" text-white focus:outline-none" style="cursor: pointer;" href="/privacy" target="_blank">Cookies &amp; Privacy</a>
+		<p class=" pl-2 text-white focus:outline-none  w3-hide-medium " style="color:#21b25b !important;">|</p>
+		<a class=" pl-2 text-white focus:outline-none" style="cursor: pointer;" href="/contact">Contact</a>
+      </div>
+    </div>
+
+	<div fxLayout="row" class="w3-container text-white mob-view_footer_styles" style="background:transparent; margin-top:2rem; text-align: center;">
+		<div class="pb-4">
+			<p>Copyright © 2013-2019 Sun Plus Software Technologies. All rights reserved.</p>
+		</div>
+		<div class="pb-4">
+			<a class=" text-white focus:outline-none" style="cursor: pointer;" href="/privacy" target="_blank">Cookies &amp; Privacy</a>
+			<p class=" pl-2 text-white focus:outline-none  w3-hide-medium " style="color:#21b25b !important;">|</p>
+			<a class=" pl-2 text-white focus:outline-none" style="cursor: pointer;" href="/contact">Contact</a>
+		</div>
+      <div style="min-width:16rem;" class="footer-1"></div>
+	</div>
+
+	<script>
+		$(document).ready(function(){
+			$('#w3open').on('click', function(){
+				$('#mySidebar').css('display', 'block');
+			});
+			$('#w3close').on('click', function(){
+				$('#mySidebar').css('display', 'none');
+			});
+
+			if (window.location.href.includes("sign_up") == true){
+				$('#btn-signup').attr('disabled', 'disabled');
+				$('#btn-signup').css('cursor', 'not-allowed');
+				$('.bg_img').css('height', '130vh');
+			}
+			if (window.location.href.includes("sign_in") == true){
+				$('#btn-signin').attr('disabled', 'disabled');
+				$('#btn-signin').css('cursor', 'not-allowed');
+				$('.bg_img').css('height', '110vh');
+			}
+		});
+
+
+    </script>
+	  </body>
+</html>

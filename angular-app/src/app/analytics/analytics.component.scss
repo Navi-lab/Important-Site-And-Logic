@@ -1,0 +1,150 @@
+ 
+.chip-div {
+  background: #ffffff;
+  padding: 1.5%;
+  margin: 2%;
+  border-radius: 0px;
+  height: 10vh;
+  max-height: 10vh;
+  width: 30%;
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  font-size: 16px;
+}
+
+.chip-div:hover{
+  background: #9acd18 !important;
+  border-radius: 0px;
+  color: white;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+} 
+
+.dropdown .dropbtn {
+  font-size: 1rem; 
+  border: none;
+  outline: none;
+  // color: black;
+  padding: 14px 16px 14px 8px;
+  background-color: inherit;
+  font-family: inherit;
+  font-weight: bold;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 2%;
+}
+
+.dropdown-content a {
+  float: none;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.down_arrow{
+  margin-left: 0.5rem;
+}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/*.dropdown:hover .dropdown-content {
+  display: block;
+}*/
+.border-btm:hover{
+  border-bottom: 3px solid #21b25b;
+}
+
+.bg_img{
+  background-image: url('/images/Other_Page_Banner.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 277px;
+}
+.banner-sec{
+  position: relative;
+}
+.banner-sec .inner-div{
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+.banner-info{
+  position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 35%;
+}
+fieldset{
+  border: 0px !important;
+}
+.white-bg{
+  background-color: #21b25b !important;
+  color: white;
+  width: 5rem;
+  justify-content: center;
+  display: flex;
+}
+.red-bg{
+  background-color: red;
+  color: white;
+  width: 5rem;
+  justify-content: center;
+  display: flex;
+}
+@media (min-width:320px) and (max-width:960px){
+  .banner-info{
+    position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      height: 45%;
+  }
+  .banner-heading{
+    padding-bottom: 1.5rem;
+  }
+}
+@media screen and (min-width:1470px){
+  .card_width{
+    width: 20vw !important;
+  }
+}
+@media(min-width:1300px) and (max-width:1469px){
+  .card_width{
+    width: 20vw !important;
+  }
+}
+@media(min-width:1100px) and (max-width:1299px){
+  .card_width{
+    width: 19vw !important;
+  }
+}
+
+
+.w3-sidebar{
+  background-color:#1c2a33 !important;
+  color: white !important;
+}
+.w3-button:hover{
+  background-color: #1c2a33 !important;
+  color: white !important;
+}

@@ -1,0 +1,278 @@
+<div fxLayout="column" style="height:60vh;" fxShow.xl fxShow.lg fxShow.md *ngIf="!isQuesHidden">
+  <div class="row banner-sec">
+    <div class="row">
+      <div class="bg_img"></div>
+    </div>
+    <div fxLayout="row" class="inner-div text-white">
+      <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="5" fxFlex.xs="5">
+      </div>
+      <div fxFlex.xl="70" fxFlex.lg="70" fxFlex.md="90" fxFlex.xs="90" class="banner-info">
+        <div *ngIf="txt_fdb_sur_logo">
+          <img class="polo" [src]="txt_fdb_sur_logo" style="width:7rem;float: right; margin: -5rem; margin-right: 3rem;">
+        </div>
+        <div class="faq text-left pb-10">
+          <span style="color:white; " class="font-bold text-4xl font-hairline pr-8 ">
+            {{txt_fdb_sur_title}}
+          </span>
+        </div>
+        <div class="row" fxLayoutAlign="space-between center">
+          <div class="bg-white shadow-lg"
+            style="padding: 2rem 2rem 2rem 2rem; margin-bottom: 1rem; background-color: #fff; width:100%;">
+            <div fxLayout="column">
+              <div fxLayout="column" *ngFor="let ques of surveyQuesList; index as i">
+                <div fxFlex="100">
+                  <p class="para font-bold" style="padding-bottom: 1rem;">
+                    <span style="color:#21b25b" *ngIf="ckb_qno_val">
+                      Q{{i+1}}.
+                    </span>
+                    <span [innerHtml]="ques.question"></span>
+                  </p>
+                  <div fxLayout="column" *ngIf="ques.answer_type == 'Multiple Choice'"  style="padding-top: 1rem; padding-bottom: 2rem;">
+                    <mat-radio-group aria-label="Select an option"  [(ngModel)]="rbtn_chk_val[i]" *ngFor="let ans of surveyAnsList | survey:ques.id" class="ans-align">
+                      <mat-radio-button [value]="ans.answer">
+                        {{ans.answer}}
+                      </mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                  <div  fxLayout="column" *ngIf="ques.answer_type == 'Checkboxes'"  style="padding-top: 1rem; padding-bottom: 2rem;">
+                    <mat-checkbox *ngFor="let ans of surveyAnsList | survey:ques.id; index as i"  [(ngModel)]="ckb_answer_val[ans.id]" class="text-base text-black pr-4">
+                        {{ans.answer}}
+                      </mat-checkbox>
+                  </div>
+                  <div fxLayout="column" *ngIf="ques.answer_type == 'Dropdown'" style="padding-top: 1rem; padding-bottom: 2rem;">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                      <div fxFlex="40">
+                        <select [(ngModel)]="sel_answer_val[i]" class="text-sm text-gray-600 focus:outline-none border border-gray-300 rounded" style="width: 100%; height: 35px; max-height: 35px;">
+                          <option *ngFor="let ans of surveyAnsList | survey:ques.id" [value]="ans.answer">
+                              {{ans.answer}}</option>
+                        </select>
+                      </div>
+                      <div fxFlex="60"></div>
+                    </div>
+                  </div>
+                  <div  *ngIf="ques.answer_type == 'Comment Box'" style="padding-top: 1rem; padding-bottom: 2rem;  margin-left: 2rem; margin-right: 1rem;">
+                    <a class="text-black">
+                      <textarea class="shadow appearance-none rounded w-full py-2 px-3 text-black h-16 bg-gray-300" type="text" [(ngModel)]="txt_comment_box[i]" maxlength="260"></textarea>
+                      <span class="text-xs text-red-300 text-right pt-1" style="width: 95%;">
+      									{{txt_comment_box[i].length}}/260
+      								</span>
+                    </a>
+                  </div>
+                  <div *ngIf="ques.answer_type == 'Single Textbox'"style="padding-top: 1rem; padding-bottom: 2rem; margin-left: 2rem; margin-right: 1rem;">
+                    <input class="appearance-none w-full py-2 px-3 text-black h-16 bg-gray-300 input-display" [(ngModel)]="txt_single_ans[i]" maxlength="160">
+                    <span class="text-xs text-red-300 text-right pt-1" style="width: 95%;">
+                      {{txt_single_ans[i].length}}/160
+                    </span>
+                  </div>
+                  <div *ngIf="ques.answer_type == 'Star Rating'"  style="padding-top: 1rem; padding-bottom: 2rem;">
+                    <div *ngIf="ques.answer_sub_type == 'Star'">
+                      <bar-rating [(rate)]="cssRate[i]" [max]="ques.answer_scale" [theme]="'stars'" [(ngModel)]="txt_star_value[i]"></bar-rating>
+
+                    </div>
+                    <div *ngIf="ques.answer_sub_type == 'Horizontal'">
+                      <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [theme]="'horizontal'" [(ngModel)]="txt_star_value[i]"></bar-rating>
+
+                    </div>
+                    <div *ngIf="ques.answer_sub_type == 'Square'">
+                      <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [theme]="'square'" [(ngModel)]="txt_star_value[i]"></bar-rating>
+                    </div>
+                    <div *ngIf="ques.answer_sub_type == 'Movie'">
+                      <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [theme]="'movie'" [(ngModel)]="txt_star_value[i]"></bar-rating>
+                    </div>
+                  </div>
+                  <div *ngIf="ques.answer_type == 'Contact Information'" style="padding-top: 1rem; padding-bottom: 2rem;">
+                    <div *ngFor="let ans of contactInfoList | survey:ques.id; index as j"
+                      style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; padding-left: 1rem; min-height: 2rem; width: 35rem;">
+                      <div fxFlex="40">
+                        <div class="text-base text-gray-600 p-2 pt-3">
+                          {{ans.contact_info_label}}
+                        </div>
+                      </div>
+                      <div fxFlex="60">
+                        <a class="text-black">
+                          <input class="appearance-none w-full py-2 px-3 text-black h-10 bg-gray-300 input-display" [(ngModel)]="txt_contact_ans[ans.id]" maxlength="160">
+                          <span class="text-xs text-red-300 text-right pt-1" style="width: 95%;">
+                            {{txt_contact_ans[ans.id].length}}/160
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="ques.answer_type == 'Slider'"style="padding-top: 1rem; padding-bottom: 2rem;">
+                    <a class="text-black">
+                      <mat-slider [max]="max[i]" [min]="min[i]" [step]="step[i]" [value]="txt_slider_value[i]" [(ngModel)]="txt_slider_value[i]" thumbLabel [displayWith]="formatLabel" tickInterval="1000">
+                      </mat-slider>
+                    </a>
+                  </div>
+                  <div *ngIf="ques.answer_type == 'Date / Time'"  style="padding-top: 1rem; padding-bottom: 2rem;">
+                    <div *ngFor="let ans of dateInfoList | survey:ques.id">
+                      <div class="text-gray-700">
+                        {{ans.display_label}}
+                      </div>
+                      <div class="flex flex-wrap">
+                        <div *ngIf="ans.date_info == 't'">
+                          <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" class="w-64 py-2 px-3 text-base text-black h-10 mt-2 mb-2" placeholder="Select Date" style="background-color: #f6f6f6;" onkeydown="return false" [(ngModel)]="sel_date_ans[i]" style="background-color: #f6f6f6;" onkeydown="return false">
+                          <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+                        </div>
+                        <div *ngIf="ans.time_info == 't'">
+                          <input [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" class="w-28 py-2 px-3 text-base text-black h-10 mt-2 mb-2 ml-4" placeholder="Select Time"  style="background-color: #f6f6f6;" onkeydown="return false"  [(ngModel)]="sel_date_ans[i]" style="background-color: #f6f6f6;" onkeydown="return false">
+                          <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="ques.answer_type == 'Multiple Textboxes'" style="padding-top:1rem; padding-bottom: 2rem;">
+                    <div *ngFor="let ans of surveyAnsList | survey:ques.id; index as j" style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; padding-left: 1rem; min-height: 2rem; width: 100%">
+                        <div fxLayout="row" fxLayoutAlign="start center">
+                          <div fxFlex="32">
+                            <p  class="text-base text-black p-2 pt-3">
+                              {{ans.answer}}
+                            </p>
+                          </div>
+                          <div fxFlex="68">
+                            <input class="appearance-none py-2 px-3 h-10 bg-gray-300 text-black input-display" [(ngModel)] = "txt_multi_ans[ans.id]" maxlength="160">
+                            <span class="text-xs text-red-300 text-right pt-1" style="width: 95%;">
+                              {{txt_multi_ans[ans.id].length}}/160
+                            </span>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div *ngIf="ques.answer_type == 'File Upload'" class="p-2">
+                    <div class="container mx-auto w-full mb-12">
+                      <div *ngFor="let ans of fileInfoList | survey:ques.id; index as j">
+                        <div class="w-full mx-auto text-gray-700 mb-4 ml-24" *ngIf="ans.instruction">
+                          <b>Instructions:</b>&nbsp;{{ans.instruction}}
+                        </div>
+                        <div fxLayout="row">
+                          <div class="w-1/3"></div>
+                          <div class="w-1/3">
+                            <div *ngIf="!isUploadHidden[i]">
+                              <input style="display: none; cursor: pointer;" type="file" (change)="onUploadFileChanged($event, i, ans.error_message, ans.survey_id, ans.survey_q_id)" #fileInput>
+                              <button class="text-black text-base py-2 px-4 rounded-lg m-2 h-12 w-full focus:outline-none" style="border:1px solid #21b25b; border-radius: 25px" type="button" (click)="fileInput.click()">Choose file to upload</button>
+                              <p class="text-xs text-center text-black w-full mx-auto">({{ans.error_message}})</p>
+                            </div>
+                            <div *ngIf="!isFileHidden[i]">
+                              <div fxLayout="row" class="card w-full mb-2 bg-white p-2" style="min-height:2rem;box-shadow: 0 2px 10px -3px rgba(0,0,0,.1), 0 2px 6px -2px rgba(0,0,0,.05);">
+                                <div fxFlex="90" fxLayout="row" fxLayoutAlign="start cenetr">
+                                  <p class="text-base text-black">{{upload_file_name[i]}}</p>
+                                </div>
+                                <div fxFlex="10">
+                                  <mat-icon (click)="removeFile(fileInput, i, ans.survey_q_id)" svgIcon="cross" class="mt-1" style="width: 12px; height: 12px; cursor: pointer;"></mat-icon>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="w-1/3"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="ques.answer_type == 'Ranking'" class="pt-12 pb-16 flex flex-wrap">
+                    <div class="container mx-auto w-9/12 mb-12">
+                      <div *ngFor="let ans of surveyAnsList | survey:ques.id" fxLayout="row" class="m-2 py-1" style="background:#f5f5f5;">
+                        <div fxFlex="15">
+                          <select [(ngModel)]="sel_ranking_val[ans.id]" class="w-9/12 ml-2 text-gray-600 py-2 px-2 mt-1" (change)="assignRanking(sel_ranking_val[ans.id], ques.id, ans.id)">
+                            <option *ngFor="let rank of rankDropDownValue | survey:ques.id; index as k;" [value]="rank.id">
+                              {{rank.id}}
+                            </option>
+                          </select>
+                        </div>
+                        <div fxFlex="65" class="text-gray-600 py-2">
+                          {{ans.answer}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Matrix / Rating Scale'">
+                    <div class="container mx-auto w-11/12 mb-12">
+                      <div fxLayout="row" style="border-bottom:1px solid #ccc;background-color:#f5f5f5;">
+                        <div fxFlex="15"></div>
+                        <div fxFlex="15" *ngFor="let col of matColScaleList | survey:ques.id" class="m-2 mx-auto text-center">
+                          <span class="text-gray-700 text-sm font-semibold">{{col.matrix_value}}</span>
+                        </div>
+                      </div>
+                      <div fxLayout="column">
+                        <div *ngFor="let row of matRowScaleList | survey:ques.id; index as i;" fxFlex="15" style="border-bottom:1px solid #ccc;" id="row-hover" class="text-center">
+                          <div fxFlex="15" style="background-color:#f5f5f5;">
+                            <span class="text-gray-700 text-sm font-semibold">
+                              {{row.matrix_value}}
+                            </span>
+                          </div>
+                          <div fxFlex="15" class="m-2 mx-auto text-center" *ngFor="let col of matColScaleList | survey:ques.id;">
+                            <mat-radio-group aria-label="Select an option" [(ngModel)]="rbtn_mat_val[row.id]" >
+                              <mat-radio-button class="ml-2" [value]="col.id">
+
+                              </mat-radio-button>
+                            </mat-radio-group>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Table'" style="padding-top: 1rem; padding-bottom: 1rem;">
+                    <div class="container mx-auto w-full mb-12">
+                      <div fxLayout="row">
+                        <div fxFlex="33.5" *ngFor="let col of surveyAnsList | survey:ques.id" class="p-1 mx-auto text-center" style="border: 1px solid #ccc;">
+                          <span class="text-gray-700 text-sm font-bold" style="color: #21b25b">
+                            {{col.answer}}
+                          </span>
+                        </div>
+                      </div>
+                      <div fxLayout="column">
+                        <div fxLayout="row" *ngFor="let row of tabRowList | survey:ques.id" style="border-bottom: 1px solid #ccc; border-right: 0px; border-left: 1px solid #ccc;">
+                          <div fxFlex="33.5" *ngFor="let col of surveyAnsList | survey:ques.id" class="p-2 mx-auto text-center" style="border-right: 1px solid #ccc; background: #ffffff;">
+                            <p contenteditable="true" class="text-gray-700 text-sm font-semibold"  placeholder=""  id="tblAns_{{row.id}}_{{col.id}}">
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Table answer type End -->
+                </div>
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div fxLayoutAlign="center center" fxLayout="column" style="height:13rem;">
+              <button style="width: 8rem;height: 3rem;color:white;background-color:#21b25b;margin-top: 3rem;" (click)="saveFeedback()">
+                SUBMIT
+              </button>
+              <p class="text-black p-4 pt-8">Powered by</p>
+              <img src="images/Logo_Black.png" style="width:13rem">
+            </div>
+          </div>
+        </div>
+
+        <div fxLayout="row" fxLayout.xs="column" class="py-8">
+          <div fxFlex="70" fxFlex.xs="100">
+            <p class="footer text-xs text-left m-2" style="margin-left: 0px !important">
+              Copyright &copy; 2013-2019 Sun Plus Software Technologies Pvt Ltd. All rights reserved.
+            </p>
+          </div>
+          <div fxFlex="30" fxFlex.xs="100" class="footer text-right">
+          </div>
+        </div>
+      </div>
+      <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="5" fxFlex.xs="5"></div>
+    </div>
+  </div>
+</div>
+<div class="popup" *ngIf="!isShwSpinner" style="width: 4rem; height: 5rem">
+  <img src="/images/loading.gif" alt="" width="300px" height="300px" style="z-index: 1">
+</div>
+<div fxLayout="column" fxLayoutAlign="center center" *ngIf="!isThxHidden" style="height: 88vh;"  fxShow.xl fxShow.lg fxShow.md fxHide.sm fxHide.xs>
+  <div fxLayout="row" *ngIf="!isEndThxHidden">
+    <img src="/images/ThankYou.jpg" alt="" style="width: 100%; margin-top: 20vh;">
+
+  </div>
+  <div fxLayout="row" *ngIf="!isOthMsgHidden" style="height: 80vh;">
+    <div fxFlex="5"></div>
+    <div fxFlex="90" fxLayout="column"f xLayoutAlign="center center" >
+      <h3 class="font-bold text-4xl text-black">
+        {{user_message}}
+      </h3>
+    </div>
+    <div fxFlex="5"></div>
+  </div>
+</div>

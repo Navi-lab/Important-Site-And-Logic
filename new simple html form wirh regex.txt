@@ -1,0 +1,11 @@
+<form action="" >
+First name:<br>
+<input type="text" name="firstname" value="John"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+<br>
+Number:<br>
+<input type="text" name="lastname" pattern='^\+?\d{10,10}' required><br>
+<button>send</button>
+</form>
+
+
+Validator allow only alphabet:   onkeypress="return /[a-z]/i.test(event.key)"

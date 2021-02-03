@@ -1,0 +1,641 @@
+<div fxLayout="column" style="background: #e6e6e6; height: 100vh;" fxShow.xl fxShow.lg fxShow.md fxHide.sm fxHide.xs>
+  <div fxLayout="row" style="position: relative">
+    <div class="bg_img"></div>
+    <nav class="flex items-center justify-between flex-wrap p-4" #target style="height: 12vh;">
+      <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white" (click)="loadDashboard()"
+          style="cursor: pointer;">
+          <img class="w-40 h-12 ml-4" src="/images/Logo.png" alt="">
+        </a>
+      </div>
+      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div class="text-sm lg:flex-grow" fxLayout="row" fxLayoutAlign="start center" style="margin-bottom: -2rem;">
+          <a class="block lg:inline-block lg:mt-0 text-teal-200 hover:text-black border-btm">
+          </a>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <a class="block mt-4 lg:inline-block lg:mt-0 text-white mr-4" (click)="evtEmit.loadAbout()"
+            style="cursor: pointer; border-color: #ffffff40; padding-left: 2%; width: 4rem;">
+            About
+          </a>
+          <a class="block mt-4 lg:inline-block text-white lg:mt-0 mr-4" (click)="evtEmit.loadContact()"
+            style="cursor: pointer; border-color: #ffffff40;  width: 4rem">
+            Contact
+
+          </a>
+          <button class="w-32 h-10 focus:outline-none text-sm login-btn" (click)="evtEmit.loadlogin()"
+            style="border: 1px solid white; color:white; border-radius: 25px; border: 1px solid white">
+            LOGIN
+          </button>
+          <button class="w-32 h-10 focus:outline-none ml-4 mr-4 text-sm signup-btn" (click)="evtEmit.loadSignup()"
+            style="background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b">
+            SIGN UP
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div fxLayout="column" fxLayoutAlign="center center" class="banner-info">
+      <p class="font-bold text-5xl text-white pb-4">
+        Design intelligent
+        <span style="color: #21b25b">feedback</span> driven by
+      </p>
+      <p class="text-base text-white pb-6">
+        Actionable statistical data to help you make the right business decisions and strategies.
+      </p>
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="w-40 h-12 focus:outline-none"
+        style="background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b; cursor: pointer;"
+        (click)="evtEmit.loadSignup()">
+        <div fxFlex="9"></div>
+        <div fxFlex="55" fxLayout="column" fxLayoutAlign="center center">
+          Get Started
+        </div>
+        <div fxFlex="27" fxLayout="column" fxLayoutAlign="center center">
+          <img src="/images/right-arrow-white.png" class="w-3">
+        </div>
+        <div fxFlex="9"></div>
+      </div>
+      <!--<button class="w-40 h-12 focus:outline-none"
+        style="background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b" (click)="loadlogin()">
+        Get Started
+        <img src="/images/svg_icons/btn-right-arrow.svg" class="w-5 -ml-5 -mt-6" style="margin-left:8rem">
+      </button>-->
+    </div>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="center center" style="padding: 5rem; background-color: white;">
+    <p class="font-bold text-4xl  pb-4" style="color:#1c2a33">
+      Introducing <span style="color: #21b25b">Pollmonk</span>
+    </p>
+    <p class="text-base" style="padding: 0rem 18rem; text-align: center;color:#1c2a33">
+      Pollmonk offer's a tremendous set of free tool for designing feedback form, sharing online and reviewing your
+      feedback results, We've got a fantastic user experience and tons of great features.
+    </p>
+  </div>
+  <div fxLayout="row">
+    <div fxFlex="10" style="background-color: #1c2a33"></div>
+    <div fxFlex="20" style="background-color: #1c2a33;height: 35vh;" fxLayout="column" fxLayoutAlign="center center">
+      <img src="/images/Landing_1.png">
+      <p class="font-bold text-base text-white pt-4">Target Audience</p>
+    </div>
+    <div fxFlex="20" style="background-color: #21b25b;height: 35vh;" fxLayout="column" fxLayoutAlign="center center">
+      <img src="/images/Landing_2.png">
+      <p class="font-bold text-base text-white pt-4">Track Your Feedback</p>
+    </div>
+    <div fxFlex="20" style="background-color: #1c2a33;height: 35vh;" fxLayout="column" fxLayoutAlign="center center">
+      <img src="/images/Landing_3.png">
+      <p class="font-bold text-base text-white pt-4">Pre-written Question</p>
+    </div>
+    <div fxFlex="20" style="background-color: #21b25b;height: 35vh;" fxLayout="column" fxLayoutAlign="center center">
+      <img src="/images/Landing_4.png">
+      <p class="font-bold text-base text-white pt-4">Add Your Logo</p>
+    </div>
+    <div fxFlex="10" style="background-color: #21b25b"></div>
+  </div>
+  <div fxLayout="column" class="p-12 pt-16 lg:pb-8 xl:pb-0">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxFlex="10"></div>
+      <div fxFlex="24" style="height: 25vh;">
+        <div style="display: flex; width: 100%;">
+          <img src="/images/Icons_1.png" style="width: 40px;height: 40px;">
+          <p class="font-bold text-base" style="padding:0.5rem;color:#1c2a33">Target Audience</p>
+        </div>
+        <div>
+          <p class="text-base text-justify" style="color:#1c2a33">Select your target audience by uploading your list and
+            publish your
+            feedbacks instantly or schedule for
+            another time.</p>
+        </div>
+      </div>
+      <div fxFlex="4"></div>
+      <div fxFlex="24" style="height: 25vh;">
+        <div style="display: flex; width: 100%;">
+          <img src="/images/Icons_2.png" style="width: 40px;height: 40px;">
+          <p class="font-bold text-base " style="padding:0.5rem;color:#1c2a33">Track Your Feedback</p>
+        </div>
+        <div>
+          <p class="text-base text-justify" style="color:#1c2a33">Track your feedback progress through real-time analytics
+            dashboard.</p>
+        </div>
+      </div>
+      <div fxFlex="4"></div>
+      <div fxFlex="24" style="height: 25vh;">
+        <div style="display: flex; width: 100%;">
+          <img src="/images/Icons_4.png" style="width: 40px;height: 40px;">
+          <p class="font-bold text-base" style="padding:0.5rem;color:#1c2a33;">Statistical Data</p>
+        </div>
+        <div>
+          <p class="text-base text-justify" style="color:#1c2a33">
+            Make intelligent and informed business decisions based upon inputs
+            received in the form of intuitive graph-driven statistical data.
+          </p>
+        </div>
+      </div>
+      <div fxFlex="10"></div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxFlex="10"></div>
+      <div fxFlex="24" style="height: 32vh;">
+        <div style="display: flex; width: 100%;">
+          <img src="/images/Icons_3.png" style="width: 40px;height: 40px;">
+          <p class="font-bold text-base  " style="padding:0.5rem;color:#1c2a33">Pre-written Question</p>
+        </div>
+        <div>
+          <p class="text-base text-justify " style="color:#1c2a33">Don't feel like writing your own online feedback? We've
+            got hundreds of
+            pre-written question templates. You can use these templates as-is or edit them and combine them with
+            your own questions to create brand new feedbacks.</p>
+        </div>
+      </div>
+      <div fxFlex="4"></div>
+      <div fxFlex="24" style="height: 32vh;">
+        <div style="display: flex; width: 100%;">
+          <img src="/images/Icons_5.png" style="width: 40px;height: 40px;">
+          <p class="font-bold text-base " style="padding:0.5rem;color:#1c2a33">Fast Feedback</p>
+        </div>
+        <div>
+          <p class="text-base text-justify" style="color:#1c2a33">We've done our best to make creating feedbacks as
+            enjoyable as
+            possible.
+            We've got the fastest and most intuitive user experience on the block. Creating online feedbacks has
+            never been more fun and hassle-free.</p>
+        </div>
+      </div>
+      <div fxFlex="4"></div>
+      <div fxFlex="24" style="height: 32vh;">
+        <div style="display: flex; width: 100%;">
+          <img src="/images/Icons_6.png" style="width: 40px;height: 40px;">
+          <p class="font-bold text-base " style="padding:0.5rem;color:#1c2a33">Add Logo</p>
+        </div>
+        <div>
+          <p class="text-base text-justify" style="color:#1c2a33">As much as we love our logo, we know that It's
+            important for your
+            surveys to match your own identity. Pollmonk users can add their own logo.</p>
+        </div>
+      </div>
+      <div fxFlex="10"></div>
+    </div>
+  </div>
+  <div fxLayout="row" style="position: relative">
+    <div class="bg_img1"></div>
+    <div fxLayout="column" fxLayoutAlign="center center" class="get-more-info">
+      <p class="font-bold text-4xl text-white pb-2">
+        Get More with <span style="color: #21b25b">Pollmonk Pro</span>
+      </p>
+      <p class="text-base text-white pb-4" style="padding: 0rem 20rem 1rem 20rem; text-align: center;">
+        All Pollmonk users get unlimited feedback forms, unlimited questions per feedback form & unlimited feedback responses. Pollmonk
+        Pro users enjoy additional tools including exporting, branching & non-branded feedback forms.
+      </p>
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="w-40 h-12 focus:outline-none"
+        style="background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b; cursor: pointer;"
+        (click)="evtEmit.loadSignup()">
+        <div fxFlex="9"></div>
+        <div fxFlex="55" fxLayout="column" fxLayoutAlign="center center">
+          Get Started
+        </div>
+        <div fxFlex="27" fxLayout="column" fxLayoutAlign="center center">
+          <img src="/images/right-arrow-white.png" class="w-3">
+        </div>
+        <div fxFlex="9"></div>
+      </div>
+      <!--<button class="w-40 h-12 focus:outline-none"
+        style="background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b"
+        (click)="loadlogin()">
+        Get Started
+        <img src="/images/svg_icons/btn-right-arrow.svg" class="w-5 -ml-5 -mt-6" style="margin-left:8rem">
+      </button>-->
+    </div>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center" style="padding-top: 2.5rem;">
+    <div class="py-4">
+      <h2 class="font-bold text-4xl  pb-2" style="color:#1c2a33">It's clear why so many people use<span
+          class="text-green-500  pl-2">Pollmonk</span>
+      </h2>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <div fxFlex="18" fxFlex.xs="1"></div>
+    <div fxFlex="20" fxFlex.xs="32" fxFlex.xs="100" style="height: 10rem;background-color:#1c2a33;" fxLayout="column"
+      fxLayoutAlign="center center">
+      <img src="/images/Landing_5.png" style="width: 50px; height: 50px;">
+      <p class="text-base font-bold text-white pt-4">Research</p>
+    </div>
+    <div fxFlex="2" fxFlex.xs="1"></div>
+    <div fxFlex="20" fxFlex.xs="32" fxFlex.xs="100" fxLayout="column" style="height: 10rem;background-color: #21b25b;"
+      fxLayoutAlign="center center">
+      <img src="/images/Landing_9.png" style="width: 50px; height: 50px;">
+      <p class="text-white font-bold  text-base text-center pt-4">Human
+        Resources</p>
+    </div>
+    <div fxFlex="2" fxFlex.xs="1"></div>
+    <div fxFlex="20" fxFlex.xs="32" fxFlex.xs="100" fxLayout="column" style="height: 10rem;background-color:#1c2a33"
+      fxLayoutAlign="center center">
+      <img src="/images/Landing_10.png" style="width: 50px; height: 50px;">
+      <p class="text-white font-bold  text-base text-center pt-4">Customer
+        Satisfaction</p>
+    </div>
+    <div fxFlex="18" fxFlex.xs="1"></div>
+  </div>
+
+
+  <div fxLayout="row" fxLayoutAlign="center center" style="padding-bottom:4.5rem; padding-top:1.7rem">
+    <div fxFlex="18" fxFlex.xs="1"></div>
+    <div fxFlex="20" fxFlex.xs="32" fxLayout="column" style="height: 10rem;background-color: #21b25b;"
+      fxLayoutAlign="center center">
+      <img src="/images/Landing_6.png" style="width: 50px; height: 50px;">
+      <p class="text-white font-bold  text-base pt-4">Education</p>
+    </div>
+    <div fxFlex="2" fxFlex.xs="1"></div>
+    <div fxFlex="20" fxFlex.xs="32" fxLayout="column" style="height: 10rem;background-color:#1c2a33;"
+      fxLayoutAlign="center center">
+      <img src="/images/Landing_7.png" style="width: 50px; height: 50px;">
+      <p class="text-white text-base font-bold  pt-4">Events</p>
+    </div>
+    <div fxFlex="2" fxFlex.xs="1"></div>
+    <div fxFlex="20" fxFlex.xs="32" fxLayout="column" style="height: 10rem;background-color: #21b25b;"
+      fxLayoutAlign="center center">
+      <img src="/images/hospital.png" style="width: 50px; height: 50px;">
+      <p class="text-white text-base font-bold pt-4">Healthcare</p>
+    </div>
+    <div fxFlex="18" fxFlex.xs="1"></div>
+  </div>
+
+  <div fxLayout="row" style="position: relative">
+    <div class="bg_img2"></div>
+    <div fxLayout="column" fxLayoutAlign="center center" class="get-more-info">
+      <p class="font-bold text-4xl  text-white pb-2">
+        Ready to get started?<span style="color: #21b25b;padding-inline-start:0.5rem;"> Sign Up
+          Now</span>
+      </p>
+      <p class="text-base text-white pb-4" style="padding: 0rem 20rem 1rem 20rem; text-align: center;">
+        Free unlimited feedback forms, question & responses.</p>
+      <!--<button class="w-40 h-12 focus:outline-none"
+        style="background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b" (click)="loadSignup()">
+        SIGN UP
+        <div class="scroll">
+          <img src="/images/svg_icons/btn-right-arrow.svg" class="w-5 -ml-5 -mt-6" style="margin-left:8rem">
+        </div>
+      </button>-->
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="w-40 h-12 focus:outline-none"
+        style="background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b; cursor: pointer;"
+        (click)="evtEmit.loadSignup()">
+        <div fxFlex="9"></div>
+        <div fxFlex="55" fxLayout="column" fxLayoutAlign="center center">
+          SIGN UP
+        </div>
+        <div fxFlex="27" fxLayout="column" fxLayoutAlign="center center">
+          <img src="/images/right-arrow-white.png" class="w-3">
+        </div>
+        <div fxFlex="9"></div>
+      </div>
+    </div>
+  </div>
+
+  <div fxLayoutAlign="end end" (click)="scrollToElement(target)" style="cursor: pointer;">
+    <img src="/images/svg_icons/small-up-arrows.svg" class="w-32 absolute pr-20 pb-10">
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="py-5">
+    <div fxFlex="10"></div>
+    <div fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
+      <p class="text-sm text-left" style="color:#1c2a33">
+        Copyright &copy; 2013-2019 Sun Plus Software Technologies Pvt Ltd. All rights reserved.
+      </p>
+    </div>
+    <div fxFlex="15" fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxFlex="55">
+        <p class="text-sm  text-left" style="color:#1c2a33; cursor: pointer;" (click)="evtEmit.loadPrivatePolicy();">
+          Cookies & Privacy
+        </p>
+      </div>
+      <div fxFlex="5">
+        <p class="pl-2 text-sm text-left" style="color:#1c2a33; cursor: pointer;" (click)="evtEmit.loadContact();">
+          |
+        </p>
+      </div>
+      <div fxFlex="40">
+        <p class="pl-2 text-sm text-left" style="color:#1c2a33; cursor: pointer;" (click)="evtEmit.loadContact();">
+          Contact
+        </p>
+      </div>
+    </div>
+    <div fxFlex="10"></div>
+  </div>
+</div>
+<div fxLayout="column" style="background: #e6e6e6;" fxHide.xl fxHide.lg fxHide.md fxShow.sm fxShow.xs>
+  <div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none; background-color:#1c2a33 !important;"
+    id="mySidebar">
+    <button class="w3-bar-item w3-button w3-large " (click)="evtEmit.w3_close()"
+      style="text-align: right;">{{user_name}} &nbsp; &times;</button>
+    <a class="pointer block lg:inline-block lg:mt-0 text-white mr-4 curserPointer" (click)="evtEmit.loadAbout()"
+      style="cursor: pointer !important; border-color: #ffffff40; margin-top:1.5rem; text-align: center;">
+      About
+    </a>
+    <a class="pointer block lg:inline-block text-white lg:mt-0 mr-4 curserPointer" (click)="evtEmit.loadContact()"
+      style="cursor: pointer !important; border-color: #ffffff40;  margin-top:1.5rem;  text-align: center;">
+      Contact
+    </a>
+    <div style="text-align:center;">
+      <button class="pointer w-32 h-10 focus:outline-none text-sm login-btn curserPointer" (click)="evtEmit.loadlogin()"
+        style="cursor: pointer; border: 1px solid white; color:white;  margin-top:1.5rem; border-radius: 25px; border: 1px solid white">
+        LOGIN
+      </button>
+    </div>
+    <div style="text-align:center;">
+      <button class="pointer w-32 h-10 focus:outline-none text-sm signup-btn curserPointer" (click)="evtEmit.loadSignup()"
+        style="cursor: pointer; background-color: #21b25b; color:white;  margin-top:1.5rem; border-radius: 25px; border: 1px solid #21b25b; margin-left: 0% !important">
+        SIGN UP
+      </button>
+    </div>
+
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="bg-white" style="height: 14vh;">
+    <div fxFlex="2"></div>
+    <div fxFlex="16">
+      <button class="w3-button w3-white w3-xxlarge" (click)="evtEmit.w3_open()">&#9776;</button>
+    </div>
+    <div fxFlex="84" fxLayout="row" fxLayoutAlign="center center">
+      <a class="block lg:inline-block lg:mt-0 text-teal-200 hover:text-white" (click)="loadDashboard()"
+        style="cursor: pointer;">
+        <img class="w-40 h-12" src="/images/Logo_Black.png" alt="">
+      </a>
+    </div>
+    <div fxFlex="2"></div>
+  </div>
+  <div class="row banner-sec">
+    <div class="row">
+      <div class="bg_img" style="height: 65vh;"></div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center" class="banner-info" style="height: 98%">
+      <p class="font-bold text-3xl text-white pb-4">
+        Design intelligent
+        <span style="color: #21b25b">surveys</span> driven by
+      </p>
+      <p class="text-base text-white pb-6">
+        Actionable statistical data to help you make the right business decisions and strategies.
+      </p>
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="w-40 h-12 focus:outline-none"
+        style="background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b; cursor: pointer;"
+        (click)="evtEmit.loadSignup()">
+        <div fxFlex="9"></div>
+        <div fxFlex="55" fxLayout="column" fxLayoutAlign="center center">
+          Get Started
+        </div>
+        <div fxFlex="27" fxLayout="column" fxLayoutAlign="center center">
+          <img src="/images/right-arrow-white.png" class="w-3">
+        </div>
+        <div fxFlex="9"></div>
+      </div>
+      <!--<button class="w-40 h-12 focus:outline-none"
+        style="background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b" (click)="loadlogin()">
+        Get Started
+        <img src="/images/svg_icons/btn-right-arrow.svg" class="w-5 -ml-5 -mt-6" style="margin-left:8rem">
+      </button>-->
+    </div>
+
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center" style="padding: 4rem 2rem; background-color: white;">
+    <p class="font-bold text-center text-3xl  pb-4" style="color:#1c2a33">
+      Introducing <span style="color: #21b25b">Pollmonk</span>
+    </p>
+    <p class="text-base" style=" text-align: center;color:#1c2a33">
+      Pollmonk offer's a tremendous set of free tool for designing your survey,sharing online and reviewing your
+      survey results, We've got a fantastic user experiance and tons of great features.
+    </p>
+  </div>
+  <div>
+    <div fxLayout="column" style="background-color: #1c2a33;padding: 1.8rem; align-items: center;">
+      <img src="/images/Landing_1.png" style="width: 120px; height:120px">
+      <p class="font-bold text-base text-white pt-4">Target Audience</p>
+    </div>
+
+    <div fxLayout="column" style="background-color: #21b25b;padding: 1.8rem; align-items: center;">
+      <img src="/images/Landing_2.png" style="width: 120px; height:120px">
+      <p class="font-bold text-base text-white pt-4">Track Your Survey</p>
+    </div>
+    <div fxLayout="column" style="background-color: #1c2a33;padding: 1.8rem; align-items: center;">
+      <img src="/images/Landing_3.png" style="width: 120px; height:120px">
+      <p class="font-bold text-base text-white pt-4">Pre-written Question</p>
+    </div>
+    <div fxLayout="column" style="background-color: #21b25b;padding: 1.8rem; align-items: center;">
+      <img src="/images/Landing_4.png" style="width: 120px; height:120px">
+      <p class="font-bold text-base text-white pt-4">Add Your Logo</p>
+    </div>
+
+  </div>
+  <div fxLayout="column" class="pl-8 pr-8 lg:pb-8 xl:pb-0">
+    <div fxLayout="column" style="align-items:left">
+
+      <div style="padding: 2rem 1rem">
+        <div style="display: flex; width: 100%; justify-content: center">
+          <img src="/images/Icons_1.png" style="width: 40px;height: 40px;">
+          <p class="font-bold text-base" style="padding:0.5rem; color:#1c2a33; text-align: center">Target Audience</p>
+        </div>
+        <div>
+          <p class="text-base text-center" style="color:#1c2a33">Select your target audience by uploading your list and
+            publish your
+            surveys instantly or schedule for
+            another time.</p>
+        </div>
+      </div>
+
+      <div style="padding: 2rem 1rem">
+        <div style="display: flex; width: 100%; justify-content: center">
+          <img src="/images/Icons_2.png" style="width: 40px;height: 40px;">
+          <p class="font-bold text-base " style="padding:0.5rem;color:#1c2a33">Track Your Survey</p>
+        </div>
+        <div>
+          <p class="text-base text-justify" style="color:#1c2a33; text-align: center">Track your survey progress through
+            real-time analytics
+            dashboard.</p>
+        </div>
+      </div>
+
+      <div style="padding: 2rem 1rem">
+        <div style="display: flex; width: 100%; justify-content: center">
+          <img src="/images/Icons_4.png" style="width: 40px;height: 40px;">
+          <p class="font-bold text-base" style="padding:0.5rem;color:#1c2a33;">Statistical Data</p>
+        </div>
+        <div>
+          <p class="text-base text-justify" style="color:#1c2a33; text-align: center">
+            Make intelligent and informed business decisions based upon inputs
+            received in the form of intuitive graph-driven statistical data.
+          </p>
+        </div>
+      </div>
+
+    </div>
+    <div fxLayout="column" style="align-items:left">
+
+      <div style="padding: 2rem 1rem">
+        <div style="display: flex; width: 100%; justify-content: center">
+          <img src="/images/Icons_3.png" style="width: 40px;height: 40px;">
+          <p class="font-bold text-base  " style="padding:0.5rem;color:#1c2a33">Pre-written Question</p>
+        </div>
+        <div>
+          <p class="text-base text-justify " style="color:#1c2a33; text-align: center">Don't feel like writing your own
+            online survey? We've
+            got hundreds of
+            pre-written question templates. You can use these templates as-is or edit them and combine them with
+            your own questions to create brand new surveys.</p>
+        </div>
+      </div>
+
+      <div style="padding: 2rem 1rem">
+        <div style="display: flex; width: 100%; justify-content: center">
+          <img src="/images/Icons_5.png" style="width: 40px;height: 40px;">
+          <p class="font-bold text-base " style="padding:0.5rem;color:#1c2a33">Fast Survey</p>
+        </div>
+        <div>
+          <p class="text-base text-justify" style="color:#1c2a33; text-align: center">We've done our best to make
+            creating surveys as
+            enjoyable as
+            possible.
+            We've got the fastest and most intuitive user experience on the block. Creating online surveys has
+            never been more fun and hassle-free.</p>
+        </div>
+      </div>
+
+      <div style="padding: 2rem 1rem">
+        <div style="display: flex; width: 100%; justify-content: center">
+          <img src="/images/Icons_6.png" style="width: 40px;height: 40px;">
+          <p class="font-bold text-base " style="padding:0.5rem;color:#1c2a33">Add Logo</p>
+        </div>
+        <div>
+          <p class="text-base text-justify" style="color:#1c2a33; text-align: center">As much as we love our logo, we
+            know that It's
+            important for your
+            surveys to match your own identity. Pollmonk users can add their own logo.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div fxLayout="row" style="position: relative">
+    <div class="bg_img1" style="height: 65vh !important"></div>
+    <div fxLayout="column" fxLayoutAlign="center center" class="get-more-info"
+      style="padding: 0rem 2rem 0rem 2rem; text-align:center;height: 80%">
+      <p class="font-bold text-3xl text-white pb-2">
+        Get More with <span style="color: #21b25b">Pollmonk Pro</span>
+      </p>
+      <p class="text-base text-white pb-4" style="text-align: center;">
+        All Pollmonk users get unlimited survey, unlimited questions per survey & unlimited survey response. Pollmonk
+        Pro users enjoy additional tools including exporting, branching & non-branded surveys.
+      </p>
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="w-40 h-12 focus:outline-none"
+        style="background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b; cursor: pointer;"
+        (click)="evtEmit.loadSignup()">
+        <div fxFlex="9"></div>
+        <div fxFlex="55" fxLayout="column" fxLayoutAlign="center center">
+          Get Started
+        </div>
+        <div fxFlex="27" fxLayout="column" fxLayoutAlign="center center">
+          <img src="/images/right-arrow-white.png" class="w-3">
+        </div>
+        <div fxFlex="9"></div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <div class="py-4">
+      <h2 class="font-bold text-3xl text-center p-4" style="color:#1c2a33">It's clear why so many people use<span
+          class="text-green-500  pl-2">Pollmonk</span>
+      </h2>
+    </div>
+  </div>
+  <div fxLayout="row">
+    <div fxFlex="15"></div>
+    <div fxFlex="70">
+      <div style="background-color:#1c2a33; padding: 2rem; margin-bottom: 2rem" fxLayout="column"
+        fxLayoutAlign="center center">
+        <img src="/images/Landing_5.png" style="width: 120px; height: 120px;">
+        <p class="text-base font-bold text-white pt-4">Research</p>
+      </div>
+
+      <div fxLayout="column" style="padding: 2rem; background-color: #21b25b; margin-bottom: 2rem"
+        fxLayoutAlign="center center">
+        <img src="/images/Landing_9.png" style="width: 120px; height: 120px;">
+        <p class="text-white font-bold  text-base text-center pt-4">Human
+          Resources</p>
+      </div>
+
+      <div fxLayout="column" style="padding: 2rem; background-color:#1c2a33; margin-bottom: 2rem"
+        fxLayoutAlign="center center">
+        <img src="/images/Landing_10.png" style="width: 120px; height: 120px;">
+        <p class="text-white font-bold  text-base text-center pt-4">Customer
+          Satisfaction</p>
+      </div>
+    </div>
+
+    <div fxFlex="15"></div>
+  </div>
+  <div fxLayout="row">
+    <div fxFlex="15"></div>
+    <div fxFlex="70">
+      <div fxLayout="column" style="padding: 2rem; background-color: #21b25b; margin-bottom: 2rem"
+        fxLayoutAlign="center center">
+        <img src="/images/Landing_6.png" style="width: 120px; height: 120px;">
+        <p class="text-white font-bold  text-base pt-4">Education</p>
+      </div>
+
+      <div fxLayout="column" style="padding: 2rem; background-color:#1c2a33; margin-bottom: 2rem"
+        fxLayoutAlign="center center">
+        <img src="/images/Landing_7.png" style="width: 120px; height: 120px;">
+        <p class="text-white text-base font-bold  pt-4">Events</p>
+      </div>
+
+      <div fxLayout="column" style="padding: 2rem; background-color: #21b25b; margin-bottom: 2rem"
+        fxLayoutAlign="center center">
+        <img src="/images/Landing_8.png" style="width: 120px; height: 120px;">
+        <p class="text-white text-base font-bold pt-4">Politics</p>
+      </div>
+    </div>
+    <div fxFlex="15"></div>
+  </div>
+
+  <div fxLayout="row" style="position: relative">
+    <div class="bg_img2" style="height: 60vh"></div>
+    <div fxLayout="column" fxLayoutAlign="center center" class="get-more-info"
+      style="padding: 0rem 3rem; text-align:center;height: 68%;">
+      <p class="font-bold text-3xl  text-white pb-2">
+        Ready to get started?<span style="color: #21b25b;padding-inline-start:0.5rem;" (click)="evtEmit.loadSignup()">
+          Sign Up
+          Now</span>
+      </p>
+      <p class="text-base text-white pb-4" style="padding: 0rem 2rem 1rem 2rem; text-align: center;">
+        Free unlimited surveys, question & responses.</p>
+      <!--<button class="w-40 h-12 focus:outline-none"
+        style="background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b" (click)="loadSignup()">
+        SIGN UP
+        <div class="scroll">
+          <img src="/images/svg_icons/btn-right-arrow.svg" class="w-5 -ml-5 -mt-6" style="margin-left:8rem">
+        </div>
+      </button>-->
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="w-40 h-12 focus:outline-none"
+        style="background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b; cursor: pointer;"
+        (click)="evtEmit.loadSignup()">
+        <div fxFlex="9"></div>
+        <div fxFlex="55" fxLayout="column" fxLayoutAlign="center center">
+          SIGN UP
+        </div>
+        <div fxFlex="27" fxLayout="column" fxLayoutAlign="center center">
+          <img src="/images/right-arrow-white.png" class="w-3">
+        </div>
+        <div fxFlex="9"></div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center" style="height: 17vh; width: 100vw;">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <p class="text-xs text-black text-left m-2 ml-4 text-center">
+        Copyright &copy; 2013-2019 Sun Plus Software Technologies Pvt Ltd. All rights reserved.
+      </p>
+    </div>
+    <div class="text-black" fxLayout="row" fxLayoutAlign="center center">
+
+      <a (click)="evtEmit.loadPrivatePolicy()" class="pr-2 pl-2 text-xs text-black-500;"
+        style="cursor: pointer; border-right:1px solid black">Cookies &
+        Private</a>
+      <a class="pr-2 pl-2 text-xs text-black-500" style="cursor: pointer;" (click)="evtEmit.loadContact()">
+        Contact</a>
+    </div>
+  </div>
+</div>

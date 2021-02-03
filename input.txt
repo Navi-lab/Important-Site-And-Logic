@@ -1,0 +1,111 @@
+ <div *ngIf="!isLaptopHidden">
+    <div fxLayout="column" fxFlex="50" fxLayoutAlign="center center" class="lap">
+      <h3>Laptop</h3>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="System SlNo" value="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Charger SlNo" value="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Mouse SlNo" value="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="OS" value="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Processor" value="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Problem" value="">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Remark"></textarea>
+          </mat-form-field>
+    </div>
+  </div>
+  <div *ngIf="!isDesktopHidden">
+    <div fxLayout="column" fxFlex="50" fxLayoutAlign="center center" class="des" >
+        <h3>Desktop</h3>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="CPU" value="">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Monitor" value="">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Mouse " value="">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Keyboard" value="">
+            </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="OS" value="">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Processor" value="">
+          </mat-form-field>
+        
+          <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="Remark"></textarea>
+            </mat-form-field>
+    </div>
+===========================================================================================.ts
+==========================================================================================
+import { Component, OnInit } from '@angular/core';
+export interface Food {
+  value: string;
+  viewValue: string;
+}
+export interface System {
+  value: string;
+  viewValue: string;
+}
+@Component({
+  selector: 'app-input',
+  templateUrl: './input.component.html',
+  styleUrls: ['./input.component.scss']
+})
+export class InputComponent implements OnInit {
+
+  foods: Food[] = [
+    {value: 'O+-0', viewValue: 'O+ve'},
+    {value: 'O-ve-1', viewValue: 'O-ve'},
+    {value: 'A+ve -2', viewValue: 'A+ve'},
+    {value: 'A-ve -2', viewValue: 'A-ve'},
+    {value: 'B+ve -2', viewValue: 'B+ve'},
+    {value: 'B-ve -2', viewValue: 'B-ve'},
+    {value: 'AB+ve -2', viewValue: 'AB+ve'},
+    {value: 'AB-ve -2', viewValue: 'AB-ve'},
+    {value: 'O+ve -2', viewValue: 'O+ve'},
+    {value: 'O-ve -2', viewValue: 'O-ve'},
+  ];
+  systems: System[] = [
+    {value: 'Laptop', viewValue: 'Laptop'},
+    {value: 'Desktop', viewValue: 'Desktop'},
+      ];
+    
+    sel_sys_type:string;
+    isLaptopHidden = true;     
+    isDesktopHidden = true;
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  loadSystemType(){
+    if(this.sel_sys_type === 'Laptop')
+    {
+      this.isLaptopHidden = false;
+     
+      this.isDesktopHidden = true;
+    }
+    else if(this.sel_sys_type === 'Desktop')
+    {
+      this.isLaptopHidden = true;
+     
+      this.isDesktopHidden = false;
+    }
+  }
+}

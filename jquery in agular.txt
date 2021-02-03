@@ -1,0 +1,10 @@
+add jquery in angular
+
+
+https://www.youtube.com/watch?v=stXSmnxGgsg
+
+
+
+tutorial page:
+
+    https://www.truecodex.com/course/angular-6/how-to-use-external-js-files-and-javascript-code-in-angular

@@ -1,0 +1,28 @@
+ Event binding Function
+======================================
+// Full list of Angular Events
+(click)="myFunction()"      
+(dblclick)="myFunction()"   
+(submit)="myFunction()"
+(blur)="myFunction()"  
+(focus)="myFunction()" 
+(scroll)="myFunction()"
+(cut)="myFunction()"
+(copy)="myFunction()"
+(paste)="myFunction()"
+(keyup)="myFunction()"
+(keypress)="myFunction()"
+(keydown)="myFunction()"
+(mouseup)="myFunction()"
+(mousedown)="myFunction()"
+(mouseenter)="myFunction()"
+(drag)="myFunction()"
+(drop)="myFunction()"
+(dragover)="myFunction()"
+(mouseleave)="myFunction()"
+ on-mouseover="myFunction()"
+Link:https://www.positronx.io/useful-list-of-angular-7-event-types-for-event-binding/
+
+Event Binding MDN:https://developer.mozilla.org/en-US/docs/Web/Events
+
+ yt:https://www.youtube.com/watch?v=_z1d7FAzpg4

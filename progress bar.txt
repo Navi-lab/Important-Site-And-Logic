@@ -1,0 +1,35 @@
+<div class="sm-progressbar">
+    <div class="sm-progress-container">
+        <div id="progress-bar-text" class="sm-progress notranslate" tabindex="0">
+            <span data-response-count="0">5</span> of <span data-question-count="5">5</span> answered
+        </div>
+        <div role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" aria-labelledby="progress-bar-text" class="bar"><div style="width: 100%;">&nbsp;</div></div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+.survey-body .sm-progressbar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
+
+.sm-progressbar {
+    background-color: #00bf6f;
+}
+
+sm-progressbar {
+    height: 48px;
+    width: 100%;
+    text-align: center;
+}

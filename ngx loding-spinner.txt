@@ -1,0 +1,33 @@
+
+ng4 spinner:
+
+stackbliz-link:
+
+https://stackblitz.com/edit/angular-ng4-loading-spinner?file=src%2Fapp%2Fhello.component.ts
+
+====================================================================================================================
+
+Ng4 stack-overflow:
+
+https://stackoverflow.com/questions/52356324/display-spinner-till-api-response-in-angular-6/52356687
+
+Loding-gif:
+
+https://loading.io/
+
+====================================================================================================================
+Ng4 plunker:
+
+https://plnkr.co/edit/gX8uvP2hb7DiE8Hs0a1R?p=preview&preview
+====================================================================================================================
+Ngx different spinning type,color,size :
+
+link:https://napster2210.github.io/ngx-spinner/
+
+=======================================================================================================================
+
+Ngx-stackoverflow:
+
+https://stackblitz.com/edit/ngx-spinner-demo?file=src%2Fapp%2Fapp.component.html
+
+=======================================================================================================================

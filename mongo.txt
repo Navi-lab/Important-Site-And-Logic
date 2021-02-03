@@ -1,0 +1,46 @@
+https://medium.com/@BaaniLeen/connecting-angular-5-app-to-mongodb-database-mean-stack-9b4b4232e219
+
+
+https://www.c-sharpcorner.com/article/angular-5-crud-opration-using-nodeexpressmongo/
+
+
+gif animation:https://www.youtube.com/watch?v=omdfcGYEqPY
+
+
+
+https://www.c-sharpcorner.com/article/input-and-output-decorator-in-angular/
+
+npm install -g firebase-tools
+
+https://www.youtube.com/watch?time_continue=13&v=0pThnRneDjw
+
+Deploy angular code in firebase
+
+https://www.youtube.com/watch?v=mF7FTWHS3ys
+
+22/7/20
+
+https://grokonez.com/firebase/angular-8-firebase-tutorial-integrate-firebase-angular-8-app-angular-fire
+
+https://console.firebase.google.com/project/nc-angular-firebase/database/nc-angular-firebase/data
+
+23/7/20
+
+https://medium.com/poka-techblog/turn-your-angular-app-into-a-pwa-in-4-easy-steps-543510a9b626
+
+https://web.dev/creating-pwa-with-angular-cli/
+
+https://scotch.io/tutorials/deploying-an-angular-cli-app-to-production-with-firebase
+
+https://alligator.io/angular/deploying-angular-app-to-firebase/
+
+
+27/7/20
+
+nginx- angular : https://www.stackextend.com/angular/deploy-angular-app-using-nginx/
+
+https://www.c-sharpcorner.com/article/hosting-angular-application-using-nginx/
+
+04/8/20
+
+mean stack with crude: https://www.youtube.com/watch?v=wtIvu085uU0

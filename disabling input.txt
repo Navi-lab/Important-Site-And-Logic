@@ -1,0 +1,3 @@
+disabling input for some condition
+
+Link:  https://stackblitz.com/edit/angular-disable-form-field-on-select-value?file=app%2Fform-field-overview-example.ts

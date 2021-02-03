@@ -1,0 +1,29 @@
+
+
+smoth scrolling
+
+type script:
+https://stackoverflow.com/questions/46658522/how-to-smooth-scroll-to-page-anchor-in-angular-4-without-plugins-properly
+
+
+html and css3
+https://codepen.io/bengedi/pen/QEdPXE?editors=0100
+
+
+
+
+HTML code :
+
+<button (click)="scrollToElement(target)"></button>
+<div #target>Your target</div>
+Ts code :
+
+scrollToElement($element): void {
+    console.log($element);
+    $element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+  }
+
+
+css smooth-scrolling:
+
+https://css-tricks.com/snippets/jquery/smooth-scrolling/

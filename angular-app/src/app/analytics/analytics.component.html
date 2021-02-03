@@ -1,0 +1,291 @@
+<div fxLayout="column" style="background: #f6f6f6;" fxShow.xl fxShow.lg fxShow.md fxHide.sm fxHide.xs>
+  <nav class="flex items-center justify-between flex-wrap p-4" style="background: white; height: 12vh;">
+    <div class="flex items-center flex-shrink-0 text-white mr-6">
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white" (click)="evtEmit.loadDashboard()"
+        style="cursor: pointer;">
+        <img class="w-40 h-12" src="/images/Logo_Black.png" alt="">
+      </a>
+    </div>
+    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+      <div class="text-sm lg:flex-grow" fxLayout="row" fxLayoutAlign="start center" style="margin-bottom: -2rem;">
+        <a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+          (click)="evtEmit.loadDashboard()" style="cursor: pointer; height: 7vh;">
+          Dashboard
+        </a>
+        <a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+          (click)="evtEmit.loadAnalytics()" style="cursor: pointer; height: 7vh;">
+          Analytics
+        </a>
+        <a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+          (click)="evtEmit.loadTemplate()" style="cursor: pointer; height: 7vh;">
+          Templates
+        </a>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <a matTooltip="FAQ" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black" (click)="evtEmit.loadFaq()"
+          style="cursor: pointer; border-color: #ffffff40; padding-left: 2%; width: 4rem;">
+          <img src="/images/Dashboard_1.png" alt="" style="width: 20px; height:20px">
+
+        </a>
+        <a matTooltip="Bulk email upload" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black" (click)="evtEmit.laodUpload()"
+          style="cursor: pointer; border-color: #ffffff40; padding-left: 2%; width: 4rem">
+          <img src="/images/Dashboard_2.png" alt="" style="width: 20px; height:20px">
+
+        </a>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black"
+          style="cursor: pointer; border-color: #ffffff40; padding-left: 1%; width: 4rem;">
+          <span
+            style="width: 2.5rem; height: 2.5rem; padding: 0.6rem 0.8rem; border: 1px solid #21b25b; border-radius: 50%; background-color: #21b25b; color: white;">
+            {{user_first_letter}}
+          </span>
+        </a>
+        <div class="dropdown">
+          <button class="dropbtn font-semibold text-lg text-center p-2 pt-0 text-gray-600"
+            (click)="openDropDown()" style="text-transform: capitalize;">
+
+            {{user_name}}
+            <fa name="caret-down" class="down_arrow"></fa>
+          </button>
+          <div class="dropdown-content text-gray-600" id="#profile">
+            <a href="/users/sign_out">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="row banner-sec" style="background-color: #e6e6e6">
+    <div class="row">
+      <div class="bg_img"></div>
+    </div>
+    <div fxLayout="row" class="inner-div text-white">
+      <div fxFlex.xl="10" fxFlex.lg="10" fxFlex.md="5"></div>
+      <div fxFlex.xl="80" fxFlex.lg="80" fxFlex.md="90" class="banner-info">
+        <div class="text-left p-6 pb-20">
+          <span class="font-bold text-4xl text-white">
+            Analytics
+          </span>
+        </div>
+        <div class="row">
+          <div class="bg-white card" style="padding: 2rem 2rem 2rem 2rem; margin-bottom: 1rem">
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="p-4">
+              <div fxFlex="40" fxLayout="row" fxLayoutAlign="start center">
+                <span class="font-bold text-base text-black">
+                  All Analytics ({{analyticSurList.length}})
+                </span>
+              </div>
+              <div fxFlex="60" fxLayout="row" fxLayoutAlign="end center" style="width: 95%; height: 5vh; border: 1px solid #e6e6e6; padding: 1rem;">
+                <input type="text" placeholder="Search Survey" [(ngModel)]="txt_search"
+                  class="text-base text-black w-full">
+                <span style="font-size: 1.5em; color: #e6e6e6;">
+                  <i class="fa fa-search"></i>
+                </span>
+              </div>
+            </div>
+            <div *ngIf="!isAnaHidden">
+              <div fxLayout="column" *ngFor="let cat of categoryList; index as i" class="m-4">
+                <p class="font-bold font-hairline text-black mb-4" style="color: #21b25b;">
+                  {{cat.survey_category}}({{(analyticSurList | category: cat.survey_category).length}})
+                </p>
+                <div class="flex flex-wrap">
+                  <div class="mb-4 bg-white card hover:text-white"
+                    *ngFor="let sur of analyticSurList | category: cat.survey_category |filter: txt_search"
+                    style="width:100%; background-color:#f6f6f6; padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.1rem; padding-left: 1rem; min-height: 4rem;">
+                    <!-- <div fxFlex="20" *ngIf="!sur.logo">
+                      <img class="w-10 h-10 rounded-full mr-4" src="/images/Analytic.png" style="margin-top:0.2rem; border: 1px solid #21b25b;">
+                    </div> -->
+                    <!-- <div fxFlex="20" *ngIf="sur.logo">
+                      <img class="w-10 h-10 rounded-full mr-4" [src]="sur.logo" style="margin-top:0.2rem; border: 1px solid #21b25b;">
+                    </div> -->
+                    <div fxFlex="60">
+                      <p class="font-semibold text-base text-black">
+                        {{sur.survey_name}}
+                      </p>
+                      <p class="text-base text-black">
+                        Created: {{sur.created_at | date: 'mediumDate'}}
+                      </p>
+                    </div>
+                    <div fxFlex="20" class="text-center" style="border-right: 1px solid #21b25b">
+                      <div *ngIf="(sur.no_question)">
+                        <p style="color: #21b25b" class="text-base text-black">
+                          {{sur.no_question}}
+                        </p>
+                        <p class="text-sm text-black">
+                          Questions
+                        </p>
+                      </div>
+                      <div *ngIf="(! sur.no_question)">
+                        <p style="color: #21b25b" class="text-base text-black">
+                          0
+                        </p>
+                        <p class="text-sm text-black">
+                          Questions
+                        </p>
+                      </div>
+                    </div>
+                    <div fxFlex="20" class="text-center"
+                    (click)="loadResult(sur.id)">
+                      <mat-icon svgIcon="analyse"
+                        style="cursor: pointer; width: 18px; height: 18px; color: black">
+                      </mat-icon>
+                      <p class="text-sm text-black" style="cursor: pointer;">
+                        Result
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <hr style="margin: 15px 20px 10px 0px;">
+              </div>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!isAnaMsgHidden" style="height: 30vh;">
+                <p class="text-black text-lg font-bold">
+                  No Survey Shared...
+                </p>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row" class="py-8 text-black">
+          <div fxFlex="70">
+            <p class="text-xs text-left m-2" style="margin-left: 0px !important">
+              Copyright &copy; 2013-2019 Sun Plus Software Technologies Pvt Ltd. All rights reserved.
+            </p>
+          </div>
+          <div fxFlex="30" class="text-right">
+            <a (click)="evtEmit.loadPrivatePolicy()" class="pr-2 pl-2 text-xs"
+              style="cursor: pointer; border-right: 1px solid #21b25b;">Cookies & Privacy
+            </a>
+            <a (click)="evtEmit.loadFaq()" class="pr-2 pl-2 text-xs" style="cursor: pointer;">Help
+            </a>
+          </div>
+        </div>
+      </div>
+      <div fxFlex.xl="10" fxFlex.lg="10" fxFlex.md="5"></div>
+    </div>
+  </div>
+</div>
+<div fxLayout="column" style="background: #e6e6e6;" fxHide.xl fxHide.lg fxHide.md fxShow.sm fxShow.xs>
+  <div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;" id="mySidebar">
+    <!-- <button class="w3-bar-item w3-button w3-large" (click)="evtEmit.w3_close()" style="text-align: center">{{user_name}}
+      &nbsp; &times;</button>
+    <a (click)="evtEmit.loadDashboard()" class="w3-bar-item w3-button"
+      style="text-align: center; padding: 0.5rem 2rem;">
+      Dashboard
+    </a> -->
+    <span style="float: right;font-size:24px;padding-right:1rem; cursor: pointer;"(click)="evtEmit.w3_close()">&nbsp; &emsp; &nbsp; &nbsp;&times;</span>
+		<div class="w3-bar-item w3-button w3-large" 
+			style="text-align: center;color: #21b25b;">{{user_name}} </div>
+		<a (click)="evtEmit.loadDashboard()" class="w3-bar-item w3-button"
+			style="text-align: center; padding: 0.5rem 2rem;">
+			Dashboard
+		</a>
+    <a (click)="evtEmit.loadAnalytics()" class="w3-bar-item w3-button"
+      style="text-align: center; padding: 0.5rem 2rem;">
+      Analytics
+    </a>
+    <a (click)="evtEmit.loadTemplate()" class="w3-bar-item w3-button"
+      style="text-align: center; padding: 0.5rem 2rem;">
+      Template
+    </a>
+    <a (click)="evtEmit.loadFaq()" class="w3-bar-item w3-button" style="text-align: center; padding: 0.5rem 2rem;">
+      FAQ
+    </a>
+
+    <a (click)="evtEmit.laodUpload();" class="w3-bar-item" style="text-align: center; padding: 0.5rem 2rem;">
+      Bulk Email Upload
+    </a>
+    <a href="/users/sign_out" class="w3-bar-item w3-button" style="text-align: center; padding: 0.5rem 2rem;">Logout</a>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="bg-white" style="height: 14vh;">
+    <div fxFlex="2"></div>
+    <div fxFlex="16">
+      <button class="w3-button w3-white w3-xlarge" (click)="evtEmit.w3_open()">&#9776;</button>
+    </div>
+    <div fxFlex="84" fxLayout="row" fxLayoutAlign="center center">
+      <a class="block lg:inline-block lg:mt-0 text-teal-200 hover:text-white" (click)="evtEmit.loadDashboard()"
+        style="cursor: pointer;">
+        <img class="w-40 h-12" src="/images/Logo_Black.png" alt="">
+      </a>
+    </div>
+    <div fxFlex="2"></div>
+  </div>
+  <div class="row banner-sec">
+    <div class="row">
+      <div class="bg_img"></div>
+    </div>
+    <div fxLayout="row" class="inner-div text-white">
+      <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="5"></div>
+      <div fxFlex.xl="70" fxFlex.lg="70" fxFlex.md="90" class="banner-info">
+        <div class="text-center p-6 pb-20">
+          <span class="font-bold text-4xl text-white">
+            Analytics
+          </span>
+        </div>
+        <div class="row">
+          <div fxFlex="10"></div>
+          <div fxFlex="80">
+            <div class="bg-white rounded card" style="padding: 2rem 1rem 2rem 1rem; margin-bottom: 1rem">
+              <div *ngIf="!isAnaHidden">
+                <div fxLayout="column" *ngFor="let cat of categoryList; index as i" class="m-4">
+                  <p class="font-bold font-hairline text-black mb-4">
+                    <u>{{cat.survey_category}}({{(analyticSurList | category: cat.survey_category).length}})</u>
+                  </p>
+                  <div class="flex flex-wrap">
+                    <div class="mb-4 bg-white card hover:text-white card_width"
+                      *ngFor="let sur of analyticSurList | category: cat.survey_category"
+                      style="background-color:#f6f6f6; box-shadow: 0 2px 10px -3px rgba(0,0,0,.1), 0 2px 6px -2px rgba(0,0,0,.05); padding-top: 0.5rem; padding-bottom: 0.5rem; width:100%; cursor: pointer; padding-left: 1rem; min-height: 4rem;"
+                      (click)="loadResult(sur.id)">
+                      <div fxFlex="20" *ngIf="!sur.logo">
+                        <img class="w-10 h-10 rounded-full mr-4" src="/images/Analytic.png"
+                          style="margin-top:0.2rem; border: 1px solid #21b25b;">
+                      </div>
+                      <div fxFlex="20" *ngIf="sur.logo">
+                        <img class="w-10 h-10 rounded-full mr-4" [src]="sur.logo"
+                          style="margin-top:0.2rem; border: 1px solid #21b25b;">
+                      </div>
+                      <div fxFlex="80">
+                        <div class="font-bold text-black font-hairline">
+                          {{sur.survey_name}}
+                        </div>
+                        <div class="text-black" style="font-size: 12px">
+                          Questions: {{sur.no_question}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr style="margin-top: 40px;">
+                </div>
+              </div>
+              <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!isAnaMsgHidden">
+                <p class="text-black text-lg font-bold">
+                  No Survey Shared...
+                </p>
+              </div>
+            </div>
+          </div>
+          <div fxFlex="10"></div>
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="center center" style="height: 15vh; width: 100vw; margin-bottom: 2rem;">
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <p class="text-xs text-black text-left m-2 ml-4 mr-4 text-center">
+              Copyright &copy; 2013-2019 Sun Plus Software Technologies Pvt Ltd. All right reserved.
+            </p>
+          </div>
+          <div class="text-black" fxLayout="row" fxLayoutAlign="center center">
+
+            <a (click)="evtEmit.loadPrivatePolicy()" class="pr-2 pl-2 text-xs text-black-500;"
+              style="cursor: pointer; border-right:1px solid #21b25b">Cookies &
+              Privacy</a>
+            <a class="pr-2 pl-2 text-xs text-black-500" style="cursor: pointer;">Help</a>
+          </div>
+        </div>
+      </div>
+      <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="5"></div>
+    </div>
+  </div>
+
+</div>
+<div class="popup" *ngIf="!isShwSpinner" style="width: 4rem; height: 5rem">
+  <img src="/images/loading.gif" alt="" width="300px" height="300px" style="z-index: 1">
+</div>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link href="assets/css/style.css" rel="stylesheet"></link>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+    <!-- Font-Awesome CSS -->
+    <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.compat.css" integrity="sha512-gFn7XRm5v3GlgOwAQ80SXDT8pyg6uaV9JbW2OkNx5Im2jR8zx2X/3DbHymcZnUraU+klZjRJqNfNkFN7SyR3fg==" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.compat.min.css" integrity="sha512-b42SanD3pNHoihKwgABd18JUZ2g9j423/frxIP5/gtYgfBz/0nDHGdY/3hi+3JwhSckM3JLklQ/T6tJmV7mZEw==" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.css" integrity="sha512-phGxLIsvHFArdI7IyLjv14dchvbVkEDaH95efvAae/y2exeWBQCQDpNFbOTdV1p4/pIa/XtbuDCnfhDEIXhvGQ==" crossorigin="anonymous" />
+	 -->
+    <!-- jQuery library -->
+    <script src="assets/js/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="assets/files/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-----------Font Library------------------------------>
+    <link rel="font" href="assets/vendor/font/lato/Lato-Black.ttf">
+    <!--------------Counter-Up------------->
+    <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+    <script src="assets/vendor/counterup/counterup.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+    <title>Animate Css</title>
+    <style>
+        #section-1 {
+            /* animation-delay: 1s; */
+            animation-duration: 1s;
+            animation-iteration-count: 1;
+        }
+        /* #section-2 {
+            animation-delay: 2s;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="animated fadeInDown text-center bg-primary text-white p-5">
+            <h1 class="display-4">Animate.css Sandbox</h1>
+        </header>
+
+        <section id="section-1" class="animate slideInLeft bg-faded p-5 my-3">
+            <h1>Section One</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, repellat minima suscipit sapiente dolore inventore debitis maxime distinctio eaque dolores culpa aut ab, ipsum delectus adipisci dolorum perferendis iure et maiores sint obcaecati
+                laboriosam ut nobis. Deleniti suscipit, ea non.</p>
+        </section>
+
+        <section id="section-2" class="animated slideInRight bg-faded p-5 my-3">
+            <h1 id="anim-head">Section Two</h1>
+            <p id="anim-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, repellat minima suscipit sapiente dolore inventore debitis maxime distinctio eaque dolores culpa aut ab, ipsum delectus adipisci dolorum perferendis iure et maiores sint obcaecati
+                laboriosam ut nobis. Deleniti suscipit, ea non.</p>
+            <button id="animateBtn" class="btn btn-primary">Animate</button>
+
+            <button id="animateBtn2" class="btn btn-primary">Animate2</button>
+        </section>
+    </div>
+    <script>
+        $(function() {
+            $('#animateBtn').click(function() {
+                animate('#anim-head', 'bounce');
+                animate('#anim-body', 'rubberBand');
+                return false;
+            });
+
+            $('#animateBtn2').click(function() {
+                animate('header', 'slideOutUp');
+                setTimeout(function() {
+                    $('header').css('visibility', 'hidden');
+                }, 1000);
+                return false;
+            });
+
+            // Animate
+            function animate(element, animation) {
+                $(element).addClass('animated ' + animation);
+                var wait = setTimeout(function() {
+                    $(element).removeClass('animated ' + animation);
+                }, 1000);
+            }
+        })
+    </script>
+</body>
+
+</html>

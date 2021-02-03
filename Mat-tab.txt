@@ -1,0 +1,16 @@
+   
+Active text color
+-------------------
+::ng-deep .mat-tab-label-active{
+    color: #21a9ff !important;
+   
+}
+
+Active tab border-color
+----------------------------
+   
+::ng-deep.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background: white;
+    height: 2vh;
+   
+  }

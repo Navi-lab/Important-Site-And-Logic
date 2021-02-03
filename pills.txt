@@ -1,0 +1,86 @@
+﻿<div class="left-nav mobile-hide">
+                        <ul>
+                                <li data-target="#Creating_Surveys" class="">
+                                    <span>Creating Surveys</span>
+                                    <span class="rightarrow-icon">ÿ</span>
+                                </li>
+                                <li data-target="#Question_Types" class="">
+                                    <span>Question Types</span>
+                                    <span class="rightarrow-icon">ÿ</span>
+                                </li>
+                                <li data-target="#Question_Settings" class="selected">
+                                    <span>Question Settings</span>
+                                    <span class="rightarrow-icon">ÿ</span>
+                                </li>
+                                <li data-target="#Text_Images_Videos" class="">
+                                    <span>Text, Images &amp; Videos</span>
+                                    <span class="rightarrow-icon">ÿ</span>
+                                </li>
+                                <li data-target="#Pages" class="">
+                                    <span>Pages</span>
+                                    <span class="rightarrow-icon">ÿ</span>
+                                </li>
+                                <li data-target="#Themes_Display_Options">
+                                    <span>Themes &amp; Display Options</span>
+                                    <span class="rightarrow-icon">ÿ</span>
+                                </li>
+                                <li data-target="#Applying_Logic">
+                                    <span>Applying Logic</span>
+                                    <span class="rightarrow-icon">ÿ</span>
+                                </li>
+                                <li data-target="#Collaboration">
+                                    <span>Collaboration</span>
+                                    <span class="rightarrow-icon">ÿ</span>
+                                </li>
+                                <li data-target="#Editing_Live_Surveys">
+                                    <span>Editing Live Surveys</span>
+                                    <span class="rightarrow-icon">ÿ</span>
+                                </li>
+                                <li data-target="#Organizing_Surveys">
+                                    <span>Organizing Surveys</span>
+                                    <span class="rightarrow-icon">ÿ</span>
+                                </li>
+                                <li data-target="#Survey_Language">
+                                    <span>Survey Language</span>
+                                    <span class="rightarrow-icon">ÿ</span>
+                                </li>
+                        </ul>
+                    </div>
+
+
+
+css
+
+
+
+.left-nav {
+  padding-bottom: 100%;
+  margin-bottom: -100%;
+}
+
+left-nav ul {
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+.left-nav ul li.selected {
+  background-color: #FFF;
+  z-index: 2;
+}
+.left-nav ul li {
+  padding: 20px;
+  border-bottom: 1px solid #D0D2D3;
+  background-color: #edeeee;
+  margin-right: -1px;
+  position: relative;
+}

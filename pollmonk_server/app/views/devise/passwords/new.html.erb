@@ -1,0 +1,74 @@
+<div class="flex items-center">
+  <div class="flex-1 text-gray-700"  style="position: absolute; top:0; bottom: 0; left: 0; right: 0; margin:auto; height:45%;">
+		<div class="flex flex-row mob-align session">
+			<div class="w-full max-w-sm mx-auto reg" style="max-width: 23rem !important;">
+	  		<%= form_for(resource, as: resource_name, url: password_path(resource_name), :html => {:class => 'bg-white shadow-md px-5 pt-4 pb-4 mb-2'}) do |f| %>
+	  			<div class="forgot-text">To reset your password, please use the form below. We’ll send you an email with a link to reset your password.</div><hr>
+          <% if flash[:alert] %>
+						<% flash.each do |key, val| %>
+							<div class="py-2 h-6 error-msg text-center"><%= val %></div>
+						<% end %>
+					<% end %>
+					<div class="mb-2">
+		  			<label class="text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+		  			<%= f.email_field :email, autofocus:true, autocomplete:"email",placeholder: "example@domain.com", class: "appearance-none w-full py-2 px-3 text-black leading-tight focus:outline-none", style: "background-color: #e6e6e6;" %>
+            <div id="forgetemail" class="h-6"></div>
+          </div>
+
+					<div class="mb-2" >
+						<div class="flex-1" style="text-align:center;margin-top:1em;">
+              <%= button_tag(:class=>"text-white text-base py-2 px-4 m-2 button_green uppercase focus:outline-none", :style=> "border-radius:25px;background-color: #21B25B;", :id=>"submitemail") do %>
+								reset&emsp;<img src="/images/right-arrow-white.png" class="w-3 mt-2" style="float:right;">
+							<% end %>
+						</div>
+					</div>
+	  		<% end %>
+			</div>
+		</div>
+  </div>
+</div>
+<div style="margin-top:5em;">&nbsp;</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+    var emailVal = true;
+    $('#user_email').focusout(function(event){
+      var email = $(this).val();
+      if (email.length != 0){
+        $.get('/checkemail?email=' + email, function(data){
+          if (data['exist_email'] === false){
+            $('.error-msg').css('display', 'none');
+            $('#forgetemail').html("<span class='error-msg'>Email not found, enter a registered email ID.</span>");
+            $('#user_email').css('border', '1px solid red');
+            $('#user_email').focus();
+            emailVal = false;
+          }else{
+            $('.error-msg').css('display', 'none');
+            $('#user_email').css('border', 'none');
+            emailVal = true;
+          }
+        });
+      }
+    })
+
+    $('button[type=submit]').on('click', function(e){
+      e.preventDefault();
+      var email = $('#user_email').val();
+      if (email.length != 0){
+        if (emailVal === false){
+          $('.error-msg').css('display', 'none');
+          $('#forgetemail').html("<span class='error-msg'>Email not found, enter a registered email ID.</span>");
+          $('#user_email').focus();
+        }else{
+          $('form').submit();
+        }
+      }else{
+        $('.error-msg').css('display', 'none');
+        $('#forgetemail').html("<span class='error-msg'>Email field can't be blank.</span>");
+        $('#user_email').css('border', '1px solid red');
+        $('#user_email').focus();
+      }
+    });
+  });
+</script>

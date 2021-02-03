@@ -1,0 +1,37 @@
+command to install django
+---------------------------
+pip install django
+
+or 
+
+pip install django==2.1
+
+command to create project
+------------------------------
+django-admin startproject pyshop .
+
+
+command to create and run local server
+----------------------------------------
+python manage.py runserver
+
+
+command to create new folder(package)
+---------------------------------------
+python manage.py startapp products
+
+
+sqlite
+------------------
+create model in model.py
+
+setting up of db
+--------------------------
+1)In setting.py "Installed App Line33" last add 'products.apps.ProductsConfig'
+2)in new terminal run
+  --> python manage.py makemigrations
+  --> >python manage.py migrate
+3)open db.sqlite3 file sqlite app to see update db
+4)For new registered data follow step 2 n update db.squlite3 file to see updated code.
+
+

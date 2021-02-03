@@ -1,0 +1,22 @@
+
+
+
+Radio-button:
+
+link--: https://stackblitz.com/edit/angular-disable-file-input-on-radio?file=app%2Fradio-overview-example.ts
+
+
+Check-box:
+
+	<mat-checkbox  [(ngModel)]="disabled">Show Default Chart Type</mat-checkbox>
+
+<mat-form-field>
+<mat-label>Select Chart</mat-label>
+<mat-select   [disabled]="!disabled">
+<mat-option value="option1">Bar Chart</mat-option>
+<mat-option value="option2">Pie Chart</mat-option>
+<mat-option value="option3">Donut Chart</mat-option>
+</mat-select>
+</mat-form-field>
+
+ts:disabled=false;

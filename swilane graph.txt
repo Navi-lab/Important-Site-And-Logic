@@ -1,0 +1,7 @@
+graph
+
+https://stackblitz.com/edit/ngx-graph-demo?file=src%2Fapp%2Fapp.component.html
+
+https://swimlane.github.io/ngx-graph/
+
+https://www.npmjs.com/package/@swimlane/ngx-graph

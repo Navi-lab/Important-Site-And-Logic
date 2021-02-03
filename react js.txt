@@ -1,0 +1,35 @@
+  
+
+npm install -g create-react-app
+
+
+create-react-app --version
+
+
+create-react-app my-app
+
+installing bootstrap
+--------------------------
+
+npm install react-bootstrap bootstrap
+
+import 'bootstrap/dist/css/bootstrap.min.css';//in app.js
+ 
+
+cd my-app
+npm start
+
+
+To create production build use: npm run build 
+------------------------------------------------------------
+Creating single component
+ npx crcf myComponent
+npx crcf components/myComponent
+-------------------------------------------------------
+
+links:
+
+1)https://reactjsexample.com/tag/chart/
+
+
+2)https://reactstrap.github.io/

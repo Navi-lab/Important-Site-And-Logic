@@ -1,0 +1,4 @@
+
+Setting delay time for dialog box:
+
+Link: https://stackoverflow.com/questions/61528781/auto-close-angular-dialog-after-x-seconds

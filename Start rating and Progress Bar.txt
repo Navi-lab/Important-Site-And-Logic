@@ -1,0 +1,6 @@
+Link :
+https://medium.com/angular-in-depth/angular-context-easy-data-binding-for-nested-component-trees-and-the-router-outlet-a977efacd48
+
+
+stackbliz:
+https://stackblitz.com/edit/ngx-context?ctl=1&embed=1&file=src/app/app.component.ts

@@ -1,0 +1,4 @@
+yt:https://www.youtube.com/watch?v=7sMu-qO5IN8
+
+
+dc:http://michaelbromley.github.io/ngx-pagination/#/

@@ -1,0 +1,201 @@
+.contact-head {
+	text-transform:capitalize;
+	font-size: 18px;
+	font-weight: 700;
+	text-align: center;
+	font-family: 'Lato', sans-serif !important;
+}
+
+.contact-text {
+	font-family: 'Lato', sans-serif !important;
+	font-size: 16px;
+	text-align: center;
+	margin-top:0.5em;
+}
+
+.contact-btn {
+	font-family: 'Lato', sans-serif !important;
+	background-color:#21B25B;
+	padding:9px 25px;
+	color:#FFF;
+	text-transform:uppercase;
+	font-weight:600;
+	border-radius:20px;
+}
+
+.foot-copy {
+  float: left;
+  width: 50%;
+  color: #FFF;
+  font-size: 11px;
+}
+.foot-link {
+  float: right;
+  text-align: right;
+  width: 50%;
+  font-size: 13px;
+}
+.foot-link a {
+  color:#FFF;
+}
+.foot-link a:hover {
+  color:#21B25B;
+  text-decoration: none;
+}
+.foot-link span {
+  color: #FFF;
+}
+
+button{
+	color: rgba(255,255,255,1);
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+	position: relative;	
+}
+
+button span{
+	z-index: 2;	
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;	
+}
+button::before{
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	opacity: 0;
+	background-color: rgba(255,255,255,0.5);
+	-webkit-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
+	-webkit-transform: scale(0.5, 1);
+	transform: scale(0.5, 1);
+	border-radius: 20px;
+}
+button:hover::before{
+	opacity: 1;
+	-webkit-transform: scale(1, 1);
+	transform: scale(1, 1);
+}
+.bg_img{
+	background-image: url('/images/Banner_1.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 108vh
+}
+nav{
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+.banner-info{
+	position: absolute;
+	top: 10%;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	margin: auto;
+	height: auto;
+}
+
+.login-btn:hover { 
+  background:#21B25B;
+}
+
+.signup-btn {
+  border:1px solid #21B25B;
+  padding:5px 20px;
+  color: #FFF !important;
+  text-transform: uppercase;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #21B25B;
+  margin-left: 1rem;
+}
+
+input[type="text"], input[type="email"], textarea {
+	font-family: 'Lato', sans-serif !important;
+}
+
+// @media (min-width:360px) and (max-width: 740px) {
+// 	.email{
+// 		margin-left: auto ;
+// 	}
+// 	textarea {
+// 		margin-left:auto;
+// 	}
+// 	.name{
+// 		margin-left: auto ;
+// 	}
+// }
+
+
+
+@media (min-width:300px) and (max-width:570px){
+ .contact{
+		height: 40rem !important;
+        width: 20rem;
+    }
+   .rc-anchor-normal {
+		width:240px;
+		height:60px;
+   }
+   .bg_img{
+		height:123vh;
+    }
+    .footer p{
+		text-align: center;
+		padding: 2%;
+    }
+	.para{
+		  width:8rem;
+	}
+	 
+    .capcha.rc-anchor-normal .rc-anchor-content {
+		width: 142px !important;
+    }
+	.capcha.rc-anchor-logo-portrait {
+		margin: 0px;
+    }
+    .capcha.rc-anchor-normal .rc-anchor-pt {
+        /* margin: 2px 13px 0 0; */
+        /* padding-right: 2px; */
+        position: absolute;
+        /* right: 0px; */
+        /* text-align: right; */
+        width: 146px !important;
+    }
+    .capcha.rc-anchor-normal {
+		height: 74px;
+		width: 240px !important;
+    }
+}
+	
+@media (min-width:578px) and (max-width:768px){
+
+    .banner-info{
+		top:0%;
+    }
+   .footer p{
+		text-align: center;
+		padding: 2%;
+    }
+	.para{
+		  width:8rem;
+	}
+	.para_1{
+		width: 10rem;
+	}
+	.para_2{
+		margin-left: 3.5rem;
+	}
+ }

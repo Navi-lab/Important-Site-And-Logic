@@ -1,0 +1,13 @@
+active text color:
+
+::ng-deep .mat-tab-label-active{
+    color: #21a9ff !important;
+   
+}
+
+
+active border-bottom color:
+
+::ng-deep.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color:#21a9ff;;
+}

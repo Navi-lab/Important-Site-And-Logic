@@ -1,0 +1,55 @@
+<div class="flex items-center">
+	<div class="flex-1 text-gray-700">
+		<div class="flex flex-row mob-align session">
+			<div class="w-full max-w-sm mob-padding-top mx-auto reg" style="padding-top:1em;">
+				<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, :class => 'bg-white shadow-md px-8 pt-6 pb-2 mb-2'}) do |f| %>
+					<div class="forgot-text">If you haven't received an email asking you to confirm your email address, enter your email below to have another one sent out.</div><hr>
+					<div class="error-msg text-red-500 text-xs text-left">
+						<div class="dev-error"><%= devise_error_messages! %></div>
+					</div>
+
+					<div class="mb-2">
+						<%= f.label :email, class: "text-gray-700 text-sm font-bold mb-2" %>
+						<%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),:required=>true,placeholder: "example@domain.com", class: "appearance-none w-full py-2 px-3 text-black leading-tight focus:outline-none", style: "background-color: #e6e6e6;" %>
+					</div>
+
+					<div class="free-acc mb-6 mt-6" >
+						<%= button_tag(:class=>"text-white text-base py-2 px-4 m-2 button_green capitalize focus:outline-none", :style=> "border-radius:25px;background-color: #21B25B;") do %>
+							resend confirmation&emsp;<img src="/images/right-arrow-white.png" class="w-3 mt-2" style="float:right;">
+						<% end %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function(){
+		var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+		$('input[type=email]').on('blur', function(){
+			if ($(this).val().length != 0){
+				if (!pattern.test($(this).val())){
+					$('.error').remove();
+					$('#user_email').after('<span class="error">Please enter a valid email.</span>');
+					$('#user_email').focus()
+					$('#user_email').css('border','1px solid red');
+				}else{
+					$('.error').remove();
+					$('#user_email').css('border','none');
+				}
+			}
+		});
+
+		$('button[type=submit]').on('click', function(){
+			if (!pattern.test($('#user_email').val())){
+				$('.error').remove();
+				$('#user_email').after('<span class="error">Please enter a valid email.</span>');
+				$('#user_email').focus()
+				return false
+			}else{
+				$('.error').remove();
+			}
+		});
+	});
+</script>

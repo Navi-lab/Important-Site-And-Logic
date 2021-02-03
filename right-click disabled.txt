@@ -1,0 +1,1 @@
+https://stackblitz.com/edit/angular-ryh715?file=src%2Fapp%2Fno-right-click.directive.ts

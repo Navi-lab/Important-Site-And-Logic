@@ -1,0 +1,94 @@
+---------------------------------------install---------------------------------------------------------
+
+npm install @kolkov/angular-editor --save
+
+
+
+
+ -------------------------------------------------html---------------------------------------------------
+ 
+<div class="container">
+  <header class="header">
+    <h1>AngularEditor</h1>
+  </header>
+  <angular-editor [(ngModel)]="htmlContent" [config]="config"></angular-editor>
+  <h5 class="html-header">HTML Output</h5>
+  <div class="html">
+    {{ htmlContent }}
+  </div>
+</div>
+
+-------------------------------------------------css---------------------------------------------------------
+
+.header {  
+  margin-top: 100px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.html-header {
+  margin: 15px 0 5px;
+}
+
+.html {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.5rem;
+  background-color: #f1f1f1;
+  min-height: 20px;
+  max-height: 10rem;
+  overflow: auto;
+}
+
+--------------------------------------------------ts-------------------------------------------------------
+import { Component } from '@angular/core';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+
+@Component({
+  selector: 'my-app',
+  templateUrl: './app.component.html',
+  styleUrls: [ './app.component.css' ]
+})
+export class AppComponent  {
+  name = 'Angular 6';
+  htmlContent = '';
+
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '15rem',
+    minHeight: '5rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    toolbarPosition: 'top',
+    defaultFontName: 'Times New Roman',
+    customClasses: [
+      {
+        name: "quote",
+        class: "quote",
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: "titleText",
+        class: "titleText",
+        tag: "h1",
+      },
+    ]
+  };
+}
+
+
+
+---------------------------------------------------------module.ts-----------------------------------------
+
+import { AngularEditorModule } from '@kolkov/angular-editor';
+-----------------------------------------------------------------website---------------------------------------------------
+
+https://www.tiny.cloud/docs/integrations/angular/
+
+
+https://www.tiny.cloud/docs/integrations/angular/
+
+                           

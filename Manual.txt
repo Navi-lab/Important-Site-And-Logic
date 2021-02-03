@@ -1,0 +1,67 @@
+﻿Compatibility Testing is a type of Software testing to check whether your software is capable of running on different hardware, operating systems, applications, network environments or Mobile devices.
+
+
+
+
+Performance Testing is defined as a type of software testing to ensure software applications will perform well under their expected workload. Features and Functionality supported by a software system is not the only concern.
+
+
+
+
+
+Load testing is a kind of Performance Testing which determines a system's performance under real-life load conditions. 
+
+
+
+Regression testing is the process of testing changes to computer programs to make sure that the older programming still works with the new changes. 
+
+
+Equivalence partitioning or equivalence class partitioning (ECP) is a software testing technique that divides the input data of a software unit into partitions of equivalent data from which test cases can be derived. In principle, test cases are designed to cover each partition at least once,
+
+
+
+
+‘Boundary value analysis’ testing technique is used to identify errors at boundaries rather than finding those exist in center of input domain.
+
+
+Decision table testing is a software testing technique used to test system behavior for different input combinations. 
+
+
+
+State Transition testing, a black box testing technique, in which outputs are triggered by changes to the input conditions or changes to 'state' of the system.
+
+
+Use Case Testing is defined as a software testing technique, that helps identify test cases that cover the entire system, on a transaction by transaction basis from start to the finishing point.
+
+
+The V-model is an SDLC model where execution of processes happens in a sequential manner in a V-shape. It is also known as Verification and Validation model. The V-Model is an extension of the waterfall model and is based on the association of a testing phase for each corresponding development stage.
+
+
+Iterative Model - Design. ... At each iteration, design modifications are made and new functional capabilities are added. 
+
+
+Statement coverage is a white box testing technique, which involves the execution of all the statements at least once in the source code. It is a metric, which is used to calculate and measure the number of statements in the source code which have been executed.
+
+
+Decision coverage or Branch coverage is a testing method, which aims to ensure that each one of the possible branch from each decision point is executed at least once and thereby ensuring that all reachable code is executed. That is, every decision is taken each way, true and false.
+
+
+=======================================================================================================================================================================
+Test Tools
+==========
+QTP(Quick Test Professional):
+QTP is UI automation software designed for testing Web-based and Windows based applications running on Microsoft Windows.
+It is widely used for functional regression test automation. It uses a scripting language to manipulate the objects and controls of the application under test.
+----------------------------------------------------------------------------------------------------------------------
+Record and Playback:
+Recording a test corresponds to recording the user actions of the application under test so that UFT automatically generates the scripts that can be played back.
+----------------------------------------------------------------------------------------------------------------------------------------------
+Data Driven automated testing is a method in which the test data set is created in the excel sheet, and is then imported into automation testing tools to feed to the software under test.Data-driven testing is implemented as a Microsoft Excel workbook that can be accessed from within QTP.
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+WinRunner is an automated functional GUI testing tool
+that allows a user to record and play back UI interactions as test scripts.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+A TEST PLAN is a document describing software testing scope and activities.
+A Test Scenario is defined as any functionality that can be tested.
+A test case is a specification of the inputs, execution conditions, testing procedure, and expected results.
+test run is an occurrence in which a product or procedure is tried in order to see if it works correctly a test run of new software.

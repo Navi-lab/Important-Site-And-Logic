@@ -1,0 +1,190 @@
+html
+========================================================================================================
+<div fxLayoutAlign="row" fxLayoutAlign="center center" class="fr">
+  <h2> PRODUCT ORDER FORM</h2>
+</div>
+<div fxLayoutAlign="row" fxLayoutAlign="center center" class="fr">
+<marquee> <h5>Please fill in your details and we'll be sending your order in no times !!!</h5></marquee> 
+</div>
+
+<div fxLayout="row">
+  <div fxFlex="100" fxLayoutAlign="center center">
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Name" required>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" required>
+      </mat-form-field>
+      <!-- <label for="t-shirt model" name="t-shirt model" required>
+        T-shirt model:
+      </label> -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Select Categories</mat-label>
+        <select matNativeControl [(ngModel)]="selectedIteam" name="iteam" (change)="loadBackground()">
+          <option value="" selected></option>
+          <option *ngFor="let iteam of iteams" [value]="iteam.value">
+            {{iteam.viewValue}}
+          </option>
+        </select>
+      </mat-form-field>
+      <div *ngIf="!isShirtsHidden">
+      <br> <img src="https://img.icons8.com/cotton/100/000000/t-shirt.png">
+      <mat-checkbox></mat-checkbox>
+      <img src="https://img.icons8.com/cotton/100/000000/forester-shirt.png">
+      <mat-checkbox></mat-checkbox>
+      <img src="https://img.icons8.com/cotton/100/000000/referee-jersey.png">
+      <mat-checkbox></mat-checkbox>
+    </div>
+    <div *ngIf="!isFootwaresHidden">
+      <img src="https://img.icons8.com/cotton/100/000000/sneakers.png">
+      <mat-checkbox></mat-checkbox>
+      <img src="https://img.icons8.com/cotton/100/000000/flip-flops.png">
+      <mat-checkbox></mat-checkbox>
+      <img src="https://img.icons8.com/ios/100/000000/cleats-filled.png">
+      <mat-checkbox></mat-checkbox>
+      <img src="https://img.icons8.com/cotton/100/000000/women-shoe-side-view.png">
+      <mat-checkbox></mat-checkbox>
+    </div>
+    <div *ngIf="!isGadgetsHidden">
+      <img src="https://img.icons8.com/cotton/100/000000/notebook-computer.png">
+      <mat-checkbox></mat-checkbox>
+      <img src="https://img.icons8.com/cotton/100/000000/iphone-x.png">
+      <mat-checkbox></mat-checkbox>
+      <img src="https://img.icons8.com/cotton/100/000000/headphones.png">
+      <mat-checkbox></mat-checkbox>
+      <img src="https://img.icons8.com/color/100/000000/apple-watch-apps.png">
+      <mat-checkbox></mat-checkbox>
+    </div>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Size">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Quantity">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Delivery Date">
+      </mat-form-field>
+      <!-- <mat-form-field class="example-full-width">
+          <input matInput placeholder="Delivery Address" >
+        </mat-form-field> -->
+      <mat-accordion class="example-full-width">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Delivery Address
+            </mat-panel-title>
+            <mat-panel-description>
+              Enter your address
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-form-field>
+            <input matInput placeholder="Street Address"required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="City"required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Region"required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Postal/Zip Code" required>
+          </mat-form-field>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        </mat-expansion-panel>
+      </mat-accordion>
+      <br>
+      <button type="button" class="btn btn-success example-full-width">Place Order</button>
+    </form>
+  </div>
+
+</div>
+<div fxLayout="row" fxLayoutAlign="space-evenly center" class="ll">
+  <div>
+    <img src="https://img.icons8.com/ios/50/000000/automatic-filled.png"><b>Settings</b>
+  </div>
+  <div>
+    <img src="https://img.icons8.com/ios/50/000000/gift-filled.png"><b>Gift Card</b>
+  </div>
+  <div>
+    <img src="https://img.icons8.com/ios/50/000000/help-filled.png"><b>Help Center</b>
+  </div><div>
+  <img src="https://img.icons8.com/color/48/000000/gmail.png"><b>Gmail</b>
+</div><div>
+  <img src="https://img.icons8.com/color/48/000000/facebook-circled.png"><b>Facebook</b>
+</div><div>
+  <img src="https://img.icons8.com/color/48/000000/instagram-new.png"><b>Instagram</b>
+</div><div>
+  <img src="https://img.icons8.com/color/48/000000/twitter.png"><b>Twitter</b>
+</div>
+</div>
+===============================================================================================================================================================
+ts
+---------------------------------------------------------------------------------------------------------------------------
+export class TestComponent implements OnInit {
+        sel_menu_item:string;
+    cols:number=3;
+    bdr:number=5;
+     isRedHidden = true;     
+    isBlueHidden = true;
+    name='hello';
+    tableName='Student Table 1';
+    a=15;
+    b=50;
+    ht=250;
+    items = Array.from({length: 100000}).map((_, i) => `Item #${i}`);
+    sel_color = '';
+  constructor() { }
+  //@HostListener('click',['$event'])
+  //onhostclick(event:Event)
+  //{
+    //alert('hello');
+  //}
+  ngOnInit() {
+  }
+  // loadMenu(){
+  //   if(this.sel_menu_item == 'Red')
+  //   {
+  //     this.isRedHidden = false;
+     
+  //     this.isBlueHidden = true;
+  //   }
+  //   else if(this.sel_menu_item === 'Blue')
+  //   {
+  //     this.isRedHidden = true;
+     
+  //     this.isBlueHidden = false;
+  //   }
+  // }
+  
+  // loadRed(){
+  //   this.isRedHidden = false;
+     
+  //   this.isBlueHidden = true;
+  // }
+
+  // loadBlue(){
+  //   this.isRedHidden = true;
+     
+  //   this.isBlueHidden = false;
+  // }
+  loadBackground(){
+    if(this.sel_color === 'Red'){
+      this.isRedHidden = false;
+      
+      this.isBlueHidden = true;
+    }
+
+    if(this.sel_color === 'Green'){
+      this.isRedHidden = true;
+      
+      this.isBlueHidden = false;
+    }
+  }
+  msg(){
+    alert("Hi How r u??")
+  }
+ 
+}
+

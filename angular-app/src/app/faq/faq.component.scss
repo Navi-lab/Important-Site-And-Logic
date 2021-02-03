@@ -1,0 +1,235 @@
+mat-expansion-panel-header{
+  flex-direction: row !important;
+}
+
+progress {
+  background-color: #9acd18 !important;
+  color: #9acd18;
+  height: 8px;
+  border: 1px solid #575c70;
+  border-radius: 30px;
+  margin-left: 5%;
+  } 
+  
+  ::-moz-progress-bar {
+  background-color: #9acd18 !important;
+  }
+  
+  .dropdown {
+  float: left;
+  overflow: hidden;
+} 
+
+.dropdown .dropbtn {
+  font-size: 1rem; 
+  border: none;
+  outline: none;
+  // color: black;
+  padding: 14px 16px 14px 8px;
+  background-color: inherit;
+  font-family: inherit;
+  font-weight: bold;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 2%;
+}
+
+.dropdown-content a {
+  float: none;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.down_arrow{
+  margin-left: 0.5rem;
+}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/*.dropdown:hover .dropdown-content {
+  display: block;
+}*/
+.border-btm:hover{
+  border-bottom: 3px solid #21b25b;
+}
+  
+  .tooltip {
+  position: relative;
+  display: inline-block;
+  }
+  
+  .tooltip .tooltiptext {
+  visibility: hidden;
+  width:70px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -33px;
+  }
+  
+  .tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+  }
+  
+  .tooltip:hover .tooltiptext {
+  visibility: visible;
+  }
+  
+  .bg_img{
+   background-image: url('/images/Other_Page_Banner.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width:100%;
+  height:277px;
+  }
+  .banner-sec{
+  position: relative;
+  }
+  .banner-sec .inner-div{
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  }
+  .banner-info{
+  position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 10%;
+  }
+  
+  .white-bg{
+  background-color: #21b25b !important;
+  color: white;
+  width: 5rem;
+  justify-content: center;
+  display: flex;
+  }
+  mat-panel-title, h1,p{
+     color:#1c2a33;
+   }
+   mat-panel-title:hover{
+     color: #21b25b
+   }
+
+   mat-expansion-panel:not([class*=mat-elevation-z]) {
+     box-shadow:none; 
+}
+mat-expansion-panel-header{
+  padding-bottom: 0.25rem;
+    padding-top: 0.25rem;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+
+  mat-icon{
+  height: 15px;
+  width: 15px;
+  padding-right: 1rem;
+  }
+  @font-face {
+       font-family: lato;
+       src: url(/font/lato/Lato-Medium.ttf) format("opentype");
+     }
+     * {
+          font-family: 'lato', 'arial', sans-serif;
+    }
+  
+    .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]):hover {
+      background:none;
+    }
+
+    @media only screen and(max-width:846px)
+    {
+.section1{
+  margin-top: 1rem;
+}
+.logo{
+  padding-left: 4rem;
+  width: 17rem;
+}
+.faq{
+  text-align: center;
+}
+.faq span{
+  padding-right: 0rem;
+}
+.footer{
+  text-align: center;
+}
+
+    }
+
+    @media only screen and(max-width:768px){
+      .logo{
+      padding-right: 10rem;
+            padding-left: 10rem;
+      width: 35rem;
+      }
+      
+    }
+
+    @media only screen and(max-width:740px){
+
+
+    .logo{
+      padding-right: 0rem;
+       padding-left: 0rem;
+         width: 15rem;
+    }
+    .temp{
+      width:6.5rem;
+    }
+    }
+    @media (min-width:320px) and (max-width:960px){
+      .banner-info{
+        position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+          height: 45%;
+      }
+      .banner-heading{
+        padding-bottom: 1.5rem;
+      }
+    }
+
+    
+.w3-sidebar{
+  background-color:#1c2a33 !important;
+  color: white !important;
+}
+.w3-button:hover{
+  background-color: #1c2a33 !important;
+  color: white !important;
+}

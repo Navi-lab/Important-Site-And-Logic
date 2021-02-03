@@ -1,0 +1,6 @@
+  
+
+Display msg noData on table
+----------------------------------
+
+Link: https://stackblitz.com/edit/angular-uymjz7-aqxffs?file=app%2Ftable-pagination-example.html

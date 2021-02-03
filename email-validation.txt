@@ -1,0 +1,57 @@
+ name
+---------
+<input type="text" class="form-control" id="full_name" placeholder="Full Name"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Full Name'"
+                                placeholder='Full Name' onkeypress="return /[a-z]/i.test(event.key)" required>
+
+number
+----------
+ <input type="text" class="form-control allownumericwithoutdecimal" id="contact_number"
+                                placeholder="10 Digit Number" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = '10 Digit Number'" maxlength="10" required>
+
+
+j querry:
+
+$(".allownumericwithoutdecimal").on("keypress keyup blur", function (event) {
+    $(this).val($(this).val().replace(/[^\d].+/, ""));
+    if ((event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
+
+-------------------------------------
+
+email
+--------
+<form>
+2
+<input type="email" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
+3
+    
+4
+    <input type="submit">
+5
+    </form>
+
+
+link:http://jsfiddle.net/du676/56/
+
+
+
+or
+
+id="cemail"
+
+function validateEmail(cemail){
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+        if (reg.test(cemail.value) == false) 
+        {
+            alert('Please enter valid E-mail');
+            return false;
+        }
+
+        return true;
+
+}

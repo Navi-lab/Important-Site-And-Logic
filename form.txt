@@ -1,0 +1,16 @@
+https://stackblitz.com/edit/angular-async-custom-validation?file=src%2Fapp%2Fapp.component.html
+
+
+
+https://stackblitz.com/edit/angular-forms-validation?file=app%2Fapp.component.ts
+
+
+
+1)co-ordinating with Naveen regarding code deployment.
+
+2)resolving minor issues.
+
+
+https://www.webagesolutions.com/courses/WA2891-advanced-angular-8-programming
+
+

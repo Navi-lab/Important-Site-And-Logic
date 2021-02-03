@@ -1,0 +1,40 @@
+JQuery  :https://www.jqueryscript.net/tags.php?/Family%20Tree/
+
+=======================================================================
+Css templates :
+
+ https://www.free-css.com/free-css-templates
+
+https://css-tricks.com/star-ratings/
+==================================================================
+Flex Layout:https://tburleson-layouts-demos.firebaseapp.com/#/docs
+                    https://material.angularjs.org/1.1.2/layout/container
+======================================================================
+Angular: https://material.angularjs.org/1.1.2/layout/tips
+==============================================================
+codeevolution:   https://www.youtube.com/watch?v=bV8emCBmFHk&list=PLC3y8-                 rFHvwilEuCqFGTL5Gt5U6deIrsU&index=1
+=====================================================================
+mat-icon  :https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/
+
+=========================================================================================anangular code with eg:codepen
+================================================================
+angular website:https://mdbootstrap.com/education/angular/getting-started-2-components/
+=======================================================================================\
+imp website:www.syncfusion.com
+===========================================================================================
+Angular Blog(Nebular):https://blog.angular.io/
+=================================================================================
+icons:https://icons8.com/icon/pack/travel/cotton
+
+Eva icons
+     https://github.com/akveo/nebular/blob/master/CHANGELOG.md
+========================================================================================
+step to install tailwind css
+
+video:https://www.youtube.com/watch?v=qmxo2NntTX8
+
+File: https://github.com/tehpsalmist/ng-tailwindcss
+
+-------------------------------------------------------------------------------------------
+
+functions: https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollTo

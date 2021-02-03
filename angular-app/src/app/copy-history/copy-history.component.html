@@ -1,0 +1,1103 @@
+<div fxLayout="column" style="background: #e6e6e6;" fxShow.xl fxShow.lg fxShow.md fxHide.sm fxHide.xs>
+  <nav class="flex items-center justify-between flex-wrap p-4" style="background: white; height: 12vh;">
+    <div class="flex items-center flex-shrink-0 text-white mr-6">
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white" (click)="evtEmit.loadDashboard()"
+        style="cursor: pointer;">
+        <img class="w-40 h-12" src="/images/Logo_Black.png" alt="">
+      </a>
+    </div>
+    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+      <div class="text-sm lg:flex-grow" fxLayout="row" fxLayoutAlign="start center" style="margin-bottom: -2rem;">
+        <a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+          (click)="evtEmit.loadDashboard()" style="cursor: pointer; height: 7vh;">
+          Dashboard
+        </a>
+        <a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+          (click)="evtEmit.loadAnalytics()" style="cursor: pointer; height: 7vh;">
+          Analytics
+        </a>
+        <a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+          (click)="evtEmit.loadTemplate()" style="cursor: pointer; height: 7vh;">
+          Templates
+        </a>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+
+        <a matTooltip="FAQ" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black" (click)="evtEmit.loadFaq()"
+          style="cursor: pointer; border-color: #ffffff40; padding-left: 2%; width: 4rem;">
+          <img src="/images/Dashboard_1.png" alt="" style="width: 20px; height:20px">
+
+        </a>
+        <a matTooltip="Bulk email upload" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black" (click)="evtEmit.laodUpload()"
+          style="cursor: pointer; border-color: #ffffff40; padding-left: 2%; width: 4rem">
+          <img src="/images/Dashboard_2.png" alt="" style="width: 20px; height:20px">
+        </a>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black"
+          style="cursor: pointer; border-color: #ffffff40; padding-left: 1%; width: 4rem;">
+          <span
+            style="width: 2.5rem; height: 2.5rem; padding: 0.6rem 0.8rem; border: 1px solid #21b25b; border-radius: 50%; background-color: #21b25b; color: white;">
+            {{user_first_letter}}
+          </span>
+        </a>
+        <div class="dropdown">
+          <button class="dropbtn font-semibold text-lg text-center p-2 pt-0 text-gray-600"
+            (click)="openDropDown()" style="text-transform: capitalize;">
+
+            {{user_name}}
+            <fa name="caret-down" class="down_arrow"></fa>
+          </button>
+          <div class="dropdown-content text-gray-600" id="#profile">
+            <a href="/users/sign_out">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="row banner-sec">
+    <div class="row">
+      <div class="bg_img"></div>
+    </div>
+    <div fxLayout="row" class="inner-div text-white">
+      <div fxFlex.xl="10" fxFlex.lg="10" fxFlex.md="5"></div>
+      <div fxFlex.xl="80" fxFlex.lg="80" fxFlex.md="90" class="banner-info">
+        <div fxLayout="row" fxlayoutAlign="space-between center" class="p-6 pb-8">
+          <div fxFlex="81" fxLayout="row" fxlayoutAlign="start center">
+            <p style="color: white" class="font-bold text-4xl title" >
+              {{txt_prv_sur_title}}
+            </p>
+          </div>
+          <div fxFlex="2"></div>
+          <div fxFlex="12">
+            <div *ngIf="txt_prv_sur_logo">
+              <img [src]="txt_prv_sur_logo" class="w-40 h-20" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="bg-white card" style="padding: 2rem 2rem 2rem 2rem; margin-bottom: 1rem">
+            <div fxLayout="column" *ngFor="let grp of newGrpList">
+              <div *ngIf="grp.question_section_name != '-'">
+                <p class="text-black font-bold pt-4 pb-4">
+                  {{grp.question_section_name}}
+                </p>
+              </div>
+              <div fxLayout="column" class="pb-4" *ngFor="let ques of surveyQuesList| groupFilter:grp.question_section_name; index as i">
+                <div fxLayout="column" id="question_{{i+1}}" class="queshilet">
+                  <a class="font-semibold text-base text-black mb-4" style="word-break: break-word;">
+                    <span style="color: #21b25b" class="text-base" *ngIf="ckb_qno_val">
+                      Q{{i+1}}.
+                    </span>
+                    <span [innerHtml]="ques.question"></span>
+                  </a>
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Multiple Choice'">
+                    <div *ngFor="let ans of surveyAnsList | survey:ques.id"
+                      style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; min-height: 2rem; width: 35rem;">
+                      <div fxFlex="row">
+                        <div fxFlex="10">
+                          <mat-radio-button class="example-radio-button" disabled>
+                          </mat-radio-button>
+                        </div>
+                        <div fxFlex="90">
+                            <div class="text-base text-black p-2">
+                              {{ans.answer}}
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Checkboxes'">
+                    <div *ngFor="let ans of surveyAnsList | survey:ques.id"
+                      style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; min-height: 2rem; width: 35rem;">
+                      <div fxFlex="row">
+                        <div fxFlex="10">
+                          <mat-checkbox class="example-margin" disabled></mat-checkbox>
+                        </div>
+                        <div fxFlex="90">
+                            <div class="text-base text-black p-2 pt-0">
+                              {{ans.answer}}
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div fxLayout="row" fxLayoutAlign="start center">
+                      <div fxFlex="40" fxLayout="row" fxLayoutAlign="start center" *ngIf="ques.answer_type == 'Dropdown'">
+                        <select [(ngModel)]="txt_dsg_ans_scale" (change)="assignAnsScale(txt_dsg_ans_scale)"
+                          class="text-base text-black focus:outline-none border border-gray-300 rounded"
+                          style="width: 100%; height: 35px;max-height: 35px;">
+                          <option value="Select Answer" selected class="text-black"></option>
+                          <option *ngFor="let ans of surveyAnsList | survey:ques.id" [value]="ans.answer">
+                            {{ans.answer}}</option>
+                        </select>
+                      </div>
+                      <div fxFlex="60"></div>
+                  </div>
+
+                  <div fxFlex="100" *ngIf="ques.answer_type == 'Comment Box'" class="h-16 mx-8 mb-4">
+                      <textarea
+                        class="shadow appearance-none rounded w-full py-2 px-3 text-base text-black h-16 bg-gray-300"
+                        type="text" disabled></textarea>
+                  </div>
+                  <div fxFlex="100" *ngIf="ques.answer_type == 'Single Textbox'" class="h-16 mx-8 mb-4">
+                      <input class="appearance-none w-full py-2 px-3 text-base text-black h-16 bg-gray-300 input-display"
+                        disabled>
+                  </div>
+                  <div fxFlex="100" *ngIf="ques.answer_type == 'Star Rating'" class="h-16">
+                    <div *ngIf="ques.answer_sub_type == 'Star'">
+                      <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [theme]="'stars'" [readOnly]="true">
+                      </bar-rating>
+                    </div>
+                    <div *ngIf="ques.answer_sub_type == 'Horizontal'">
+                      <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [titles]="loadStarLabels(ques.id)"
+                        [theme]="'horizontal'" [readOnly]="true"></bar-rating>
+                    </div>
+                    <div *ngIf="ques.answer_sub_type == 'Square'">
+                      <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [theme]="'square'"
+                        [titles]="loadStarLabels(ques.id)" [readOnly]="true"></bar-rating>
+                    </div>
+                    <div *ngIf="ques.answer_sub_type == 'Movie'">
+                      <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [theme]="'movie'"
+                        [titles]="loadStarLabels(ques.id)" [readOnly]="true"></bar-rating>
+                    </div>
+                  </div>
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Contact Information'">
+                    <div *ngFor="let ans of contactInfoList | survey:ques.id"
+                      style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; padding-left: 1rem; min-height: 2rem; width: 35rem;">
+                      <div fxFlex="40">
+                        <div class="text-base text-black p-2 pt-3">
+                          {{ans.contact_info_label}}
+                        </div>
+                      </div>
+                      <div fxFlex="60">
+                        <input class="appearance-none w-full py-2 px-3 h-16 bg-gray-300 input-display" disabled>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Multiple Textboxes'">
+                    <div *ngFor="let ans of surveyAnsList | survey:ques.id" style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; padding-left: 1rem; min-height: 2rem; width: 100%">
+                      <div fxFlex="40">
+                        <div class="text-base text-black p-2 pt-3">
+                          {{ans.answer}}
+                        </div>
+                      </div>
+                      <div fxFlex="60">
+                        <input class="appearance-none w-full py-2 px-3 h-10 bg-gray-300 input-display" disabled>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'File Upload'">
+                    <div class="container mx-auto w-full mb-12">
+                      <div *ngFor="let ans of fileInfoList | survey:ques.id">
+                        <div class="w-full mx-auto text-gray-700 mb-4 ml-24" *ngIf="ans.instruction">
+                          <b>Instructions:</b>&nbsp;
+                          {{ans.instruction}}
+                        </div>
+                        <div fxLayout="row">
+                          <div class="w-1/3"></div>
+                          <div class="w-1/3">
+                            <input style="display: none; cursor: pointer;" type="file" (change)="onFileChanged($event)" #fileInput accept=".png">
+                            <button class="text-black text-base py-2 px-4 rounded-lg m-2 h-12 w-full focus:outline-none" style="border:1px solid #21b25b; border-radius: 25px" type="button" (click)="fileInput.click()" disabled="true">Choose file to upload</button>
+                          </div>
+                          <div class="w-1/3"></div>
+                        </div>
+                        <p class="text-xs text-center text-black w-full mx-auto">({{ans.error_message}})</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div fxFlex="100" *ngIf="ques.answer_type == 'Slider'" class="h-16">
+                    <mat-slider [max]="max[i]" [min]="min[i]" [step]="step[i]" [value]="txt_slider_value[i]" [(ngModel)]="txt_slider_value[i]" thumbLabel [displayWith]="formatLabel" tickInterval="1000">
+                    </mat-slider>
+                  </div>
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Date / Time'" class="h-auto">
+                    <div *ngFor="let ans of dateInfoList | survey:ques.id">
+                      <div class="text-gray-700">{{ans.display_label}}</div>
+                      <input type="date" class="w-64 py-2 px-3 text-base text-black h-10 mt-2 mb-2" style="background:#e6e6e6;" *ngIf="ans.date_info == 't'">
+                      <input type="time" class="w-28 py-2 px-3 text-base text-black h-10 mt-2 mb-2 ml-4" style="background:#e6e6e6;" name="hrs" placeholder="hrs:mins" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" *ngIf="ans.time_info == 't'">
+                    </div>
+
+                  </div>
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Ranking'">
+                    <div class="container mx-auto w-9/12 mb-12">
+                      <div *ngFor="let ans of surveyAnsList | survey:ques.id" fxLayout="row" class="m-2 py-1" style="background:#f5f5f5;">
+                        <div fxFlex="15">
+                          <select class="w-9/12 ml-2 text-gray-600 py-2 px-2 mt-1" disabled="true">
+                            <option value="0"></option>
+                          </select>
+                        </div>
+                        <div fxFlex="65" class="text-gray-600 py-2">{{ans.answer}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Matrix / Rating Scale'">
+                    <div class="container mx-auto w-11/12 mb-12">
+                      <div fxLayout="row" style="border-bottom:1px solid #ccc;background-color:#f5f5f5;">
+                        <div fxFlex="15"></div>
+                        <div fxFlex="15" *ngFor="let col of matColScaleList | survey:ques.id" class="m-2 mx-auto text-center">
+                          <span class="text-gray-700 text-sm font-semibold">{{col.matrix_value}}</span>
+                        </div>
+                      </div>
+                      <div fxLayout="column">
+                        <div *ngFor="let row of matRowScaleList | survey:ques.id" fxFlex="15" style="border-bottom:1px solid #ccc;" id="row-hover" class="text-center">
+                          <span class="text-gray-700 text-sm py-1 pt-2 font-semibold" style="background-color:#f5f5f5;min-width:15%">{{row.matrix_value}}</span>
+                          <div class="m-2 mx-auto text-center" fxFlex="15" *ngFor="let col of matColScaleList | survey:ques.id">
+                            <mat-radio-button class="ml-2" disabled></mat-radio-button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--<div class="flex flex-wrap" *ngIf="ques.answer_type == 'Table'">
+                    <div class="container mx-auto w-11/12 mb-12">
+                      <div fxLayout="row">
+                        <div fxFlex="25" *ngFor="let col of surveyAnsList | survey:ques.id" class="p-2 mx-auto text-center" style="border: 1px solid #ccc;">
+                          <span class="text-gray-700 text-sm font-semibold">{{col.answer}}</span>
+                        </div>
+                      </div>
+                      <div fxLayout="column">
+                        <div fxLayout="row" *ngFor="let row of tabRowList" style="border-bottom: 1px solid #ccc; border-right: 1px solid #ccc; border-left: 1px solid #ccc; margin: 0rem;">
+                          <div fxLayout="row" class="p-2 mx-auto text-center" *ngFor="let ans of surveyAnsList | survey:ques.id" fxFlex="25" style=" margin: 0rem;">
+                            <input type="text" class="h-8" style="border: 1px solid #ccc;" disabled>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>-->
+                  <!-- Table answer type - Start -->
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Table'">
+                    <div class="container mx-auto w-full mb-12">
+                      <div fxLayout="row" style="border:1px solid #ccc;">
+                        <div fxFlex="33.5" *ngFor="let col of surveyAnsList | survey:ques.id" class="p-2 mx-auto text-center" style="border-left:1px solid #ccc;border-right:1px solid #ccc;">
+                          <span class="text-gray-700 text-sm font-semibold">
+                            {{col.answer}}
+                          </span>
+                        </div>
+                      </div>
+                      <div fxLayout="column">
+                        <div fxLayout="row" *ngFor="let row of tabRowList | survey:ques.id" style="border-bottom: 1px solid #ccc; border-right: 0px; border-left: 1px solid #ccc;">
+                          <div fxFlex="33.5" *ngFor="let col of surveyAnsList | survey:ques.id" class="p-2 mx-auto text-center" style="border-right: 1px solid #ccc; background: #ffffff;">
+                            <p contenteditable="true" class="text-gray-700 text-sm font-semibold"  placeholder="">
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Table answer type - End -->
+                </div>
+                <hr style="margin-top: 0px !important">
+              </div>
+            </div>
+            <div class="flex justify-center pb-4 mt-4" id="destination">
+		      <button class="w-40 h-12  focus:outline-none"
+                style="background-color: #21b25b; border-radius: 25px; border: 1px solid #21b25b"
+                (click)="copySurvey()">
+                Copy
+              </button>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row" class="py-8 text-black">
+          <div fxFlex="70">
+            <p class="text-xs text-left m-2" style="margin-left: 0px !important">
+              Copyright &copy; 2013-2019 Sun Plus Software Technologies Pvt Ltd. All rights reserved.
+            </p>
+          </div>
+          <div fxFlex="30" class="text-right">
+            <a (click)="evtEmit.loadPrivatePolicy()" class="pr-2 pl-2 text-xs"
+              style="cursor: pointer; border-right: 1px solid #21b25b;">Cookies & Privacy
+            </a>
+            <a (click)="evtEmit.loadFaq()" class="pr-2 pl-2 text-xs" style="cursor: pointer;">Help
+            </a>
+          </div>
+        </div>
+      </div>
+      <div fxFlex.xl="10" fxFlex.lg="10" fxFlex.md="5"></div>
+    </div>
+  </div>
+</div>
+<div class="popup" *ngIf="!isShwSpinner" style="width: 4rem; height: 5rem">
+  <img src="/images/loading.gif" alt="" width="300px" height="300px">
+</div>
+
+<div fxLayout="column" style="background: #e6e6e6;" fxHide.xl fxHide.lg fxHide.md fxShow.sm fxShow.xs>
+  <div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;" id="mySidebar">
+    <!-- <button class="w3-bar-item w3-button w3-large" (click)="evtEmit.w3_close()" style="text-align: center">{{user_name}}
+      &nbsp; &times;</button>
+    <a (click)="evtEmit.loadDashboard()" class="w3-bar-item w3-button"
+      style="text-align: center; padding: 0.5rem 2rem;">
+      Dashboard
+    </a> -->
+    <span style="float: right;font-size:24px;padding-right:1rem; cursor: pointer;"(click)="evtEmit.w3_close()">&nbsp; &emsp; &nbsp; &nbsp;&times;</span>
+		<div class="w3-bar-item w3-button w3-large" 
+			style="text-align: center;color: #21b25b;">{{user_name}} </div>
+		<a (click)="evtEmit.loadDashboard()" class="w3-bar-item w3-button"
+			style="text-align: center; padding: 0.5rem 2rem;">
+			Dashboard
+		</a>
+    <a (click)="evtEmit.loadAnalytics()" class="w3-bar-item w3-button"
+      style="text-align: center; padding: 0.5rem 2rem;">
+      Analytics
+    </a>
+    <a (click)="evtEmit.loadTemplate()" class="w3-bar-item w3-button"
+      style="text-align: center; padding: 0.5rem 2rem;">
+      Template
+    </a>
+    <a (click)="evtEmit.loadFaq()" class="w3-bar-item w3-button" style="text-align: center; padding: 0.5rem 2rem;">
+      FAQ
+    </a>
+
+    <a (click)="evtEmit.laodUpload();" class="w3-bar-item" style="text-align: center; padding: 0.5rem 2rem;">
+      Bulk Email Upload
+    </a>
+    <a href="/users/sign_out" class="w3-bar-item w3-button" style="text-align: center; padding: 0.5rem 2rem;">Logout</a>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="bg-white" style="height: 14vh;">
+    <div fxFlex="2"></div>
+    <div fxFlex="16">
+      <button class="w3-button w3-white w3-xlarge" (click)="evtEmit.w3_open()">&#9776;</button>
+    </div>
+    <div fxFlex="84" fxLayout="row" fxLayoutAlign="center center">
+      <a class="block lg:inline-block lg:mt-0 text-teal-200 hover:text-white" (click)="evtEmit.loadDashboard()"
+        style="cursor: pointer;">
+        <img class="w-40 h-12" src="/images/Logo_Black.png" alt="">
+      </a>
+    </div>
+    <div fxFlex="2"></div>
+  </div>
+  <div class="row banner-sec">
+    <div class="row">
+      <div class="bg_img"></div>
+    </div>
+    <div fxLayout="row" class="inner-div text-white">
+      <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="5"></div>
+      <div fxFlex.xl="70" fxFlex.lg="70" fxFlex.md="90" class="banner-info">
+        <div fxLayout="column" fxLayoutAlign="center center" class="p-6 pb-8">
+          <div>
+            <span style="color: white" class="font-bold text-4xl pr-8">
+              {{txt_prv_sur_title}}
+            </span>
+          </div>
+          <div *ngIf="txt_prv_sur_logo">
+            <img [src]="txt_prv_sur_logo" class="w-40 h-20" alt="">
+          </div>
+        </div>
+        <div fxLayout="row">
+          <div fxFlex="10"></div>
+          <div fxFlex="80">
+            <div class="bg-white rounded card" style="padding: 2rem 1rem 2rem 1rem; margin-bottom: 1rem">
+              <div fxLayout="column" class="pb-4" *ngFor="let ques of surveyQuesList; index as i">
+                <div fxLayout="column" id="question_{{i+1}}" class="queshilet">
+                  <a class="font-semibold text-base text-black mb-4"
+                    style="word-break: break-word; text-align: justify;">
+                    <span style="color: #21b25b" class="text-base">
+                      Q{{i+1}}
+                    </span>.
+                    <span [innerHtml]="ques.question"></span>
+                  </a>
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Multiple Choice'">
+                    <div *ngFor="let ans of surveyAnsList | survey:ques.id"
+                      style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; min-height: 2rem; width: 35rem;">
+                      <div fxFlex="row">
+                        <div fxFlex="10">
+                          <mat-radio-button class="example-radio-button" disabled>
+                          </mat-radio-button>
+                        </div>
+                        <div fxFlex="90">
+                          <div class="text-base text-black p-2">
+                            {{ans.answer}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Checkboxes'">
+                    <div *ngFor="let ans of surveyAnsList | survey:ques.id"
+                      style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; min-height: 2rem; width: 35rem;">
+                      <div fxFlex="row">
+                        <div fxFlex="10">
+                          <mat-checkbox class="example-margin" disabled></mat-checkbox>
+                        </div>
+                        <div fxFlex="90">
+                          <div class="text-base text-black p-2 pt-0">
+                            {{ans.answer}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div fxLayout="row" fxLayoutAlign="start center">
+                    <div fxFlex="40" fxLayout="row" fxLayoutAlign="start center" *ngIf="ques.answer_type == 'Dropdown'">
+                      <select [(ngModel)]="txt_dsg_ans_scale" (change)="assignAnsScale(txt_dsg_ans_scale)"
+                        class="text-base text-black focus:outline-none border border-gray-300 rounded"
+                        style="width: 100%; height: 35px;max-height: 35px;">
+                        <option value="Select Answer" selected class="text-black"></option>
+                        <option *ngFor="let ans of surveyAnsList | survey:ques.id" [value]="ans.answer">
+                          {{ans.answer}}</option>
+                      </select>
+                    </div>
+                    <div fxFlex="60"></div>
+                  </div>
+
+                  <div fxFlex="100" *ngIf="ques.answer_type == 'Comment Box'" class="h-16">
+                    <textarea
+                      class="shadow appearance-none rounded w-full py-2 px-3 text-base text-black h-16 bg-gray-300"
+                      type="text" placeholder="Comment Box" disabled></textarea>
+                  </div>
+                  <div fxFlex="100" *ngIf="ques.answer_type == 'Single Textbox'" class="h-16">
+                    <input class="appearance-none w-full py-2 px-3 text-base text-black h-16 bg-gray-300"
+                      placeholder="Single Text Box" disabled style="background: rgb(232, 240, 254);">
+                  </div>
+                  <div fxFlex="100" *ngIf="ques.answer_type == 'Star Rating'" class="h-16">
+                    <div *ngIf="ques.answer_sub_type == 'Star'">
+                      <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [theme]="'stars'" [readOnly]="true">
+                      </bar-rating>
+                    </div>
+                    <div *ngIf="ques.answer_sub_type == 'Horizontal'">
+                      <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [titles]="loadStarLabels(ques.id)"
+                        [theme]="'horizontal'" [readOnly]="true"></bar-rating>
+                    </div>
+                    <div *ngIf="ques.answer_sub_type == 'Square'">
+                      <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [theme]="'square'"
+                        [titles]="loadStarLabels(ques.id)" [readOnly]="true"></bar-rating>
+                    </div>
+                    <div *ngIf="ques.answer_sub_type == 'Movie'">
+                      <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [theme]="'movie'"
+                        [titles]="loadStarLabels(ques.id)" [readOnly]="true"></bar-rating>
+                    </div>
+                  </div>
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Contact Information'">
+                    <div *ngFor="let ans of contactInfoList | survey:ques.id"
+                      style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; padding-left: 1rem; min-height: 2rem; width: 35rem;">
+                      <div fxFlex="20">
+                        <div class="text-base text-black p-2 pt-0">
+                          {{ans.contact_info_label}}
+                        </div>
+                      </div>
+                      <div fxFlex="80">
+                        <input class="appearance-none w-full py-2 px-3 h-16 bg-gray-300" disabled
+                          style="background: rgb(232, 240, 254);">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Multiple Textboxes'">
+                    <div *ngFor="let ans of surveyAnsList | survey:ques.id"
+                      style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; padding-left: 1rem; min-height: 2rem; width: 100%">
+                      <div fxFlex="20">
+                        <div class="text-base text-black p-2 pt-0">
+                          {{ans.answer}}
+                        </div>
+                      </div>
+                      <div fxFlex="80">
+                        <input class="appearance-none w-full py-2 px-3 h-10 bg-gray-300" disabled
+                          style="background: rgb(232, 240, 254);">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'File Upload'">
+                    <div class="container mx-auto w-full mb-12">
+                      <div *ngFor="let ans of fileInfoList | survey:ques.id">
+                        <div class="w-full mx-auto text-gray-700 mb-4 ml-24" *ngIf="ans.instruction">
+                          <b>Instructions:</b>&nbsp;
+                          {{ans.instruction}}
+                        </div>
+                        <div fxLayout="row">
+                          <div class="w-1/3"></div>
+                          <div class="w-1/3">
+                            <input style="display: none; cursor: pointer;" type="file" (change)="onFileChanged($event)"
+                              #fileInput accept=".png">
+                            <button class="text-black text-base py-2 px-4 rounded-lg m-2 h-12 w-full focus:outline-none"
+                              style="border:1px solid #21b25b; border-radius: 25px" type="button"
+                              (click)="fileInput.click()" disabled="true">Choose file to upload</button>
+                          </div>
+                          <div class="w-1/3"></div>
+                        </div>
+                        <p class="text-xs text-center text-black w-full mx-auto">({{ans.error_message}})</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div fxFlex="100" *ngIf="ques.answer_type == 'Slider'" class="h-16">
+                    <mat-slider [max]="max[i]" [min]="min[i]" [step]="step[i]" [value]="txt_slider_value[i]"
+                      [(ngModel)]="txt_slider_value[i]" thumbLabel [displayWith]="formatLabel" tickInterval="1000">
+                    </mat-slider>
+                  </div>
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Date / Time'" class="h-auto">
+                    <div *ngFor="let ans of dateInfoList | survey:ques.id">
+                      <div class="text-gray-700">{{ans.display_label}}</div>
+                      <input type="date" class="w-64 py-2 px-3 text-base text-black h-10 mt-2 mb-2"
+                        style="background:#e6e6e6;" *ngIf="ans.date_info == 't'">
+                      <input type="time" class="w-28 py-2 px-3 text-base text-black h-10 mt-2 mb-2 ml-4"
+                        style="background:#e6e6e6;" name="hrs" placeholder="hrs:mins"
+                        pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" *ngIf="ans.time_info == 't'">
+                    </div>
+
+                  </div>
+                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Ranking'">
+                    <div class="container mx-auto w-9/12 mb-12">
+                      <div *ngFor="let ans of surveyAnsList | survey:ques.id" fxLayout="row" class="m-2 py-1"
+                        style="background:#f5f5f5;">
+                        <div fxFlex="15">
+                          <select class="w-9/12 ml-2 text-gray-600 py-2 px-2 mt-1" disabled="true">
+                            <option value="0"></option>
+                          </select>
+                        </div>
+                        <div fxFlex="65" class="text-gray-600 py-2">{{ans.answer}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr style="margin-top: 0px !important">
+	            <div class="flex justify-center pb-4 mt-4" id="destination">
+
+	              <button class="w-40 h-12  focus:outline-none"
+	                style="background-color: #21b25b; border-radius: 25px; border: 1px solid #21b25b"
+	                (click)="copySurvey()">
+	                Copy
+	              </button>
+	            </div>
+            </div>
+          </div>
+          <div fxFlex="10"></div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="center center" style="height: 15vh; width: 100vw;">
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <p class="text-xs text-black text-center m-2 ml-4">
+              Copyright &copy; 2013-2019 Sun Plus Software Technologies Pvt Ltd. All rights reserved.
+            </p>
+          </div>
+          <div class="text-black" fxLayout="row" fxLayoutAlign="center center">
+            <a (click)="evtEmit.loadPrivatePolicy()" class="pr-2 pl-2 text-xs text-black-500;"
+              style="cursor: pointer; border-right:1px solid #21b25b">Cookies &
+              Policy
+              Policy</a>
+            <a class="pr-2 pl-2 text-xs text-black-500" style="cursor: pointer;" (click)="evtEmit.loadFaq()">Help</a>
+          </div>
+        </div>
+      </div>
+      <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="5"></div>
+    </div>
+  </div>
+</div>
+
+<!--<div fxLayout="column" style="background: #e6e6e6;" fxShow.xl fxShow.lg fxShow.md fxHide.sm fxHide.xs>
+  	<nav class="flex items-center justify-between flex-wrap p-4" style="background: white; height: 12vh;">
+	    <div class="flex items-center flex-shrink-0 text-white mr-6">
+	      <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white" (click)="evtEmit.loadDashboard()"
+	        style="cursor: pointer;">
+	        <img class="w-40 h-12" src="/images/Logo_Black.png" alt="">
+	      </a>
+	    </div>
+	    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+	      <div class="text-sm lg:flex-grow" fxLayout="row" fxLayoutAlign="start center" style="margin-bottom: -2rem;">
+	        <a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+	          (click)="evtEmit.loadDashboard()" style="cursor: pointer; height: 7vh;">
+	          Dashboard
+	        </a>
+	        <a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+	          (click)="evtEmit.loadAnalytics()" style="cursor: pointer; height: 7vh;">
+	          Analytics
+	        </a>
+	        <a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+	          (click)="evtEmit.loadTemplate()" style="cursor: pointer; height: 7vh;">
+	          Template
+	        </a>
+	      </div>
+	      <div fxLayout="row" fxLayoutAlign="space-between center">
+
+	        <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black" (click)="evtEmit.loadFaq()"
+	          style="cursor: pointer; border-color: #ffffff40; padding-left: 2%; width: 4rem;">
+	          <img src="/images/Dashboard_1.png" alt="" style="width: 20px; height:20px">
+
+	        </a>
+	        <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black" (click)="evtEmit.laodUpload()"
+	          style="cursor: pointer; border-color: #ffffff40; padding-left: 2%; width: 4rem">
+	          <img src="/images/Dashboard_2.png" alt="" style="width: 20px; height:20px">
+	        </a>
+	      </div>
+	      <div fxLayout="row" fxLayoutAlign="center center">
+	        <a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black"
+	          style="cursor: pointer; border-color: #ffffff40; padding-left: 1%; width: 4rem;">
+	          <span
+	            style="width: 2.5rem; height: 2.5rem; padding: 0.6rem 0.8rem; border: 1px solid #21b25b; border-radius: 50%; background-color: #21b25b; color: white;">
+	            {{user_first_letter}}
+	          </span>
+	        </a>
+	        <div class="dropdown">
+	          <button class="dropbtn font-semibold text-lg text-center p-2 pt-0 text-gray-600"
+	            (click)="openDropDown()" style="text-transform: capitalize;">
+
+	            {{user_name}}
+	            <fa name="caret-down" class="down_arrow"></fa>
+	          </button>
+	          <div class="dropdown-content text-gray-600" id="#profile">
+	            <a href="/users/sign_out">Logout</a>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+  	</nav>
+  	<div class="row banner-sec">
+	    <div class="row">
+	      <div class="bg_img"></div>
+	    </div>
+	    <div fxLayout="row" class="inner-div text-white">
+	      <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="5"></div>
+	      <div fxFlex.xl="70" fxFlex.lg="70" fxFlex.md="90" class="banner-info">
+	        <div fxLayout="row" fxlayoutAlign="space-between center" class="p-6 pb-8">
+	          <div fxFlex="78" fxLayout="row" fxlayoutAlign="start center">
+	            <p style="color: white" class="font-bold text-4xl title" >
+	              {{txt_prv_sur_title}}
+	            </p>
+	          </div>
+	          <div fxFlex="2"></div>
+	          <div fxFlex="15">
+	            <div *ngIf="txt_prv_sur_logo">
+	              <img [src]="txt_prv_sur_logo" class="w-40 h-20" alt="">
+	            </div>
+	          </div>
+	        </div>
+	        <div class="row">
+	          <div class="bg-white card" style="padding: 2rem 2rem 2rem 2rem; margin-bottom: 1rem">
+	            <div fxLayout="column" class="pb-4" *ngFor="let ques of surveyQuesList; index as i">
+	              <div fxLayout="column" id="question_{{i+1}}" class="queshilet">
+	                <a class="font-semibold text-base text-black mb-4" style="word-break: break-word;">
+	                  <span style="color: #21b25b" class="text-base">
+	                    Q{{i+1}}
+	                  </span>.
+	                  <span [innerHtml]="ques.question"></span>
+	                </a>
+	                <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Multiple Choice'">
+	                  <div *ngFor="let ans of surveyAnsList | survey:ques.id"
+	                    style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; min-height: 2rem; width: 35rem;">
+	                    <div fxFlex="row">
+	                      <div fxFlex="10">
+	                        <mat-radio-button class="example-radio-button" disabled>
+	                        </mat-radio-button>
+	                      </div>
+	                      <div fxFlex="90">
+	                          <div class="text-base text-black p-2">
+	                            {{ans.answer}}
+	                          </div>
+	                      </div>
+	                    </div>
+	                  </div>
+	                </div>
+	                <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Checkboxes'">
+	                  <div *ngFor="let ans of surveyAnsList | survey:ques.id"
+	                    style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; min-height: 2rem; width: 35rem;">
+	                    <div fxFlex="row">
+	                      <div fxFlex="10">
+	                        <mat-checkbox class="example-margin" disabled></mat-checkbox>
+	                      </div>
+	                      <div fxFlex="90">
+	                          <div class="text-base text-black p-2 pt-0">
+	                            {{ans.answer}}
+	                          </div>
+	                      </div>
+	                    </div>
+	                  </div>
+	                </div>
+
+	                <div fxLayout="row" fxLayoutAlign="start center">
+	                    <div fxFlex="40" fxLayout="row" fxLayoutAlign="start center" *ngIf="ques.answer_type == 'Dropdown'">
+	                      <select [(ngModel)]="txt_dsg_ans_scale" (change)="assignAnsScale(txt_dsg_ans_scale)"
+	                        class="text-base text-black focus:outline-none border border-gray-300 rounded"
+	                        style="width: 100%; height: 35px;max-height: 35px;">
+	                        <option value="Select Answer" selected class="text-black"></option>
+	                        <option *ngFor="let ans of surveyAnsList | survey:ques.id" [value]="ans.answer">
+	                          {{ans.answer}}</option>
+	                      </select>
+	                    </div>
+	                    <div fxFlex="60"></div>
+	                </div>
+
+	                <div fxFlex="100" *ngIf="ques.answer_type == 'Comment Box'" class="h-16">
+	                    <textarea
+	                      class="shadow appearance-none rounded w-full py-2 px-3 text-base text-black h-16 bg-gray-300"
+	                      type="text" placeholder="Comment Box" disabled></textarea>
+	                </div>
+	                <div fxFlex="100" *ngIf="ques.answer_type == 'Single Textbox'" class="h-16">
+	                    <input class="appearance-none w-full py-2 px-3 text-base text-black h-16 bg-gray-300"
+	                      placeholder="Single Text Box" disabled style="background: rgb(232, 240, 254);">
+	                </div>
+	                <div fxFlex="100" *ngIf="ques.answer_type == 'Star Rating'" class="h-16">
+	                  <div *ngIf="ques.answer_sub_type == 'Star'">
+	                    <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [theme]="'stars'" [readOnly]="true">
+	                    </bar-rating>
+	                  </div>
+	                  <div *ngIf="ques.answer_sub_type == 'Horizontal'">
+	                    <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [titles]="loadStarLabels(ques.id)"
+	                      [theme]="'horizontal'" [readOnly]="true"></bar-rating>
+	                  </div>
+	                  <div *ngIf="ques.answer_sub_type == 'Square'">
+	                    <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [theme]="'square'"
+	                      [titles]="loadStarLabels(ques.id)" [readOnly]="true"></bar-rating>
+	                  </div>
+	                  <div *ngIf="ques.answer_sub_type == 'Movie'">
+	                    <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [theme]="'movie'"
+	                      [titles]="loadStarLabels(ques.id)" [readOnly]="true"></bar-rating>
+	                  </div>
+	                </div>
+	                <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Contact Information'">
+	                  <div *ngFor="let ans of contactInfoList | survey:ques.id"
+	                    style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; padding-left: 1rem; min-height: 2rem; width: 35rem;">
+	                    <div fxFlex="20">
+	                      <div class="text-base text-black p-2 pt-0">
+	                        {{ans.contact_info_label}}
+	                      </div>
+	                    </div>
+	                    <div fxFlex="80">
+	                      <input class="appearance-none w-full py-2 px-3 h-16 bg-gray-300" disabled
+	                        style="background: rgb(232, 240, 254);">
+	                    </div>
+	                  </div>
+	                </div>
+	                <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Multiple Textboxes'">
+	                  <div *ngFor="let ans of surveyAnsList | survey:ques.id" style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; padding-left: 1rem; min-height: 2rem; width: 100%">
+	                    <div fxFlex="20">
+	                      <div class="text-base text-black p-2 pt-0">
+	                        {{ans.answer}}
+	                      </div>
+	                    </div>
+	                    <div fxFlex="80">
+	                      <input class="appearance-none w-full py-2 px-3 h-10 bg-gray-300" disabled
+	                        style="background: rgb(232, 240, 254);">
+	                    </div>
+	                  </div>
+	                </div>
+	                <div class="flex flex-wrap" *ngIf="ques.answer_type == 'File Upload'">
+	                  <div class="container mx-auto w-full mb-12">
+	                    <div *ngFor="let ans of fileInfoList | survey:ques.id">
+	                      <div class="w-full mx-auto text-gray-700 mb-4 ml-24" *ngIf="ans.instruction">
+	                        <b>Instructions:</b>&nbsp;
+	                        {{ans.instruction}}
+	                      </div>
+	                      <div fxLayout="row">
+	                        <div class="w-1/3"></div>
+	                        <div class="w-1/3">
+	                          <input style="display: none; cursor: pointer;" type="file" (change)="onFileChanged($event)" #fileInput accept=".png">
+	                          <button class="text-black text-base py-2 px-4 rounded-lg m-2 h-12 w-full focus:outline-none" style="border:1px solid #21b25b; border-radius: 25px" type="button" (click)="fileInput.click()" disabled="true">Choose file to upload</button>
+	                        </div>
+	                        <div class="w-1/3"></div>
+	                      </div>
+	                      <p class="text-xs text-center text-black w-full mx-auto">({{ans.error_message}})</p>
+	                    </div>
+	                  </div>
+	                </div>
+	                <div fxFlex="100" *ngIf="ques.answer_type == 'Slider'" class="h-16">
+	                  <mat-slider [max]="max[i]" [min]="min[i]" [step]="step[i]" [value]="txt_slider_value[i]" [(ngModel)]="txt_slider_value[i]" thumbLabel [displayWith]="formatLabel" tickInterval="1000">
+	                  </mat-slider>
+	                </div>
+	                <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Date / Time'" class="h-auto">
+	                  <div *ngFor="let ans of dateInfoList | survey:ques.id">
+	                    <div class="text-gray-700">{{ans.display_label}}</div>
+	                    <input type="date" class="w-64 py-2 px-3 text-base text-black h-10 mt-2 mb-2" style="background:#e6e6e6;" *ngIf="ans.date_info == 't'">
+	                    <input type="time" class="w-28 py-2 px-3 text-base text-black h-10 mt-2 mb-2 ml-4" style="background:#e6e6e6;" name="hrs" placeholder="hrs:mins" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" *ngIf="ans.time_info == 't'">
+	                  </div>
+
+	                </div>
+	                <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Ranking'">
+	                  <div class="container mx-auto w-9/12 mb-12">
+	                    <div *ngFor="let ans of surveyAnsList | survey:ques.id" fxLayout="row" class="m-2 py-1" style="background:#f5f5f5;">
+	                      <div fxFlex="15">
+	                        <select class="w-9/12 ml-2 text-gray-600 py-2 px-2 mt-1" disabled="true">
+	                          <option value="0"></option>
+	                        </select>
+	                      </div>
+	                      <div fxFlex="65" class="text-gray-600 py-2">{{ans.answer}}</div>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
+	              <hr style="margin-top: 0px !important">
+	            </div>
+	            <div class="flex justify-center pb-4 mt-4" id="destination">
+
+	              <button class="w-40 h-12  focus:outline-none"
+	                style="background-color: #21b25b; border-radius: 25px; border: 1px solid #21b25b"
+	                (click)="copySurvey()">
+	                Copy
+	              </button>
+	            </div>
+	          </div>
+	        </div>
+
+	        <div fxLayout="row" class="py-8 text-black">
+	          <div fxFlex="70">
+	            <p class="text-xs text-left m-2" style="margin-left: 0px !important">
+	              Copyright &copy; 2013-2019 Sun Plus Software Technologies Pvt Ltd. All rights reserved.
+	            </p>
+	          </div>
+	          <div fxFlex="30" class="text-right">
+	            <a (click)="evtEmit.loadPrivatePolicy()" class="pr-2 pl-2 text-xs"
+	              style="cursor: pointer; border-right: 1px solid #21b25b;">Cookies & Privacy
+	            </a>
+	            <a (click)="evtEmit.loadFaq()" class="pr-2 pl-2 text-xs" style="cursor: pointer;">Help
+	            </a>
+	          </div>
+	        </div>
+	      </div>
+	      <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="5"></div>
+	    </div>
+  	</div>
+</div>
+<div class="popup" *ngIf="!isShwSpinner" style="width: 4rem; height: 5rem">
+  <img src="/images/loading.gif" alt="" width="300px" height="300px">
+</div>
+
+<div fxLayout="column" style="background: #e6e6e6;" fxHide.xl fxHide.lg fxHide.md fxShow.sm fxShow.xs>
+  	<div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;" id="mySidebar">
+	    <button class="w3-bar-item w3-button w3-large" (click)="evtEmit.w3_close()" style="text-align: center">{{user_name}}
+	      &nbsp; &times;</button>
+	    <a (click)="evtEmit.loadDashboard()" class="w3-bar-item w3-button"
+	      style="text-align: center; padding: 0.5rem 2rem;">
+	      Dashboard
+	    </a>
+	    <a (click)="evtEmit.loadAnalytics()" class="w3-bar-item w3-button"
+	      style="text-align: center; padding: 0.5rem 2rem;">
+	      Analytics
+	    </a>
+		<a (click)="evtEmit.loadTemplate()" class="w3-bar-item w3-button"
+	      style="text-align: center; padding: 0.5rem 2rem;">
+	      Template
+	    </a>
+	    <a (click)="evtEmit.loadFaq()" class="w3-bar-item w3-button" style="text-align: center; padding: 0.5rem 2rem;">
+	      FAQ
+	    </a>
+
+	    <a (click)="evtEmit.laodUpload();" class="w3-bar-item" style="text-align: center; padding: 0.5rem 2rem;">
+	      Bulk Email Upload
+	    </a>
+	    <a href="/users/sign_out" class="w3-bar-item w3-button" style="text-align: center; padding: 0.5rem 2rem;">Logout</a>
+  	</div>
+  	<div fxLayout="row" fxLayoutAlign="space-between center" class="bg-white" style="height: 14vh;">
+	    <div fxFlex="2"></div>
+	    <div fxFlex="16">
+	      <button class="w3-button w3-white w3-xlarge" (click)="evtEmit.w3_open()">&#9776;</button>
+	    </div>
+	    <div fxFlex="84" fxLayout="row" fxLayoutAlign="center center">
+	      <a class="block lg:inline-block lg:mt-0 text-teal-200 hover:text-white" (click)="evtEmit.loadDashboard()"
+	        style="cursor: pointer;">
+	        <img class="w-40 h-12" src="/images/Logo_Black.png" alt="">
+	      </a>
+	    </div>
+	    <div fxFlex="2"></div>
+  	</div>
+  	<div class="row banner-sec">
+	    <div class="row">
+	      <div class="bg_img"></div>
+	    </div>
+	    <div fxLayout="row" class="inner-div text-white">
+	      <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="5"></div>
+	      <div fxFlex.xl="70" fxFlex.lg="70" fxFlex.md="90" class="banner-info">
+	        <div fxLayout="column" fxLayoutAlign="center center" class="p-6 pb-8">
+	          <div>
+	            <span style="color: white" class="font-bold text-4xl pr-8">
+	              {{txt_prv_sur_title}}
+	            </span>
+	          </div>
+	          <div *ngIf="txt_prv_sur_logo">
+	            <img [src]="txt_prv_sur_logo" class="w-40 h-20" alt="">
+	          </div>
+	        </div>
+	        <div fxLayout="row">
+	          <div fxFlex="10"></div>
+	          <div fxFlex="80">
+	            <div class="bg-white rounded card" style="padding: 2rem 1rem 2rem 1rem; margin-bottom: 1rem">
+	              <div fxLayout="column" class="pb-4" *ngFor="let ques of surveyQuesList; index as i">
+	                <div fxLayout="column" id="question_{{i+1}}" class="queshilet">
+	                  <a class="font-semibold text-base text-black mb-4"
+	                    style="word-break: break-word; text-align: justify;">
+	                    <span style="color: #21b25b" class="text-base">
+	                      Q{{i+1}}
+	                    </span>.
+	                    <span [innerHtml]="ques.question"></span>
+	                  </a>
+	                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Multiple Choice'">
+	                    <div *ngFor="let ans of surveyAnsList | survey:ques.id"
+	                      style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; min-height: 2rem; width: 35rem;">
+	                      <div fxFlex="row">
+	                        <div fxFlex="10">
+	                          <mat-radio-button class="example-radio-button" disabled>
+	                          </mat-radio-button>
+	                        </div>
+	                        <div fxFlex="90">
+	                          <div class="text-base text-black p-2">
+	                            {{ans.answer}}
+	                          </div>
+	                        </div>
+	                      </div>
+	                    </div>
+	                  </div>
+	                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Checkboxes'">
+	                    <div *ngFor="let ans of surveyAnsList | survey:ques.id"
+	                      style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; min-height: 2rem; width: 35rem;">
+	                      <div fxFlex="row">
+	                        <div fxFlex="10">
+	                          <mat-checkbox class="example-margin" disabled></mat-checkbox>
+	                        </div>
+	                        <div fxFlex="90">
+	                          <div class="text-base text-black p-2 pt-0">
+	                            {{ans.answer}}
+	                          </div>
+	                        </div>
+	                      </div>
+	                    </div>
+	                  </div>
+
+	                  <div fxLayout="row" fxLayoutAlign="start center">
+	                    <div fxFlex="40" fxLayout="row" fxLayoutAlign="start center" *ngIf="ques.answer_type == 'Dropdown'">
+	                      <select [(ngModel)]="txt_dsg_ans_scale" (change)="assignAnsScale(txt_dsg_ans_scale)"
+	                        class="text-base text-black focus:outline-none border border-gray-300 rounded"
+	                        style="width: 100%; height: 35px;max-height: 35px;">
+	                        <option value="Select Answer" selected class="text-black"></option>
+	                        <option *ngFor="let ans of surveyAnsList | survey:ques.id" [value]="ans.answer">
+	                          {{ans.answer}}</option>
+	                      </select>
+	                    </div>
+	                    <div fxFlex="60"></div>
+	                  </div>
+
+	                  <div fxFlex="100" *ngIf="ques.answer_type == 'Comment Box'" class="h-16">
+	                    <textarea
+	                      class="shadow appearance-none rounded w-full py-2 px-3 text-base text-black h-16 bg-gray-300"
+	                      type="text" placeholder="Comment Box" disabled></textarea>
+	                  </div>
+	                  <div fxFlex="100" *ngIf="ques.answer_type == 'Single Textbox'" class="h-16">
+	                    <input class="appearance-none w-full py-2 px-3 text-base text-black h-16 bg-gray-300"
+	                      placeholder="Single Text Box" disabled style="background: rgb(232, 240, 254);">
+	                  </div>
+	                  <div fxFlex="100" *ngIf="ques.answer_type == 'Star Rating'" class="h-16">
+	                    <div *ngIf="ques.answer_sub_type == 'Star'">
+	                      <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [theme]="'stars'" [readOnly]="true">
+	                      </bar-rating>
+	                    </div>
+	                    <div *ngIf="ques.answer_sub_type == 'Horizontal'">
+	                      <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [titles]="loadStarLabels(ques.id)"
+	                        [theme]="'horizontal'" [readOnly]="true"></bar-rating>
+	                    </div>
+	                    <div *ngIf="ques.answer_sub_type == 'Square'">
+	                      <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [theme]="'square'"
+	                        [titles]="loadStarLabels(ques.id)" [readOnly]="true"></bar-rating>
+	                    </div>
+	                    <div *ngIf="ques.answer_sub_type == 'Movie'">
+	                      <bar-rating [(rate)]="cssRate" [max]="ques.answer_scale" [theme]="'movie'"
+	                        [titles]="loadStarLabels(ques.id)" [readOnly]="true"></bar-rating>
+	                    </div>
+	                  </div>
+	                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Contact Information'">
+	                    <div *ngFor="let ans of contactInfoList | survey:ques.id"
+	                      style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; padding-left: 1rem; min-height: 2rem; width: 35rem;">
+	                      <div fxFlex="20">
+	                        <div class="text-base text-black p-2 pt-0">
+	                          {{ans.contact_info_label}}
+	                        </div>
+	                      </div>
+	                      <div fxFlex="80">
+	                        <input class="appearance-none w-full py-2 px-3 h-16 bg-gray-300" disabled
+	                          style="background: rgb(232, 240, 254);">
+	                      </div>
+	                    </div>
+	                  </div>
+	                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Multiple Textboxes'">
+	                    <div *ngFor="let ans of surveyAnsList | survey:ques.id"
+	                      style="padding-top: 0.5rem; padding-bottom: 0.5rem; margin-right: 1.5rem; cursor: pointer; padding-left: 1rem; min-height: 2rem; width: 100%">
+	                      <div fxFlex="20">
+	                        <div class="text-base text-black p-2 pt-0">
+	                          {{ans.answer}}
+	                        </div>
+	                      </div>
+	                      <div fxFlex="80">
+	                        <input class="appearance-none w-full py-2 px-3 h-10 bg-gray-300" disabled
+	                          style="background: rgb(232, 240, 254);">
+	                      </div>
+	                    </div>
+	                  </div>
+	                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'File Upload'">
+	                    <div class="container mx-auto w-full mb-12">
+	                      <div *ngFor="let ans of fileInfoList | survey:ques.id">
+	                        <div class="w-full mx-auto text-gray-700 mb-4 ml-24" *ngIf="ans.instruction">
+	                          <b>Instructions:</b>&nbsp;
+	                          {{ans.instruction}}
+	                        </div>
+	                        <div fxLayout="row">
+	                          <div class="w-1/3"></div>
+	                          <div class="w-1/3">
+	                            <input style="display: none; cursor: pointer;" type="file" (change)="onFileChanged($event)"
+	                              #fileInput accept=".png">
+	                            <button class="text-black text-base py-2 px-4 rounded-lg m-2 h-12 w-full focus:outline-none"
+	                              style="border:1px solid #21b25b; border-radius: 25px" type="button"
+	                              (click)="fileInput.click()" disabled="true">Choose file to upload</button>
+	                          </div>
+	                          <div class="w-1/3"></div>
+	                        </div>
+	                        <p class="text-xs text-center text-black w-full mx-auto">({{ans.error_message}})</p>
+	                      </div>
+	                    </div>
+	                  </div>
+	                  <div fxFlex="100" *ngIf="ques.answer_type == 'Slider'" class="h-16">
+	                    <mat-slider [max]="max[i]" [min]="min[i]" [step]="step[i]" [value]="txt_slider_value[i]"
+	                      [(ngModel)]="txt_slider_value[i]" thumbLabel [displayWith]="formatLabel" tickInterval="1000">
+	                    </mat-slider>
+	                  </div>
+	                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Date / Time'" class="h-auto">
+	                    <div *ngFor="let ans of dateInfoList | survey:ques.id">
+	                      <div class="text-gray-700">{{ans.display_label}}</div>
+	                      <input type="date" class="w-64 py-2 px-3 text-base text-black h-10 mt-2 mb-2"
+	                        style="background:#e6e6e6;" *ngIf="ans.date_info == 't'">
+	                      <input type="time" class="w-28 py-2 px-3 text-base text-black h-10 mt-2 mb-2 ml-4"
+	                        style="background:#e6e6e6;" name="hrs" placeholder="hrs:mins"
+	                        pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" *ngIf="ans.time_info == 't'">
+	                    </div>
+
+	                  </div>
+	                  <div class="flex flex-wrap" *ngIf="ques.answer_type == 'Ranking'">
+	                    <div class="container mx-auto w-9/12 mb-12">
+	                      <div *ngFor="let ans of surveyAnsList | survey:ques.id" fxLayout="row" class="m-2 py-1"
+	                        style="background:#f5f5f5;">
+	                        <div fxFlex="15">
+	                          <select class="w-9/12 ml-2 text-gray-600 py-2 px-2 mt-1" disabled="true">
+	                            <option value="0"></option>
+	                          </select>
+	                        </div>
+	                        <div fxFlex="65" class="text-gray-600 py-2">{{ans.answer}}</div>
+	                      </div>
+	                    </div>
+	                  </div>
+	                </div>
+	                <hr style="margin-top: 0px !important">
+	              </div>
+	              <div class="flex pb-4 mt-4" id="destination" fxLayout="column" style="align-items: center;">
+
+	                <button class="w-40 h-12  focus:outline-none"
+	                  style="background-color: #21b25b; border-radius: 25px; border: 1px solid #21b25b"
+	                  (click)="copySurvey()">
+	                  Copy
+	                </button>
+	              </div>
+	            </div>
+	          </div>
+	          <div fxFlex="10"></div>
+	        </div>
+	        <div fxLayout="column" fxLayoutAlign="center center" style="height: 15vh; width: 100vw;">
+	          <div fxLayout="row" fxLayoutAlign="center center">
+	            <p class="text-xs text-black text-center m-2 ml-4">
+	              Copyright &copy; 2013-2019 Sun Plus Software Technologies Pvt Ltd. All rights reserved.
+	            </p>
+	          </div>
+	          <div class="text-black" fxLayout="row" fxLayoutAlign="center center">
+	            <a (click)="evtEmit.loadPrivatePolicy()" class="pr-2 pl-2 text-xs text-black-500;"
+	              style="cursor: pointer; border-right:1px solid #21b25b">Cookies &
+	              Policy
+	              Policy</a>
+	            <a class="pr-2 pl-2 text-xs text-black-500" style="cursor: pointer;" (click)="evtEmit.loadFaq()">Help</a>
+	          </div>
+	        </div>
+	      </div>
+	      <div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="5"></div>
+	    </div>
+  	</div>
+</div> -->

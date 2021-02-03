@@ -1,0 +1,50 @@
+                              STEPS TO INSTALL TAILWIND CSS FRAMEWORK
+===========================================================================================
+First install angular 7 on your device using common steps.
+------------------------------------------------------------------------------------------
+   Ex:c:\User\sunplus-vishal\Desktop\navn>npm i tailwindcss -D
+1)npm i ng-tailwindcss -g
+------------------------------------------------------------------------------------------
+npm i tailwindcss -D
+------------------------------------------------------------------------------------------
+npx tailwind init
+------------------------------------------------------------------------------------------
+4)Add or adjust these scripts in your package.json:
+
+scripts: {
+  "prestart": "ngtw build",
+  "start": "ng serve & ngtw watch",
+  "build": "ngtw build && ng build"
+}
+-------------------------------------------------------------------------------------------
+3)Configure your tailwind source/destination/config files by running:
+
+ngtw configure --config ./path/to/whatever-you-named-tailwind-config.js --source ./path/to/your-tailwind-source.css --output ./path/to/outputted-global-styles.css
+
+In ng-tailwind.js change the following
+
+// Tailwind Paths
+  configJS: './src/tailwind.js',
+  sourceCSS: './src/tailwind.css',
+  outputCSS: './src/styles.css',
+  // Sass
+-------------------------------------------------------------------------------------------
+2)In src create a file tailwind.css in that paste the following'
+ 
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+------------------------------------------------------------------------------------------- 
+5) npm start
+-------------------------------------------------------------------------------------------
+
+6)Tailwind CDN
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
+=================    ==========================    ==================================== 
+Refference:
+ YT link: https://www.youtube.com/watch?v=qmxo2NntTX8&t=429s
+ Documentation:https://github.com/tehpsalmist/ng-tailwindcss
+ ----------------- *========================== * ========================= * --------------

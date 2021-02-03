@@ -1,0 +1,408 @@
+::ng-deep .mat-radio-label-content {
+    padding-top: 0.5rem;
+}
+
+::ng-deep .mat-slide-toggle-bar{
+    background-color: rgba(255,215,64,.54);
+}
+
+.instruct {
+  border:1px solid #656565;
+  color: #656565;
+  width:100%;
+  border-radius: 3px;
+  padding: 8px 5px;
+  font-size: small;
+  width:75%;
+}
+
+.header {
+  text-align: center;
+}
+.html-header {
+  margin: 15px 0 5px;
+}
+
+.html {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.5rem;
+  background-color: #f1f1f1;
+  min-height: 20px;
+  max-height: 10rem;
+  overflow: auto;
+}
+
+angular-editor
+{
+  width:45rem;
+  color:black
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #e2e8f0;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background: #21b25b;
+}
+
+.example-radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+//.checked {
+  //color: orange;
+//}
+
+mat-slider {
+  width: 300px;
+}
+.example-radio-button
+{
+  margin: 5px;
+}
+.example-selected-value
+{
+  margin: 15px 0;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.popup-bg-img{
+  background-image: url('/images/Dash_Board_Banner.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+.popup-info{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 90%;
+  padding: 6rem;
+}
+
+  ::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+    background-color: #21b25b !important;
+  }
+
+  ::ng-deep .mat-checkbox .mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    opacity: 0.2 !important; /*click effect color change*/
+    background-color: #21b25b!important;
+  }
+
+  ::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple
+  .mat-ripple-element {
+    opacity: 0.5 !important;
+    background-color: #21b25b!important;
+  }
+
+  ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: #21b25b!important;
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    bottom: -2px;
+    right: -2px;
+  }
+
+  ::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+
+    border-color:#21b25b!important;
+  }
+
+  ::ng-deep.mat-radio-button .mat-radio-ripple{
+    height: 0px!important;
+    width: 0px!important;
+  }
+
+  ::ng-deep.mat-checkbox-inner-container-no-side-margin {
+    border: 1px solid white;
+  }
+
+  input[type="radio"]{
+    transform: scale(1.5);
+  }
+
+  input[type="checkbox"]{
+    margin-top: 15%;
+  }
+
+  .box{
+    position: relative;
+    border-radius:5px;
+  }
+  .box select{
+    background: whitesmoke;
+    padding:20px;
+    width:150px;
+    height:10px;
+    border:none;
+    font-size:15px;
+    -webkit-appearance: button;
+    outline:none;
+  }
+
+.box:before{
+
+  position: absolute;
+  top:0;
+  right:0;
+  width:50px;
+  height:20px;
+  background: #505364;
+
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  // color: black;
+  padding: 14px 16px 14px 8px;
+  background-color: inherit;
+  font-family: inherit;
+  font-weight: bold;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 2%;
+}
+
+.dropdown-content a {
+  float: none;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.down_arrow{
+  margin-left: 0.5rem;
+}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/*.dropdown:hover .dropdown-content {
+  display: block;
+}*/
+.border-btm:hover{
+  border-bottom: 3px solid #21b25b;
+}
+
+::ng-deep .ngx-dropdown-button{
+  width: 100%;
+  height: 35px;
+  max-height: 35px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  }
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width:70px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -15px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.bg_img{
+  background-image: url('/images/Other_Page_Banner.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 277px;
+}
+.banner-sec{
+  position: relative;
+}
+.banner-sec .inner-div{
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+.banner-info{
+  position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 35%;
+}
+.chk_box{
+  justify-content: center;
+  display: flex;
+   padding-top: 1rem;
+}
+@media (min-width:320px) and (max-width:960px){
+  .banner-info{
+    position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      height: 40%;
+  }
+  .banner-heading{
+    padding-bottom: 0.5rem;
+  }
+
+  ::ng-deep .angular-editor-toolbar{
+    padding-left:0px !important;
+  }
+}
+form.example input[type=text]
+{
+  padding: 10px;
+  font-size: 17px;
+  float: left;
+  width: 85%;
+  background:white;
+}
+
+form.example button
+{
+  float: left;
+  width: 15%;
+  padding: 10px;
+  background: white;
+  color: black;
+  font-size: 17px;
+  border-left: none;
+  cursor: pointer;
+}
+::ng-deep .mat-expansion-panel-header{
+    display: flex;
+    flex-direction: row !important;
+    align-items: start-center;
+    padding: 0 8px;
+    border-radius: inherit;
+    min-height: 10vh !important;
+}
+::ng-deep .mat-expansion-panel-header:hover{
+  background: none !important;
+}
+::ng-deep .mat-expansion-panel{
+  box-shadow: none !important;
+  border-radius: 0px !important;
+}
+.inner_div_height
+{
+  height: 54.5vh;
+  overflow: auto;
+  overflow-x: hidden;
+}
+.inner_div_height .card:hover{
+  border: 1px solid #21b25b;
+}
+.inner_div_height .card{
+  border:1px solid white;
+}
+
+::ng-deep .angular-editor-textarea{
+  margin-top: 1.5rem !important;
+}
+::ng-deep .mat-radio-container{
+  width: 10px !important;
+    height: 10px !important;
+}
+::ng-deep .mat-radio-outer-circle{
+  width:15px !important;
+  height: 15px !important;
+}
+::ng-deep .mat-expansion-panel-body {
+  padding: 0px 5px 5px !important;
+}
+.w3-sidebar{
+  background-color:#1c2a33 !important;
+  color: white !important;
+}
+.w3-button:hover{
+  background-color: #1c2a33 !important;
+  color: white !important;
+}

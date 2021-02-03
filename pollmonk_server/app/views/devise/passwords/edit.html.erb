@@ -1,0 +1,99 @@
+<div class="flex items-center ">
+  <div class="flex-1 text-gray-700"  style="position: absolute; top:0; bottom: 0; left: 0; right: 0; margin:auto; height:60%;">
+    <div class="flex flex-row mob-align session">
+      <div class="w-full max-w-sm mx-auto reg" style="max-width: 23rem !important;">
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put,:class => 'w-full bg-white px-5 pt-4 pb-4' }) do |f| %>
+          <div class="for-head mb-4" style="font-weight: 600;text-align: center;">Change Your Password</div>
+          <div class="forgot-text">Select your new password and enter it below.</div><hr>
+          <% if flash[:alert] %>
+						<% flash.each do |key, val| %>
+							<div class="py-2 h-6 error-msg text-center"><%= val %></div>
+						<% end %>
+					<% end %>
+          <div id="mismatch" class="h-6 text-center"></div>
+          <%= f.hidden_field :reset_password_token %>
+
+          <div class="mb-2">
+            <%= f.label :password, "New password", class: "text-gray-700 text-sm font-bold mb-2" %>
+            <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: " appearance-none w-full py-2 px-3 text-black leading-tight focus:outline-none", style: "background-color: #e6e6e6;" %>
+            <div id="password0" class="h-6"></div>
+          </div>
+
+          <div class="mb-2">
+            <%= f.label :password_confirmation, "Confirm new password", class: "text-gray-700 text-sm font-bold mb-2" %>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: " appearance-none w-full py-2 px-3 text-black leading-tight focus:outline-none", style: "background-color: #e6e6e6;" %>
+            <div id="password1" class="h-6"></div>
+          </div>
+
+          <div class="mb-2 w3-hide-small" style="margin-top:2em; visibility: hidden !important;">
+            <%= content_for :recaptcha_js do %>
+              <%= include_recaptcha_js %>
+            <% end %>
+          </div>
+
+          <div class="mb-2" >
+            <div class="flex-1" style="text-align:center;">
+              <%= button_tag(:class=>"text-white text-base py-2 px-4 button_green uppercase focus:outline-none", :style=> "border-radius:25px;background-color: #21B25B;") do %>
+                reset&emsp;<img src="/images/right-arrow-white.png" class="w-3 mt-2" style="float:right;">
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        <%= recaptcha_action('checkout') %>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="margin-top:5em;">&nbsp;</div>
+
+<script>
+  $(document).ready(function(){
+    $('button[type=submit]').on('click', function(){
+      var password = $('#user_password').val();
+      var confirmPassword = $('#user_password_confirmation').val();
+      if (password.length != 0 && confirmPassword.length != 0){
+        if (password != confirmPassword){
+          $('.error-msg').css('display', 'none');
+          $('#mismatch').html("<span class='error-msg'>Passwords are mismatched, enter a valid password.</span>")
+          return false;
+        }else{
+          return true;
+        }
+      }else{
+        $('.error-msg').css('display', 'none');
+        if (password.length == 0){
+          $('#user_password').css('border', '1px solid red');
+          $('#password0').html("<span class='error-msg'>Password field can't be blank.</span>")
+        }else{
+          if (password.length < 6){
+            $('.error-msg').css('display', 'none');
+            $('#password0').html("<span class='error-msg'>Password should be minimum 6 characters.</span>");
+            $('#user_password').focus();
+            return false;
+          }else{
+            $('.error-msg').css('display', 'none');
+            $('#user_password').css('border', 'none');
+          }
+        }
+
+        if (confirmPassword.length == 0){
+          $('#user_password_confirmation').css('border', '1px solid red');
+          $('#password1').html("<span class='error-msg'>Password field can't be blank.</span>")
+          return false;
+        }else{
+          if (confirmPassword.length < 6){
+            $('.error-msg').css('display', 'none');
+            $('#password1').html("<span class='error-msg'>Password should be minimum 6 characters.</span>");
+            $('#user_password_confirmation').focus();
+            return false;
+          }else{
+            $('.error-msg').css('display', 'none');
+            $('#user_password_confirmation').css('border', 'none');
+          }
+        }
+      }
+    });
+  });
+
+
+</script>

@@ -1,0 +1,7 @@
+https://www.positronx.io/angular-7-firebase-5-crud-operations-with-reactive-forms/
+
+
+https://www.positronx.io/angular-7-httpclient-http-service/
+
+
+https://stackblitz.com/edit/angular-crud-operation?file=app%2Fstudent%2Fstudent-interface.ts

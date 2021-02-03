@@ -1,0 +1,27 @@
+
+
+
+I have worked on
+
+1) Pollmonk:
+   i) Worked on Help page new design.
+  ii) Worked on implementation of tabs in survey design page.
+  iii)Worked on term and condition page.
+  iv) Worked on F.A.Q new design.
+   v) Worked on Ui issue and responsiveness.
+
+2)RCP
+  Worked on RCP Ui (20-24 pages) and ui issues.
+
+3)AtYourService
+  Worked on AYS html landing page and wordpress landing page.
+ 
+4)Zotler:
+  Worked on Zotler wordress landing page.
+
+5)Inspire India:
+  Worked on wordpress landing page.
+
+6)Chota CFO:
+  Worked on ui changes.
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+<section>
+  <img src="./assets/image/man.jpg">
+</section>
+  <article style="align-items: center;">
+    <form>
+      
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required>
+    
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+    
+        <button type="submit">Login</button>
+        <label>
+          <span class="psw">Forgot <a href="#">password?</a></span>
+        </label>
+      
+        </form>
+  </article>
+
+</body>
+</html>

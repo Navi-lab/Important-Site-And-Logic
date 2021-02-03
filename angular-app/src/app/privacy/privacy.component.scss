@@ -1,0 +1,10 @@
+.mob_view_row{
+    padding: 3rem 4rem; 
+    text-align: justify;
+}
+
+@media (min-width:300px) and (max-width:768px){
+	.mob_view_row{
+		padding: 2rem 2rem;
+	}
+}

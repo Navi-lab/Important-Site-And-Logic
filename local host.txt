@@ -1,0 +1,7 @@
+
+
+
+nginx-1.14.1:  nginx
+
+
+pollmonk-server:  rails server -e development

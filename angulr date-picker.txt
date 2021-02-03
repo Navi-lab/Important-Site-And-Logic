@@ -1,0 +1,26 @@
+              Datepicker in angular
+-----------------------------------------------------
+module.ts
+------------------------
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
+
+
+import[MatDatepickerModule,MatNativeDateModule,MatInputModule];
+
+.html
+----------------------
+<div fxLayoutAlign="center center">
+  <mat-form-field>
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>
+----------------------------------------------------------
+
+Reference vdo: https://www.youtube.com/watch?v=87fbLb7V9MA
+
+Datepicker with min and max date : https://stackblitz.com/edit/angular-min-max-datepicker-k24w82?file=app%2Fdatepicker-min-max-example.ts

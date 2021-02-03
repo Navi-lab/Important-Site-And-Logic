@@ -1,0 +1,19 @@
+<div fxLayout="column" fxFlex="50">
+  <img src="./assets/image/man.jpg" >
+</div>
+<div fxLayout="column" fxFlex="50" fxLayoutAlign="center center">
+  <form>
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+  
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+  
+      <button type="submit">Login</button>
+      <label>
+        <span class="psw">Forgot <a href="#">password?</a></span>
+      </label>
+    </div>
+      </form>
+    </div>

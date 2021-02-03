@@ -1,0 +1,20 @@
+ Angular Sidenav
+======================================
+ 
+1) https://stackblitz.com/edit/cdk-breakpoint-observer-so?file=app%2Fapp.component.html
+
+2) https://stackblitz.com/edit/angular-material-sidenav-generate-nav?file=src%2Fapp%2Fapp.component.html
+
+3)https://stackblitz.com/edit/angular-closing-side-nav-in-mobile?file=app/sidenav-responsive-example.html
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Material Sidenav with Half Close Mode
+====================================
+
+Link: https://www.youtube.com/watch?v=bxmPCBrPOY4
+
+source code: https://github.com/codewithsrini/AngularMaterialGettingStarted
+
+stackbliz:  https://stackblitz.com/edit/angular-7zyhcs?file=src%2Fapp%2Fservices%2Fsidenav.service.ts
+

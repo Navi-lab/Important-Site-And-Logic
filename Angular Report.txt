@@ -1,0 +1,207 @@
+                                       ANGULAR
+===========================================================================================
+npm: node package manager 
+----------------------------------
+Install the Angular CLI:
+    npm install -g @angular/cli
+
+Create a workspace and initial application
+     ng new my-app
+
+Serve the application
+      cd my-app
+      ng serve --open  
+
+Edit your first Angular component
+   i Open ./src/app/app.component.ts.
+
+   ii Change the title property from 'my-app' to 'My First Angular App'.
+===========================================================================================
+Adding bootstrap and jquery
+   npm install bootstrap --save
+   npm install jquery --save
+   npm install popper.js --save
+===========================================================================================
+To create component in angular
+   ng g c componentname
+===========================================================================================
+
+  
+Updating npm
+  npm  install -g npm 
+===========================================================================================
+Updating CLI
+  npm uninstall -g angular -cli @angular/cli
+  npm cache clean
+  npm install -g @angular/cli
+===========================================================================================
+To launch server
+   ng serve
+==========================================================================================
+Angular Flex
+-----------------------------------------------
+To add flex component to program
+Type cmd          npm i -s @angular/flex-layout @angular/cdk
+ i)goto prg.module.ts then import { FlexLayoutModule } from '@angular/flex-layout';
+ ii)add FlexLayoutModule in  imports:[
+                             FlexLayoutModule
+                                     ],
+----------------------------------------------------------------------------------
+Angular Materials
+------------------------------------------------------------------------------
+ng add @angular/material
+
+if any error : npm install --save @angular/material @angular/cdk
+then again npm install @angular/material
+==========================================================================================
+                           Flex Properties
+----------------------------------------------------------
+HTML Markup API	                              Allowed values (raw or interpolated)
+----- -------------- ---------------------------------  -------------
+layout	                                       row | column
+flex	                            Will grow and shrink as needed.
+flex-order	                    integer values from -20 to 20
+flex-offset	                    integer (increments of 5 for 0%->95%, 100%/3, 200%/3)
+layout-align	       start|center|end|space-around|space-between start|center|end|stretch
+layout-fill	         forces the layout element to fill its parent container.
+
+layout-wrap	         allows flex children to wrap within the container if the elements                           use more than 100%. 
+
+layout-nowrap	
+layout-margin	         adds margin around each flex child.
+layout-padding	         adds padding inside each flex child.
+show	
+hide
+fxLayoutGap              used to provide gap b/n flexlayout.
+fxFlexOrder              used tpo provide order.
+
+===========================================================================================
+Lifecycle Hooks
+----------------------------------------------------------------------
+         Hook	                             Purpose and Timing
+ngOnChanges()	                 Respond when Angular (re)sets data-bound input properties.
+
+ngOnInit()	Initialize the directive/component after Angular first displays the data-                bound properties and sets the directive/component's input properties.
+                Called once, after the first ngOnChanges().
+
+ngDoCheck()	Detect and act upon changes that Angular can't or won't detect on its own.
+
+
+ngAfterContentInit()	Respond after Angular projects external content into component's                            view / the view that a directive is in.Called once after the first                          ngDoCheck().
+
+ngAfterContentChecked()	   Respond after Angular checks the content projected into the                                 directive/component.Called after the ngAfterContentInit() and                            every subsequent ngDoCheck().
+
+ngAfterViewInit()           Respond after Angular initializes the component's views and                             child views / the view that a directive is in.Called once after the                          first ngAfterContentChecked().
+
+ngAfterViewChecked()	Respond after Angular checks the component's views and child views/                         the view that a directive is in.Called after the ngAfterViewInit()                         and every subsequent ngAfterContentChecked().
+
+ngOnDestroy()	         Cleanup just before Angular destroys the directive/component.                          Unsubscribe Observables and detach event handlers to avoid memory                          leaks.Called just before Angular destroys the directive/component.
+===========================================================================================
+Material Button
+------------------------------------
+To add material button---
+i) In app.module.ts
+    import { MatButtonModule } from '@angular/material';
+     
+     import:[
+       MatButtonModule
+           ],
+ii)In app.component.html
+    use <button mat-button>click</button>
+        mat-raised-button>
+        mat-flat-button>
+        mat-stroked-button>
+        mat-icon-button>
+        mat-fab>
+        mat-mini-fab>
+we can disable the ripple effect by using disableRipple in button tags.
+
+To add toggle effect to module
+
+i) import { MatButtonModule,MatButtonToggleModule } from '@angular/material';
+    
+     import:[
+       MatButtonModule
+       MatButtonToggleModule
+           ],
+ii)In app.component.html
+    use <mat-button-toggle>Toggle</mat-button-toggle>
+
+Toggle group
+ <mat-button-toggle-group #toggleGroup="matButtonToggleGroup">
+ <mat-button-toggle value="angular">Angular</<mat-button-toggle> 
+ </mat-button-toggle-group
+=========================================================================================
+Step to add routing modules
+ 
+app-routing.module.ts
+
+i)import {SamComponent } from './sam/sam.component';
+   
+    const routes: Routes = [
+       
+       { path: "sam", component:SamComponent},
+        
+                            ];
+-------------------------------------------------------------------------------------------
+In angular.json
+  
+ "styles": [           
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+                          ],
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/popper.js/dist/umd/popper.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ],
+            "es5BrowserSupport": true\
+-------------------------------------------------------------------------------------------
+ Scroll bar 
+==== ===== ====== =
+npm i -S ngx-scrollbar @angular/cdk
+
+Import NgScrollbarModule in your module
+
+import { NgScrollbarModule } from 'ngx-scrollbar';
+ 
+@NgModule({
+  imports: [
+    // ...
+    NgScrollbarModule
+  ]
+})
+In your template
+
+<ng-scrollbar>
+  <!-- Content -->
+</ng-scrollbar>
+------------------------------------------------------------------------------------------
+
+angular 8:
+
+  https://www.positronx.io/angular-8-autocomplete-tutorial-with-angular-material/
+
+
+------------------------------------------------------------------------------------------
+Angular Materials
+
+npm install --save @angular/material @angular/cdk @angular/animations
+
+npm install --save hammerjs
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+
+
+
+npm install --save-dev @angular-devkit/build-angular
+
+npm install -g @angular/cli@_choose_your_version
+
+------------------------------------------------------------------------------------------
+
+Command to generate materials
+
+ng generate @angular/material:material-nav --name="app-nav"

@@ -1,0 +1,1234 @@
+<div fxLayout="column" style="background: #e6e6e6; height: 100vh;" fxShow.xl fxShow.lg fxShow.md fxHide.sm fxHide.xs>
+	<nav class="flex items-center justify-between flex-wrap p-4" style="background: white; height: 12vh;">
+		<div class="flex items-center flex-shrink-0 text-white mr-6">
+			<a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+				(click)="evtEmit.loadDashboard()" style="cursor: pointer;">
+				<img class="w-40 h-12" src="/images/Logo_Black.png" alt="">
+			</a>
+		</div>
+		<div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+			<div class="text-sm lg:flex-grow" fxLayout="row" fxLayoutAlign="start center" style="margin-bottom: -2rem;">
+				<a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+					(click)="evtEmit.loadDashboard()" style="cursor: pointer; height: 7vh;">
+					Dashboard
+				</a>
+				<a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+					(click)="loadAnalytics()" style="cursor: pointer; height: 7vh;">
+					Analytics
+				</a>
+				<a class="block lg:inline-block lg:mt-0 w-32 margin-bottom: 7%; font-bold text-base text-center p-2 pt-0 text-black focus:outline-none hover:text-black border-btm"
+					(click)="evtEmit.loadTemplate()" style="cursor: pointer; height: 7vh;">
+					Templates
+				</a>
+			</div>
+			<div fxLayout="row" fxLayoutAlign="space-between center">
+				<button class="w-40 h-12 focus:outline-none mr-6" (click)="evtEmit.loadCreateSurvey()"
+					style="background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b; width: 14rem;">
+					Create Feedback Form
+				</button>
+				<a matTooltip="FAQ" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black" (click)="evtEmit.loadFaq()"
+					style="cursor: pointer; border-color: #ffffff40; padding-left: 2%; width: 4rem;">
+					<img src="/images/Dashboard_1.png" alt="" style="width: 20px; height:20px">
+
+				</a>
+				<a matTooltip="Bulk email upload" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black"
+					(click)="evtEmit.laodUpload()"
+					style="cursor: pointer; border-color: #ffffff40; padding-left: 2%; width: 4rem">
+					<img src="/images/Dashboard_2.png" alt="" style="width: 20px; height:20px">
+
+				</a>
+			</div>
+			<div fxLayout="row" fxLayoutAlign="center center">
+				<a class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-black"
+					style="cursor: pointer; border-color: #ffffff40; padding-left: 1%; width: 4rem;">
+					<span
+						style="width: 2.5rem; height: 2.5rem; padding: 0.6rem 0.8rem; border: 1px solid #21b25b; border-radius: 50%; background-color: #21b25b; color: white;">
+						{{user_first_letter}}
+					</span>
+				</a>
+				<div class="dropdown">
+					<button class="dropbtn font-semibold text-lg text-center p-2 pt-0 text-gray-600"
+						(click)="openDropDown()" style="text-transform: capitalize;">
+
+						{{user_name}}
+						<fa name="caret-down" class="down_arrow"></fa>
+					</button>
+					<div class="dropdown-content text-gray-600" id="#profile">
+						<a href="/users/sign_out">Logout</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="row banner-sec">
+		<div class="row">
+			<div class="bg_img"></div>
+		</div>
+		<div fxLayout="row" class="inner-div text-white">
+			<div fxFlex.xl="10" fxFlex.lg="10" fxFlex.md="5"></div>
+			<div fxFlex.xl="80" fxFlex.lg="80" fxFlex.md="90">
+				<div fxLayout="column" fxLayoutAlign="center center">
+						<div class="p-16" *ngIf="!isShwWelcome">
+							<p class="font-bold text-4xl pb-2 textAni">
+							Hi
+								<span style="color: #21b25b">{{user_name}},
+								</span>
+							</p>
+							<p class="text-sm text-white textAni">
+							Welcome To Pollmonk
+							</p>
+						</div>
+			      <div class="p-12" *ngIf="!isShwSurCreate">
+			         <p class="font-bold text-4xl pb-4">
+								Ready to get
+								<span style="color: #21b25b">started
+								</span>?
+							</p>
+				      <button class="w-40 h-12  focus:outline-none"
+							style="background-color: #21b25b; border-radius: 25px; border: 1px solid #21b25b; margin-left: 5rem; width: 14rem;"
+							(click)="evtEmit.loadCreateSurvey()">
+								Create Feedback Form
+							</button>
+			     </div>
+				</div>
+				<div fxLayout="column" *ngIf="!isRecentSurHidden">
+					<div fxLayout="row">
+						<div fxFlex="75">
+							<div class="bg-white h-24 card">
+								<div fxFlex="50" fxLayout="column" (click)="loadDraft()" style="cursor: pointer;">
+									<div fxLayout="row" fxLayoutAlign="start center" class="pt-4">
+										<div fxFlex="5"></div>
+										<div fxFlex="30" fxLayout="row" fxLayoutAlign="start center">
+											<p class="font-bold text-xl text-black">
+												Total Draft:
+											</p>
+										</div>
+										<div fxFlex="65"></div>
+									</div>
+									<div fxLayout="row" fxLayoutAlign="end center">
+										<div fxFlex="5"></div>
+										<div fxFlex="30"></div>
+										<div fxFlex="65" fxLayout="row" fxLayoutAlign="center center">
+											<p class="text-4xl text-black" style="color: #21b25b">
+												{{draftCount}}
+											</p>
+										</div>
+									</div>
+								</div>
+								<hr style="border: 1px solid #21b25b; height: 4rem; opacity: 0.3; margin: 1rem 0rem;">
+								<div fxFlex="50" fxLayout="column" style="cursor: pointer;" (click)="loadHistory()">
+									<div fxLayout="row" fxLayoutAlign="start center" class="pt-4">
+										<div fxFlex="5"></div>
+										<div fxFlex="40" fxLayout="row" fxLayoutAlign="start center">
+											<p class="font-bold text-xl text-black">
+												Total History:
+											</p>
+										</div>
+										<div fxFlex="55"></div>
+									</div>
+									<div fxLayout="row" fxLayoutAlign="end center">
+										<div fxFlex="5"></div>
+										<div fxFlex="40"></div>
+										<div fxFlex="55" fxLayout="row" fxLayoutAlign="center center">
+											<p class="text-4xl text-black" style="color: #21b25b">
+												{{historyCount}}
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="bg-white card mt-3 mb-3">
+								<div fxFlex="row" class="bg-white"
+									style="height: 25rem; box-shadow: 0 2px 10px -3px rgba(0,0,0,.1), 0 2px 6px -2px rgba(0,0,0,.05);">
+									<div fxFlex="2"></div>
+									<div fxFlex="96" fxLayout="column">
+										<p class="font-bold text-xl text-black pt-2 pb-2">
+											Recent Feedback Graph
+										</p>
+										<div fxLayout="column" *ngIf="!isRecentGraphHidden">
+											<div fxFlex="100">
+												<p class="text-base text-black font-semibold"
+													style="width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+													{{txt_rpt_sur_title}}
+												</p>
+											</div>
+											<div fxFlex="100" *ngIf="!isDonutChartHidden">
+												<mat-carousel #matCarousel [timings]="timings" [autoplay]="autoplay"
+													[interval]="interval" [loop]="loop" [hideArrows]="hideArrows"
+													[hideIndicators]="hideIndicators" [maxWidth]="maxWidth"
+													[proportion]="proportion" [useKeyboard]="useKeyboard"
+													[useMouseWheel]="useMouseWheel" [slides]="no_slides">
+													<mat-carousel-slide #matCarouselSlide
+														*ngFor="let ques of fushionNewData; index as i"
+														[overlayColor]="overlayColor" [hideOverlay]="hideOverlay">
+															<p class="text-base text-black"
+																style="width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+																<!--<span style="color: #21b25b" class="text-base">
+																	Q{{i+1}}
+																</span>.-->
+																<span [innerHtml]="ques.question"></span>
+															</p>
+															<hr style="border: 1px solid #21b25b; opacity: 0.3; margin: 0.75rem 0rem; margin-bottom: 0rem;">
+															<div fxLayout="row" fxLayoutAlign="center center">
+																<fusioncharts width="500" height="300" type="doughnut3d"
+																	[dataSource]="ques.dataSource">
+																</fusioncharts>
+															</div>
+													</mat-carousel-slide>
+												</mat-carousel>
+											</div>
+										</div>
+										<div fxLayout="column" fxLayoutAlign="center center" *ngIf="!isRecentImgHidden">
+											<img style="height: 20rem;" src="/images/Build_Survey.png" alt="">
+										</div>
+									</div>
+									<div fxFlex="2"></div>
+								</div>
+							</div>
+						</div>
+						<div fxFlex="1"></div>
+						<div fxFlex="24" class="bg-white card p-4 total-sur-card pt-0"
+							style="box-shadow: 0 2px 10px -3px rgba(0,0,0,.1), 0 2px 6px -2px rgba(0,0,0,.05); margin-bottom: 1rem;">
+							<p class="font-bold text-xl text-black pb-4 pt-4">
+								Recent Feedback Forms
+							</p>
+
+							<div fxLayout="row" fxLayoutAlign="center center">
+								<div fxLayout="column" fxLayoutAlign="center center">
+									<p class="text-4xl text-black pb-2" style="color: #21b25b">
+										{{surveyFeedCount}}
+									</p>
+									<p class="text-base text-black">
+										Total
+									</p>
+									<p class="text-base text-black">
+										Responses
+									</p>
+								</div>
+							</div>
+							<hr style="border: 1px solid #21b25b; opacity: 0.3; width: 100%; margin:1.2rem 0rem;">
+							<div fxLayout="column" fxLayoutAlign="center center">
+								<div fxLayout="row" fxLayoutAlign="space-between center"
+									class="w-40 h-10 focus:outline-none mt-3 mb-3"
+									style="background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b; cursor: pointer;"
+									(click)="loadShare(this.txt_rpt_sur_id)">
+									<div fxFlex="20"></div>
+									<div fxFlex="25" fxLayout="column" fxLayoutAlign="center center">
+										<img src="/images/share.png" class="w-4">
+									</div>
+									<div fxFlex="25" fxLayout="column" fxLayoutAlign="center center">
+										Share
+									</div>
+									<div fxFlex="30"></div>
+								</div>
+
+								<div fxLayout="row" fxLayoutAlign="space-between center"
+									class="w-40 h-10 focus:outline-none mt-3 mb-3"
+									style="background-color: #21b25b; color:white; border-radius: 25px; border: 1px solid #21b25b; cursor: pointer;"
+									(click)="loadAnalyse(this.txt_rpt_sur_id)">
+									<div fxFlex="15"></div>
+									<div fxFlex="20" fxLayout="column" fxLayoutAlign="center center">
+										<img src="/images/analysis_white.png" class="w-5">
+									</div>
+									<div fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
+										Analytics
+									</div>
+									<div fxFlex="15"></div>
+								</div>
+							</div>
+							<hr style="border: 1px solid #21b25b; opacity: 0.3; width: 100%; margin:1.2rem 0rem;">
+							<div fxLayout="row" fxLayoutAlign="center center">
+								<div fxLayout="column" fxLayoutAlign="center center">
+									<p class="text-base text-black">
+										Completed
+									</p>
+									<p class="text-base text-black pb-2">
+										Responses
+									</p>
+									<p class="text-4xl text-black" style="color: #21b25b">
+										{{surveyFeedCount}}
+									</p>
+								</div>
+								<!--<div fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
+									<p class="text-base text-black">
+										Total
+									</p>
+									<p class="text-base text-black pb-2">
+										Responses
+									</p>
+									<p class="text-4xl text-black" style="color: #21b25b">
+										{{surveyFeedCount}}
+									</p>
+								</div>-->
+							</div>
+						</div>
+					</div>
+					<div fxLayout="row">
+						<div fxFlex="75" class="bg-white card">
+							<div fxFlex="2"></div>
+							<div fxFlex="96" fxLayout="column">
+								<p class="font-bold text-xl pb-4 text-black pt-4">
+									Recent Feedback Forms
+								</p>
+								<p class="text-base text-gray-600 p-1 pb-4">
+									View your Pollmonk feedback results, and send your feedback Forms through social media, directly
+									from your dashboard.
+								</p>
+								<div>
+									<div fxLayout="row" fxLayoutAlign="start center"
+										style="border: 1px solid #e6e6e6; padding: 1rem; height: 5vh;">
+										<input type="text" placeholder="Search Survey" [(ngModel)]="txt_db_search"
+											(keyup)="getSearch($event)" class="text-base text-black w-full">
+										<span style="font-size: 1.5em; color: #e6e6e6;">
+											<i class="fa fa-search"></i>
+										</span>
+									</div>
+									<div class="mt-4" *ngFor="let sur of latestSurvey">
+										<fieldset style="background-color: #f6f6f6;padding-top: 0px;">
+											<div *ngIf="sur.status == 'Active'">
+												<legend class="text-xs p-2 red-bg"
+													style="padding: 0rem; position: absolute;">
+													DRAFT
+												</legend>
+											</div>
+											<div *ngIf="sur.status == 'Shared'">
+												<legend class="text-xs p-2 white-bg"
+													style="padding: 0rem; position: absolute;">
+													OPEN
+												</legend>
+											</div>
+											<div fxLayout="row" fxLayoutAlign="center center"
+												style="margin: 2rem 1rem 1rem 1rem;">
+												<div fxFlex="55">
+													<p class="font-semibold text-base text-black">
+														{{sur.survey_name}}
+													</p>
+													<p class="text-base text-black">
+														Created: {{sur.created_at | date: 'mediumDate'}}
+													</p>
+												</div>
+												<div fxFlex="15" class="text-center" *ngIf="sur.status == 'Active'"
+													style="border-right: 1px solid #21b25b;">
+													<div *ngIf="(sur.no_question)">
+														<p style="color: #21b25b" class="text-base text-black">
+															{{sur.no_question}}
+														</p>
+														<p class="text-sm text-black">
+															Questions
+														</p>
+													</div>
+													<div *ngIf="(! sur.no_question)">
+														<p style="color: #21b25b" class="text-base text-black">
+															0
+														</p>
+														<p class="text-sm text-black">
+															Questions
+														</p>
+													</div>
+												</div>
+												<div fxFlex="15" class="text-center" (click)="evtEmit.loadDesign(sur.id)"
+													style="border-right: 1px solid #21b25b; cursor: pointer;"
+													*ngIf="sur.status == 'Active'">
+													<mat-icon svgIcon="edit"
+														style="cursor: pointer; width: 18px; height: 18px; color: black">
+													</mat-icon>
+													<p class="text-sm text-black" style="cursor: pointer;">
+														Edit
+													</p>
+												</div>
+												<div fxFlex="15" class="text-center" style="cursor: pointer;"
+													(click)="deleteSurvey(sur.id)" *ngIf="sur.status == 'Active'">
+													<mat-icon svgIcon="delete"
+														style="cursor: pointer; width: 18px; height: 18px; color: black">
+													</mat-icon>
+													<p class="text-sm text-black" style="cursor: pointer;">
+														Delete
+													</p>
+												</div>
+												<div fxFlex="15" class="text-center" *ngIf="sur.status == 'Shared'"
+													style="border-right: 1px solid #21b25b;">
+													<div *ngIf="(sur.no_question)">
+														<p style="color: #21b25b" class="text-base text-black">
+															{{sur.no_question}}
+														</p>
+														<p class="text-sm text-black">
+															Questions
+														</p>
+													</div>
+													<div *ngIf="(! sur.no_question)">
+														<p style="color: #21b25b" class="text-base text-black">
+															0
+														</p>
+														<p class="text-sm text-black">
+															Questions
+														</p>
+													</div>
+												</div>
+												<div fxFlex="15" class="text-center"
+													style="border-right: 1px solid #21b25b; cursor: pointer;"
+													(click)="loadAnalyse(sur.id, sur.survey_name)"
+													*ngIf="sur.status == 'Shared'">
+													<mat-icon svgIcon="analyse"
+														style="cursor: pointer; width: 18px; height: 18px; color: black">
+													</mat-icon>
+													<p class="text-sm text-black" style="cursor: pointer;">
+														Analyze
+													</p>
+												</div>
+												<div fxFlex="15" class="text-center"
+													style="border-right: 0px solid #21b25b; cursor: pointer;"
+													(click)="loadShare(sur.id)" *ngIf="sur.status == 'Shared'">
+													<mat-icon svgIcon="share"
+														style="cursor: pointer; width: 18px; height: 18px; color:black">
+													</mat-icon>
+													<p class="text-sm text-black" style="cursor: pointer;">
+														Share
+													</p>
+												</div>
+											</div>
+										</fieldset>
+									</div>
+								</div>
+							</div>
+							<div fxFlex="2"></div>
+						</div>
+						<div fxFlex="1"></div>
+						<div fxFlex="24">
+							<div class="bg-white card p-5 quick-poll"
+								style="box-shadow: 0 2px 10px -3px rgba(0,0,0,.1), 0 2px 6px -2px rgba(0,0,0,.05); height: 45vh">
+								<p class="font-bold text-xl pb-4 text-black p-1" style="border-bottom: 1px solid #21b25b;">
+									Quick Poll
+								</p>
+								<p class="text-base text-black p-1 pt-2 pb-2">
+									Creating Feedback Forms from Templates
+								</p>
+								<p class="text-base text-gray-600 p-1 pb-2">
+									Get started with a feedback form template. You can still customize the feedback form and questions
+									when starting from a template—add or edit questions, delete questions, and change the
+									look and feel of the feedback form.
+								</p>
+								<div class="text-center mt-2 xl:mt-2 xl:text-center">
+									<button class="w-40 h-10  focus:outline-none" (click)="evtEmit.loadTemplate()"
+										style="background-color: #21b25b; border-radius: 25px; border: 1px solid #21b25b">
+										Templates
+									</button>
+								</div>
+							</div>
+							<div class="bg-white card mt-4 create-survey"
+								style="box-shadow: 0 2px 10px -3px rgba(0,0,0,.1), 0 2px 6px -2px rgba(0,0,0,.05); height: 60vh">
+								<div fxLayout="column" fxLayoutAlign="center center"
+									style="background-color: #1c2a33;  height: 10rem;padding: 2rem; padding-top: 4rem;">
+									<img src="/images/How_To_C.png" alt="" style="width: 100%; height: 12rem;">
+								</div>
+								<p class="text-base text-gray-600  px-8 pb-2" style="padding-top: 0.5rem;">
+									Click Create Feedback Form and choose one of the
+									options: Start from scratch, copy an existing feedback form, search feedback forms and templates, or
+									use built it for me.
+								</p>
+								<div class="text-center mt-2 lg:mt-2 lg:text-center">
+									<button class="w-40 h-10  focus:outline-none" (click)="evtEmit.loadCreateSurvey()"
+										style="background-color: #21b25b; border-radius: 25px; border: 1px solid #21b25b; width: 14rem;">
+										Create Feedback Form
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div *ngIf="!isFirstLogHidden">
+					<div fxLayout="row" class="mb-3">
+
+						<div fxFlex="70" class="bg-white card">
+							<div fxFlex="0"></div>
+							<div fxFlex="100" fxLayout="column" style="background: #000000de;">
+								<!--<video controls autoplay *ngIf="!isShwVideo"
+								(click)="loadImage()" poster="/videos/Banner.jpg">
+								  <source src="/videos/pollmonk_db.mp4" type="video/mp4">
+								</video>
+								<img src="/videos/Banner.jpg" alt="" *ngIf="!isShwImage"
+								(click)="loadVideo()">-->
+								<video controls autoplay poster="/videos/Banner.jpg" style="cursor: pointer;">
+								  <source src="/videos/pollmonk_db.mp4" type="video/mp4">
+								</video>
+							</div>
+							<div fxFlex="0"></div>
+						</div>
+						<div fxFlex="1"></div>
+						<div fxFlex="29">
+							<div class="bg-white card p-5 new_quick-poll"
+								style="box-shadow: 0 2px 10px -3px rgba(0,0,0,.1), 0 2px 6px -2px rgba(0,0,0,.05); height: 55vh; padding: 1.75rem;">
+								<p class="font-bold text-xl pb-4 text-black" style="border-bottom: 1px solid #21b25b; padding: 0.75rem">
+									Quick Poll
+								</p>
+								<p class="text-base text-black p-1 pt-2 pb-2">
+									Creating Feedback Forms from Templates
+								</p>
+								<p class="text-base text-gray-600 p-1 pb-2">
+									Get started with a feedback form template. You can still customize the feedback form and questions
+									when starting from a template—add or edit questions, delete questions, and change the
+									look and feel of the feedback form.
+								</p>
+								<div class="text-center mt-2 xl:mt-2 xl:text-center">
+									<button class="w-40 h-10  focus:outline-none" (click)="evtEmit.loadTemplate()"
+										style="background-color: #21b25b; border-radius: 25px; border: 1px solid #21b25b">
+										Templates
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div fxLayout="row">
+						<div fxFlex="70" class="bg-white card">
+							<div fxFlex="row" class="bg-white"
+								style=" box-shadow: 0 2px 10px -3px rgba(0,0,0,.1), 0 2px 6px -2px rgba(0,0,0,.05);">
+								<div fxFlex="2"></div>
+								<div fxFlex="96" fxLayout="column">
+									<p class="font-bold text-xl text-black pt-2 pb-2">
+										Recent Feedback Graph
+									</p>
+									<div fxLayout="column" fxLayoutAlign="center center">
+										<img style="height: 18rem;" src="/images/Build_Survey.png" alt="">
+									</div>
+								</div>
+								<div fxFlex="2"></div>
+							</div>
+						</div>
+						<div fxFlex="1"></div>
+						<div fxFlex="29">
+							<div class="bg-white card new_create-survey"
+								style="box-shadow: 0 2px 10px -3px rgba(0,0,0,.1), 0 2px 6px -2px rgba(0,0,0,.05); height: 50vh">
+								<div fxLayout="column" fxLayoutAlign="center center"
+									style="background-color: #1c2a33;  height: 9rem;padding: 2rem; padding-top: 4rem;">
+									<img src="/images/How_To_C.png" alt="" style="width: 100%; height: 8rem;">
+								</div>
+								<p class="text-base text-gray-600 p-4 px-8 pb-4" style="padding-top: 0.5rem;">
+									Click Create Feedback Form and choose one of the
+									options: Start from scratch, copy an existing feedback form, search feedback forms and templates, or
+									use built it for me.
+								</p>
+								<div class="text-center mt-2 lg:mt-2 lg:text-center">
+									<button class="w-40 h-10  focus:outline-none" (click)="evtEmit.loadCreateSurvey()"
+										style="background-color: #21b25b; border-radius: 25px; border: 1px solid #21b25b; width: 14rem;">
+										Create Feedback Form
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div fxLayout="row" class="py-8 text-black">
+					<div fxFlex="70">
+						<p class="text-xs text-left m-2" style="margin-left: 0px !important">
+							Copyright &copy; 2013-2019 Sun Plus Software Technologies Pvt Ltd. All rights reserved.
+						</p>
+					</div>
+					<div fxFlex="30" class="text-right">
+						<a (click)="evtEmit.loadPrivatePolicy()" class="pr-2 pl-2 text-xs"
+							style="cursor: pointer; border-right: 1px solid #21b25b;">
+							Cookies & Privacy
+						</a>
+						<a (click)="evtEmit.loadFaq()" class="pr-2 pl-2 text-xs" style="cursor: pointer;">
+							Help
+						</a>
+					</div>
+				</div>
+			</div>
+			<div fxFlex.xl="10" fxFlex.lg="10" fxFlex.md="5"></div>
+		</div>
+	</div>
+	<div id="mySidenav1" class="mySidenav1">
+		<div style=" margin-top: 2rem">
+			<a (click)="evtEmit.loadFaq()" style="background-color: #1c2a33; color:white; cursor: pointer;"
+				class="text-sm">FAQ</a>
+		</div>
+	</div>
+	<div class="popup" *ngIf="!isShowModal" fxLayout="column" fxLayoutAlign="center center" style="width: 59vw;">
+		<div class="w3-modal-content w-full" style="background-color: white !important; z-index: 1; margin: 0px 0px !important;">
+			<div class="w-full">
+				<span class="w3-button rounded" (click)="closePopUp()"
+					style="background: #21b25b; padding: 5px 11px;!important; border-radius: 50%; right: -32px; top: -19px; position: absolute;">&times;</span>
+				<div fxLayout="row">
+					<div fxFlex="50">
+						<div class="w-full">
+							<div fxLayout="row" fxLayoutAlign="space-between center" class="m-8">
+								<div fxFlex="5"></div>
+								<div fxFlex="90">
+									<div class="mb-8">
+										<p class="font-bold text-2xl  text-black mb-2">
+											Name Your Survey
+										</p>
+										<hr>
+										<input
+											class="appearance-none w-full py-2 px-3 text-base text-black focus:outline-none"
+											type="text" [(ngModel)]="txt_survey_name" style="background-color: #f6f6f6;"
+											placeholder="Survey Name" maxlength="50">
+										<span class="text-xs text-red-300 pt-1 mb-8" style="float: right;">
+											{{txt_survey_name.length}}/50
+										</span>
+									</div>
+									<div class="mb-8">
+										<select [(ngModel)]="sel_sur_category"
+											class="text-base py-2 px-3 text-black focus:outline-none"
+											style="width: 100%; height: 35px; max-height: 35px; background-color: #f6f6f6;">
+											<option value="Select Category" selected>Select Category</option>
+											<option *ngFor="let cat of surCategoryList" [value]="cat.survey_category">
+												{{cat.survey_category}}
+											</option>
+										</select>
+									</div>
+									<div class="mb-8">
+										<input
+											class="appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+											type="date" name="dateofbirth" id="dateofbirth" placeholder="Survey expire date"
+											[min]="minDate" style="background-color: #f6f6f6;" [(ngModel)]="dtp_sur_expire" onkeydown="return false">
+										<span class="text-xs text-red-300 pt-1 mb-8">
+											*Survey expire date
+										</span>
+									</div>
+									<div class="flex items-center mb-6">
+										<div class="flex-1 text-center">
+										</div>
+										<div class="flex-1 text-center">
+											<div fxLayout="column" fxLayoutAlign="start start">
+												<div *ngIf="!isUploadHidden">
+													<input style="display: none; cursor: pointer;" type="file"
+														(change)="onFileChanged($event)" #fileInput accept=".png, .jpg">
+													<button
+														class="text-black text-base py-2 px-4 rounded-lg m-2 h-12 w-48 focus:outline-none"
+														style="border:1px solid #21b25b; border-radius: 25px" type="button"
+														(click)="fileInput.click()">
+														Upload Logo
+													</button>
+													<p class="text-xs text-black" style="padding-left: 0.4rem">(Image format
+														in .png, .jpg)
+													</p>
+												</div>
+												<div *ngIf="!isLogoHidden">
+													<div fxLayout="row" class="card w-64 mb-2 bg-white p-2"
+														style="min-height: 2rem; box-shadow: 0 2px 10px -3px rgba(0,0,0,.1), 0 2px 6px -2px rgba(0,0,0,.05);">
+														<div fxFlex="90" fxLayout="row" fxLayoutAlign="start cenetr">
+															<p class="text-base text-black">
+																{{up_file_name}}
+															</p>
+														</div>
+														<div fxFlex="10">
+															<mat-icon (click)="removeLog(fileInput)" svgIcon="cross"
+																class="mt-1"
+																style="width: 12px; height: 12px; cursor: pointer;">
+
+															</mat-icon>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="flex-1 text-center">
+
+										</div>
+									</div>
+									<div class="flex items-center">
+										<div class="flex-1 text-center">
+
+										</div>
+										<div class="flex-1 text-center">
+											<button
+												class="text-white text-base py-2 px-4 rounded-lg m-2 h-12 w-48 focus:outline-none"
+												style="background-color: #21b25b; border-radius: 25px;" type="button"
+												(click)="createSurvey();">
+												Create Survey
+											</button>
+										</div>
+										<div class="flex-1 text-center">
+
+										</div>
+									</div>
+								</div>
+								<div fxFlex="5"></div>
+							</div>
+						</div>
+					</div>
+					<div fxFlex="50" style="position: relative;">
+						<div class="popup-bg-img"></div>
+						<div class="popup-info">
+							<p class="font-bold text-3xl  text-white">Send your survey to consumers in over
+								<span style="color: #21b25b">100 countries</span></p>
+							<hr>
+							<p class="text-base text-white">See how with our global Pollmonk Audience panel.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div fxLayout="column" style="background: #e6e6e6;" fxHide.xl fxHide.lg fxHide.md fxShow.sm fxShow.xs>
+	<div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;" id="mySidebar">
+		<span style="float: right;font-size:24px;padding-right:1rem; cursor: pointer;"(click)="evtEmit.w3_close()">&nbsp; &emsp; &nbsp; &nbsp;&times;</span>
+		<div class="w3-bar-item w3-button w3-large" 
+			style="text-align: center;color: #21b25b;">{{user_name}} </div>
+		<a (click)="evtEmit.loadDashboard()" class="w3-bar-item w3-button"
+			style="text-align: center; padding: 0.5rem 2rem;">
+			Dashboard
+		</a>
+		<a (click)="loadAnalytics()" class="w3-bar-item w3-button" style="text-align: center; padding: 0.5rem 2rem;">
+			Analytics
+		</a>
+		<a (click)="evtEmit.loadTemplate()" class="w3-bar-item w3-button"
+	      style="text-align: center; padding: 0.5rem 2rem;">
+	      Template
+	    </a>
+		<a (click)="evtEmit.loadFaq()" class="w3-bar-item w3-button" style="text-align: center; padding: 0.5rem 2rem;">
+			FAQ
+		</a>
+		<a class="w3-bar-item w3-button" style="text-align: center; padding: 0.5rem 2rem;" (click)="loadSurvey()">
+			Create Survey
+		</a>
+		<a (click)="evtEmit.laodUpload();" class="w3-bar-item" style="text-align: center; padding: 0.5rem 2rem;">
+			Bulk Email Upload
+		</a>
+		<a href="/users/sign_out" class="w3-bar-item w3-button"
+			style="text-align: center; padding: 0.5rem 2rem;">Logout</a>
+	</div>
+	<div fxLayout="row" fxLayoutAlign="space-between center" class="bg-white" style="height: 15vh;">
+		<div fxFlex="2"></div>
+		<div fxFlex="16">
+			<button class="w3-button w3-white w3-xlarge" (click)="evtEmit.w3_open()">&#9776;</button>
+		</div>
+		<div fxFlex="84" fxLayout="row" fxLayoutAlign="center center">
+			<a class="block lg:inline-block lg:mt-0 text-teal-200 hover:text-white" (click)="evtEmit.loadDashboard()"
+				style="cursor: pointer;">
+				<img class="w-40 h-12" src="/images/Logo_Black.png" alt="">
+			</a>
+		</div>
+		<div fxFlex="2"></div>
+	</div>
+
+	<div class="row banner-sec">
+		<div class="row">
+			<div class="bg_img mob_bg_img"></div>
+			<div fxLayout="row" class="inner-div text-white">
+				<div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="5"></div>
+				<div fxFlex.xl="70" fxFlex.lg="70" fxFlex.md="90" class="banner-info mob-banner-info">
+					<div class="text-center pb-8">
+						<div>
+							<p class="font-bold text-4xl  pt-4">
+								Hi
+								<span style="color: #21b25b; text-transform: capitalize;">
+									{{user_name}},
+								</span>
+							</p>
+						</div>
+						<div>
+							<p class="text-sm text-white">
+								Welcome To Dashboard
+							</p>
+						</div>
+						<div class="h-16 pt-4" fxLayout="column" fxLayoutAlign="center center" style="display:inline"
+						>
+						<button class="w-40 h-12  focus:outline-none"
+							style="background-color: #21b25b; border-radius: 25px; border: 1px solid #21b25b"
+							(click)="loadSurvey()">
+							Create Survey
+						</button>
+
+					</div>
+					</div>
+					<div fxLayout="row" fxLayoutAlign="center center" style="padding-top: 1rem;">
+						<div fxFlex="5"></div>
+						<div fxFlex="90" fxLayout="column" fxLayoutAlign="center center" *ngIf="!isRecentSurHidden">
+
+							<div fxLayout="row" fxLayoutAlign="center center"
+								class="bg-white h-24 overflow-hidden shadow-lg rounded card m-2" (click)="loadDraft()"
+								style="cursor: pointer;">
+								<div fxFlex="60" fxLayout="row" fxLayoutAlign="center center">
+									<p class="font-semibold text-lg text-center p-2 pt-0 text-gray-600">Total Draft</p>
+								</div>
+								<div fxFlex="40" fxLayout="row" fxLayoutAlign="center center" (click)="loadSurvey()">
+									<p class="font-bold text-3xl " style="color: #21b25b">{{draftCount}}</p>
+								</div>
+							</div>
+							<div fxLayout="row" fxLayoutAlign="center center"
+								class="bg-white h-24 overflow-hidden shadow-lg rounded card m-2" (click)="loadHistory()"
+								style="cursor: pointer;">
+								<div fxFlex="60" fxLayout="row" fxLayoutAlign="center center">
+									<p class="font-semibold text-lg text-center p-2 pt-0 text-gray-600">Total History
+									</p>
+								</div>
+								<div fxFlex="40" fxLayout="row" fxLayoutAlign="center center" (click)="loadSurvey()">
+									<p class="font-bold text-3xl " style="color: #21b25b">{{historyCount}}</p>
+								</div>
+							</div>
+							<div fxLayout="row">
+								<div fxFlex="100" class="bg-white  card">
+									<div fxFlex="2"></div>
+									<div fxFlex="96" fxLayout="column" style="margin-bottom: 1rem;">
+										<p class="font-bold text-xl pb-4 text-black pt-4">
+											Recent Survey
+										</p>
+										<p class="text-base text-gray-600 p-1 pb-4">
+											View your Pollmonk survey results, and send your survey through social
+											media, directly
+											from your dashboard.
+										</p>
+										<div *ngIf="!isRecentSurHidden">
+											<div fxLayout="row" fxLayoutAlign="start center"
+												style="border: 1px solid #e6e6e6; padding: 1rem; height: 5vh;">
+												<input type="text" placeholder="Search Survey"
+													[(ngModel)]="txt_db_search" (keyup)="getSearch($event)"
+													class="text-base text-black w-full">
+												<span style="font-size: 1.5em; color: #e6e6e6;">
+													<i class="fa fa-search"></i>
+												</span>
+											</div>
+											<div class="mt-4" *ngFor="let sur of latestSurvey">
+												<fieldset style="background-color: #f6f6f6;padding-top: 0px;">
+													<div *ngIf="sur.status == 'Active'">
+														<legend class="text-xs p-2 red-bg"
+															style="padding: 0rem; position: absolute;">
+															DRAFT
+														</legend>
+													</div>
+													<div *ngIf="sur.status == 'Shared'">
+														<legend class="text-xs p-2 white-bg"
+															style="padding: 0rem; position: absolute;">
+															OPEN
+														</legend>
+													</div>
+													<div fxLayout="row" fxLayoutAlign="center center"
+														style="margin: 2rem 1rem 0.5rem 1rem;">
+														<div fxFlex="100">
+															<p class="font-semibold text-base text-black">
+																{{sur.survey_name}}
+															</p>
+															<p class="text-base text-black">
+																Created: {{sur.created_at | date: 'mediumDate'}}
+															</p>
+														</div>
+													</div>
+													<div fxLayout="row" fxLayoutAlign="start center">
+														<div fxFlex="40" class="text-center"
+															*ngIf="sur.status == 'Active'"
+															style="border-right: 1px solid #21b25b;">
+															<div *ngIf="(sur.no_question)">
+																<p class="text-sm text-black"
+																	style="text-align:left; padding-left: 1rem;">
+																	Questions: {{sur.no_question}}
+																</p>
+
+
+															</div>
+															<div *ngIf="(! sur.no_question)">
+																<p class="text-sm text-black">
+																	Questions: 0
+																</p>
+
+															</div>
+														</div>
+														<div fxFlex="30" class="text-center"
+															(click)="evtEmit.loadDesign(sur.id)"
+															style="border-right: 1px solid #21b25b; cursor: pointer;"
+															*ngIf="sur.status == 'Active'">
+															<mat-icon svgIcon="edit"
+																style="cursor: pointer; width: 18px; height: 18px; color: black">
+															</mat-icon>
+
+														</div>
+														<div fxFlex="30" class="text-center" style="cursor: pointer;"
+															(click)="deleteSurvey(sur.id)"
+															*ngIf="sur.status == 'Active'">
+															<mat-icon svgIcon="delete"
+																style="cursor: pointer; width: 18px; height: 18px; color: black">
+															</mat-icon>
+
+														</div>
+														<div fxFlex="40" class="text-center"
+															*ngIf="sur.status == 'Shared'"
+															style="border-right: 1px solid #21b25b;">
+															<div *ngIf="(sur.no_question)">
+																<p class="text-sm text-black"
+																	style="text-align:left; padding-left: 1rem;">
+																	Questions: {{sur.no_question}}
+																</p>
+
+															</div>
+															<div *ngIf="(! sur.no_question)">
+																<p class="text-sm text-black">
+																	Questions: 0
+																</p>
+
+															</div>
+														</div>
+														<div fxFlex="30" class="text-center"
+															style="border-right: 1px solid #21b25b; cursor: pointer;"
+															(click)="loadAnalyse(sur.id, sur.survey_name)"
+															*ngIf="sur.status == 'Shared'">
+															<mat-icon svgIcon="analyse"
+																style="cursor: pointer; width: 18px; height: 18px; color: black">
+															</mat-icon>
+
+														</div>
+														<div fxFlex="30" class="text-center"
+															style="border-right: 0px solid #21b25b; cursor: pointer;"
+															(click)="loadShare(sur.id)" *ngIf="sur.status == 'Shared'">
+															<mat-icon svgIcon="share"
+																style="cursor: pointer; width: 18px; height: 18px; color:black">
+															</mat-icon>
+
+														</div>
+													</div>
+												</fieldset>
+											</div>
+										</div>
+
+										<div fxFlex="100" fxLayout="column" fxLayoutAlign="center center"
+											*ngIf="!isShwNewUsr">
+											<img src="/images/New_User_Recent.png" alt="" class="p-16 pt-8"
+												style="width: 100%;">
+										</div>
+									</div>
+									<div fxFlex="2"></div>
+								</div>
+
+
+							</div>
+
+						</div>
+						<div fxFlex="90" fxLayout="column" fxLayoutAlign="center center" *ngIf="!isFirstLogHidden">
+							<div fxLayout="column" class="mb-4">
+
+								<div fxFlex="100" class="bg-white card" style="margin-bottom: 1rem;">
+									<div fxFlex="100" fxLayout="column" class="p-5">
+										<p class="font-bold text-xl pb-4 text-black">
+											How to Create a Survey
+										</p>
+										<p class="text-base text-gray-600 p-1 pb-4">
+											Pollmonk makes it easy to create a survey from scratch or from a template.
+											Follow the steps below to get started.
+										</p>
+										<div *ngIf="!isShwRecentSur">
+											<div fxLayout="row" fxLayoutAlign="start center"
+												style="border: 1px solid #e6e6e6; padding: 1rem; height: 5vh;">
+												<input type="text" placeholder="Search Survey"
+													[(ngModel)]="txt_db_search" (keyup)="getSearch($event)"
+													class="text-base text-black w-full">
+												<span style="font-size: 1.5em; color: #e6e6e6;">
+													<i class="fa fa-search"></i>
+												</span>
+											</div>
+											<div class="mt-4" *ngFor="let sur of latestSurvey">
+												<fieldset style="background-color: #f6f6f6;padding-top: 0px;">
+													<div *ngIf="sur.status == 'Active'">
+														<legend class="text-xs p-2 red-bg"
+															style="padding: 0rem; position: absolute;">
+															DRAFT
+														</legend>
+													</div>
+													<div *ngIf="sur.status == 'Shared'">
+														<legend class="text-xs p-2 white-bg"
+															style="padding: 0rem; position: absolute;">
+															OPEN
+														</legend>
+													</div>
+													<div fxLayout="row" fxLayoutAlign="center center"
+														style="margin: 2rem 1rem 1rem 1rem;">
+														<div fxFlex="35">
+															<p class="font-semibold text-base text-black">
+																{{sur.survey_name}}
+															</p>
+															<p class="text-base text-black">
+																Created: {{sur.created_at | date: 'mediumDate'}}
+															</p>
+														</div>
+														<div fxFlex="20" class="text-center"
+															*ngIf="sur.status == 'Active'"
+															style="border-right: 1px solid #21b25b;">
+															<div *ngIf="(sur.no_question)">
+																<p style="color: #21b25b" class="text-base text-black">
+																	{{sur.no_question}}
+																</p>
+																<p class="text-sm text-black">
+																	Questions
+																</p>
+															</div>
+															<div *ngIf="(! sur.no_question)">
+																<p style="color: #21b25b" class="text-base text-black">
+																	0
+																</p>
+																<p class="text-sm text-black">
+																	Questions
+																</p>
+															</div>
+														</div>
+														<div fxFlex="25" class="text-center"
+															(click)="evtEmit.loadDesign(sur.id)"
+															style="border-right: 1px solid #21b25b; cursor: pointer;"
+															*ngIf="sur.status == 'Active'">
+															<mat-icon svgIcon="edit"
+																style="cursor: pointer; width: 18px; height: 18px; color: black">
+															</mat-icon>
+															<p class="text-sm text-black" style="cursor: pointer;">
+																Edit
+															</p>
+														</div>
+														<div fxFlex="20" class="text-center" style="cursor: pointer;"
+															(click)="deleteSurvey(sur.id)"
+															*ngIf="sur.status == 'Active'">
+															<mat-icon svgIcon="delete"
+																style="cursor: pointer; width: 18px; height: 18px; color: black">
+															</mat-icon>
+															<p class="text-sm text-black" style="cursor: pointer;">
+																Delete
+															</p>
+														</div>
+														<div fxFlex="20" class="text-center"
+															*ngIf="sur.status == 'Shared'"
+															style="border-right: 1px solid #21b25b;">
+															<div *ngIf="(sur.no_question)">
+																<p style="color: #21b25b" class="text-base text-black">
+																	{{sur.no_question}}
+																</p>
+																<p class="text-sm text-black">
+																	Questions
+																</p>
+															</div>
+															<div *ngIf="(! sur.no_question)">
+																<p style="color: #21b25b" class="text-base text-black">
+																	0
+																</p>
+																<p class="text-sm text-black">
+																	Questions
+																</p>
+															</div>
+														</div>
+														<div fxFlex="25" class="text-center"
+															style="border-right: 1px solid #21b25b; cursor: pointer;"
+															(click)="loadAnalyse(sur.id, sur.survey_name)"
+															*ngIf="sur.status == 'Shared'">
+															<mat-icon svgIcon="analyse"
+																style="cursor: pointer; width: 18px; height: 18px; color: black">
+															</mat-icon>
+															<p class="text-sm text-black" style="cursor: pointer;">
+																Analyze
+															</p>
+														</div>
+														<div fxFlex="20" class="text-center"
+															style="border-right: 0px solid #21b25b; cursor: pointer;"
+															(click)="loadShare(sur.id)" *ngIf="sur.status == 'Shared'">
+															<mat-icon svgIcon="share"
+																style="cursor: pointer; width: 18px; height: 18px; color:black">
+															</mat-icon>
+															<p class="text-sm text-black" style="cursor: pointer;">
+																Share
+															</p>
+														</div>
+														<!--<div fxFlex="20" class="text-center" style="cursor: pointer;"
+															*ngIf="sur.status == 'Shared'">
+															<mat-icon svgIcon="edit"
+																style="cursor: pointer; width: 18px; height: 18px; color: black">
+															</mat-icon>
+															<p class="text-sm text-black" style="cursor: pointer;">Edit</p>
+														</div>-->
+													</div>
+												</fieldset>
+											</div>
+										</div>
+										<div fxFlex="100" fxLayout="column" *ngIf="!isShwNewUsr">
+											<p class="font-bold text-xl pb-4 text-black pt-4">To create and send a
+												survey:</p>
+											<ol class="text-black text-base"
+												style="list-style: disc; padding-left: 2rem;">
+												<li class="pb-2">Create a Survey</li>
+												<li class="pb-2">Add Questions</li>
+												<li class="pb-2">Customize the Design</li>
+												<li>Preview & Send Your Survey</li>
+											</ol>
+										</div>
+									</div>
+								</div>
+
+								<div fxFlex="100">
+									<div class="bg-white card p-5 quick-poll"
+										style="box-shadow: 0 2px 10px -3px rgba(0,0,0,.1), 0 2px 6px -2px rgba(0,0,0,.05);">
+										<p class="font-bold text-xl pb-4 text-black p-1"
+											style="border-bottom: 1px solid #21b25b;">
+											Quick Poll
+										</p>
+										<p class="text-base text-black p-1 pt-2 pb-2">
+											Creating Surveys from Templates
+										</p>
+										<p class="text-base text-gray-600 p-1 pb-2">
+											Get started with a survey template. You can still customize the survey and
+											questions
+											when starting from a template—add or edit questions, delete questions, and
+											change the
+											look and feel of the survey.
+										</p>
+										<div class="text-center mt-2 xl:mt-2 xl:text-center">
+											<button class="w-40 h-10  focus:outline-none"
+												(click)="evtEmit.loadTemplate()"
+												style="background-color: #21b25b; border-radius: 25px; border: 1px solid #21b25b">
+												Templates
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div fxLayout="column">
+								<div fxFlex="100">
+									<div class="bg-white card create-survey"
+										style="box-shadow: 0 2px 10px -3px rgba(0,0,0,.1), 0 2px 6px -2px rgba(0,0,0,.05);">
+										<div fxLayout="column" fxLayoutAlign="center center"
+											style="background-color: #1c2a33;  height: 9rem;padding: 2rem; padding-top: 4rem;">
+											<img src="/images/How_To_C.png" alt="" style="width: 100%; height: 8rem;">
+										</div>
+										<p class="text-base text-gray-600 p-4 px-8 pb-2" style="padding-top: 1rem;">
+											Click Create Survey in the upper-right corner of your account and choose one
+											of the
+											options: Start from scratch, copy an existing survey, search surveys and
+											templates, or
+											use built it for me.
+										</p>
+										<div class="text-center mt-2 lg:mt-2 lg:text-center" style="padding-bottom: 1rem;">
+											<button class="w-40 h-10  focus:outline-none"
+												(click)="scrollToElement(target)"
+												style="background-color: #21b25b; border-radius: 25px; border: 1px solid #21b25b">
+												Create Survey
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div fxFlex="5"></div>
+					</div>
+					<div fxLayout="column" fxLayoutAlign="center center"
+						style="height: 15vh; width: 100vw; margin-bottom: 2rem;">
+						<div fxLayout="row" fxLayoutAlign="center center">
+							<p class="text-xs text-black text-left m-2 ml-4 mr-4 text-center">
+								Copyright &copy; 2013-2019 Sun Plus Software Technologies Pvt Ltd. All right reserved.
+							</p>
+						</div>
+						<div class="text-black" fxLayout="row" fxLayoutAlign="center center">
+
+							<a (click)="evtEmit.loadPrivatePolicy()" class="pr-2 pl-2 text-xs text-black-500;"
+								style="cursor: pointer; border-right:1px solid #21b25b">Cookies & Privacy</a>
+							<a class="pr-2 pl-2 text-xs text-black-500" style="cursor: pointer;">Help</a>
+						</div>
+					</div>
+				</div>
+				<div fxFlex.xl="15" fxFlex.lg="15" fxFlex.md="5"></div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="popup" *ngIf="!isShowModal" fxLayout="column" fxLayoutAlign="center center" style="width: 90vw">
+		<div class="w3-modal-content w-full"
+			style="background-color: white !important; z-index: 1; width:250px !important">
+			<div class="w-full">
+				<span class="w3-button rounded" (click)="closePopUp()"
+					style="background: #21b25b; padding: 5px 11px;!important; border-radius: 50%; right: -32px; top: -19px; position: absolute;">&times;</span>
+				<div class="w-full">
+					<div fxLayout="row" fxLayoutAlign="space-between center" style="margin: 0.5rem 1rem">
+						<div fxFlex="2"></div>
+						<div fxFlex="96">
+							<div class="mb-2">
+								<p class="font-bold text-1xl  text-black">Name Your Survey
+								</p>
+								<hr style="margin: 10px 0px">
+								<input
+									class="appearance-none w-full py-2 px-3 text-base text-black focus:outline-none"
+									type="text" [(ngModel)]="txt_survey_name" style="background-color: #f6f6f6;"
+									placeholder="Survey Name" maxlength="50">
+								<span class="text-xs text-red-300 pt-1 mb-2" style="float: right;">
+									{{txt_survey_name.length}}/50
+								</span>
+							</div>
+							<div class="mb-2">
+								<select [(ngModel)]="sel_sur_category"
+									class="text-base py-2 px-3 text-black focus:outline-none"
+									style="width: 100%; height: 35px; max-height: 35px; background-color: #f6f6f6;">
+									<option value="Select Category" selected>Select Category</option>
+									<option *ngFor="let cat of surCategoryList" [value]="cat.survey_category">
+										{{cat.survey_category}}
+									</option>
+								</select>
+							</div>
+							<div class="mb-2">
+								<input
+									class="appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+									type="date" name="dateofbirth" id="dateofbirth" placeholder="Survey expire date"
+									[min]="minDate" style="background-color: #f6f6f6;" [(ngModel)]="dtp_sur_expire" onkeydown="return false">
+								<span class="text-xs text-red-300 pt-1 mb-8">
+									*Survey expire date
+								</span>
+							</div>
+							<div class="flex items-center mb-2">
+								<div class="flex-1 text-center">
+								</div>
+								<div class="flex-1 text-center">
+									<div fxLayout="column" fxLayoutAlign="start start">
+										<div *ngIf="!isUploadHidden">
+											<input style="display: none; cursor: pointer;" type="file"
+												(change)="onFileChanged($event)" #fileInput accept=".png, .jpg">
+											<button
+												class="text-black text-base py-2 px-4 rounded-lg m-2 h-12 w-48 focus:outline-none"
+												style="border:1px solid #21b25b; border-radius: 25px" type="button"
+												(click)="fileInput.click()">
+												Upload Logo
+											</button>
+											<p class="text-xs text-black" style="padding-left: 0.4rem">(Image format
+												in .png, .jpg)
+											</p>
+										</div>
+										<div *ngIf="!isLogoHidden">
+											<div fxLayout="row" class="card w-64 mb-2 bg-white p-2"
+												style="min-height: 2rem; box-shadow: 0 2px 10px -3px rgba(0,0,0,.1), 0 2px 6px -2px rgba(0,0,0,.05);">
+												<div fxFlex="90" fxLayout="row" fxLayoutAlign="start cenetr">
+													<p class="text-base text-black">
+														{{up_file_name}}
+													</p>
+												</div>
+												<div fxFlex="10">
+													<mat-icon (click)="removeLog(fileInput)" svgIcon="cross"
+														class="mt-1"
+														style="width: 12px; height: 12px; cursor: pointer;">
+
+													</mat-icon>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="flex-1 text-center">
+
+								</div>
+							</div>
+							<div class="flex items-center">
+								<div class="flex-1 text-center">
+
+								</div>
+								<div class="flex-1 text-center">
+									<button
+										class="text-white text-base py-2 px-4 rounded-lg m-2 h-12 w-48 focus:outline-none"
+										style="background-color: #21b25b; border-radius: 25px;" type="button"
+										(click)="createSurvey();">
+										Create Survey
+									</button>
+								</div>
+								<div class="flex-1 text-center">
+
+								</div>
+							</div>
+						</div>
+						<div fxFlex="5"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="popup" *ngIf="!isShwSpinner" style="width: 4rem; height: 5rem">
+	<img src="/images/loading.gif" alt="" width="300px" height="300px" style="z-index: 1">
+</div>
